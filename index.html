@@ -313,7 +313,7 @@
 
         <!-- Store buttons injected here -->
         <div id="overlay-stores" class="flex flex-col gap-3"></div>
-      </div>
+      </div> 
     </div>
   </div>
 
@@ -369,8 +369,8 @@
 
       <!-- RenderHub -->
       <a href="https://www.renderhub.com/zamods" target="_blank" rel="noopener" class="store-btn bg-panel border border-white/10 rounded-xl p-7 flex flex-col items-center text-center group">
-        <div class="w-14 h-14 rounded-full bg-[#1a1a28] flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">
-          <img src="assets/ren.png"/>
+        <div class="w-[100%] h-[100%] object-contain rounded-full bg-gold flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">
+          <img class="w-[80%] h-[80%] object-contain" src="assets/rh.png"/>
         </div>
         <h3 class="font-display text-xl tracking-widest text-white mb-1">RENDERHUB</h3>
         <p class="text-mist text-xs leading-relaxed mb-4">6 items • 4.9 ★ • Extended licenses</p>
@@ -379,7 +379,9 @@
 
       <!-- Renderosity -->
       <a href="https://www.renderosity.com" target="_blank" rel="noopener" class="store-btn bg-panel border border-white/10 rounded-xl p-7 flex flex-col items-center text-center group">
-        <div class="w-14 h-14 rounded-full bg-[#1a1a28] flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">🖌️</div>
+        <div class="w-[100%] h-[100%] object-contain rounded-full bg-gold flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">
+          <img class="w-[80%] h-[80%] object-contain" src="assets/ren.png"/>
+        </div>
         <h3 class="font-display text-xl tracking-widest text-white mb-1">RENDEROSITY</h3>
         <p class="text-mist text-xs leading-relaxed mb-4">Assets for Daz & Poser artists worldwide</p>
         <span class="text-gold text-xs tracking-widest uppercase border-b border-gold/30 pb-px">Visit Store →</span>
@@ -387,7 +389,9 @@
 
       <!-- 3DShards -->
       <a href="https://www.3dshards.com" target="_blank" rel="noopener" class="store-btn bg-panel border border-white/10 rounded-xl p-7 flex flex-col items-center text-center group">
-        <div class="w-14 h-14 rounded-full bg-[#1a1a28] flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">💎</div>
+        <div class="w-[100%] h-[100%] object-contain rounded-full bg-gold flex items-center justify-center mb-4 text-2xl group-hover:scale-110 transition">
+          <img class="w-[80%] h-[80%] object-contain" src="assets/3ds.png"/>
+        </div>
         <h3 class="font-display text-xl tracking-widest text-white mb-1">3DSHARDS</h3>
         <p class="text-mist text-xs leading-relaxed mb-4">Curated marketplace for premium 3D assets</p>
         <span class="text-gold text-xs tracking-widest uppercase border-b border-gold/30 pb-px">Visit Store →</span>
@@ -426,7 +430,7 @@
       </form>
 
       <p id="nl-success" class="hidden mt-5 text-green-400 text-sm tracking-wide">✓ You're on the list! Watch your inbox.</p>
-      <p class="text-mist/60 text-xs mt-4">Unsubscribe anytime. No spam, ever.</p>
+      <p class="text-mist/60 text-s mt-4">Unsubscribe anytime. No spam, ever.</p>
     </div>
   </section>
 
@@ -526,9 +530,9 @@
 
     // Store display metadata
     const STORES = {
-      renderhub:   { name: 'RenderHub',   icon: '🎨', color: '#c9a84c',  desc: 'Main store · Extended licenses' },
-      renderosity: { name: 'Renderosity', icon: '🖌️', color: '#e07c4c',  desc: 'Daz & Poser community' },
-      shards3d:    { name: '3DShards',    icon: '💎', color: '#6ec0e0',  desc: 'Curated 3D marketplace' },
+      renderhub:   { name: 'RenderHub',   icon: 'assets/rh.png', color: '#c9a84c',  desc: 'Main store · Extended licenses' },
+      renderosity: { name: 'Renderosity', icon: 'assets/ren.png', color: '#e07c4c',  desc: 'Daz & Poser community' },
+      shards3d:    { name: '3DShards',    icon: 'assets/3ds.png', color: '#6ec0e0',  desc: 'Curated 3D marketplace' },
     };
 
 
@@ -576,7 +580,7 @@
         }
 
         btn.innerHTML = `
-          <span style="font-size:1.4rem;line-height:1">${meta.icon}</span>
+          <img style="w-[35%]">${meta.icon}</img>
           <div style="flex:1">
             <p style="color:${store.enabled ? '#fff' : '#666'};font-weight:600;font-size:.875rem;letter-spacing:.05em">${meta.name}</p>
             <p style="color:${store.enabled ? '#b8bccc' : '#555'};font-size:.7rem;margin-top:1px">${meta.desc}</p>
