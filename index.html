@@ -154,9 +154,9 @@
   ══════════════════════════════════════ -->
   <section class="bg-panel border-y border-white/5 py-6 px-6">
     <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-      <div><p class="font-display text-3xl text-gold tracking-wider">4.9★</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Avg Rating</p></div>
-      <div><p class="font-display text-3xl text-gold tracking-wider">9+</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Reviews</p></div>
-      <div><p class="font-display text-3xl text-gold tracking-wider">6</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Products</p></div>
+      <div><p id="stat-rating" class="font-display text-3xl text-gold tracking-wider">—</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Avg Rating</p></div>
+      <div><p id="stat-reviews" class="font-display text-3xl text-gold tracking-wider">—</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Reviews</p></div>
+      <div><p id="stat-products" class="font-display text-3xl text-gold tracking-wider">—</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Products</p></div>
       <div><p class="font-display text-3xl text-gold tracking-wider">3</p><p class="text-mist text-xs mt-1 tracking-widest uppercase">Marketplaces</p></div>
     </div>
   </section>
@@ -524,6 +524,16 @@
           paidGrid.appendChild(renderPaidCard(id, p));
         }
       });
+
+      // ── Calculate stats ─────────────────────────────────────────
+      const all = Object.values(PRODUCTS);
+      const totalProducts = all.length;
+      const totalReviews  = all.reduce((sum, p) => sum + Number(p.reviews), 0);
+      const avgRating     = (all.reduce((sum, p) => sum + Number(p.rating), 0) / totalProducts).toFixed(1);
+
+      document.getElementById('stat-rating').textContent   = avgRating + '★';
+      document.getElementById('stat-reviews').textContent  = totalReviews;
+      document.getElementById('stat-products').textContent = totalProducts;
     })();
     // ══════════════════════════════════════════════════════════════════
 
