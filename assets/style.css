@@ -41,6 +41,10 @@ body::before {
     clip-path: polygon(8px 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
+.nav-buy-clip {
+    clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
 /* Section header arrow tag */
 .tag-arrow {
     clip-path: polygon(0% 0%,
@@ -302,3 +306,92 @@ body::before {
 .no-scrollbar {
     scrollbar-width: none;
 }
+
+/* For Product Page */
+ /* Tab underline */
+ .tab-btn {
+     position: relative;
+ }
+
+ .tab-btn::after {
+     content: "";
+     position: absolute;
+     bottom: -2px;
+     left: 0;
+     right: 0;
+     height: 2px;
+     background: #e8313a;
+     transform: scaleX(0);
+     transition: transform 0.2s;
+ }
+
+ .tab-btn.active::after {
+     transform: scaleX(1);
+ }
+
+ /* Animations */
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+         transform: translateY(14px);
+     }
+
+     to {
+         opacity: 1;
+         transform: none;
+     }
+ }
+
+ .anim-in {
+     animation: fadeIn 0.5s both;
+ }
+
+ /* Thumb */
+ .thumb {
+     border: 2px solid transparent;
+     opacity: 0.5;
+     transition:
+         opacity 0.18s,
+         border-color 0.18s;
+ }
+
+ .thumb.active {
+     border-color: #e8313a;
+     opacity: 1;
+ }
+
+ .thumb:hover {
+     opacity: 0.85;
+ }
+
+ /* Tab panels */
+ .tab-panel {
+     display: none;
+ }
+
+ .tab-panel.active {
+     display: block;
+     animation: fadeIn 0.3s both;
+ }
+
+ /* Lightbox */
+ .lightbox {
+     display: none;
+ }
+
+ .lightbox.open {
+     display: flex;
+ }
+
+ /* Store row colors */
+ .store-row[data-color="gold"]:hover {
+     border-color: rgba(200, 168, 74, 0.4);
+ }
+
+ .store-row[data-color="ember"]:hover {
+     border-color: rgba(220, 100, 60, 0.4);
+ }
+
+ .store-row[data-color="cyan"]:hover {
+     border-color: rgba(100, 180, 220, 0.4);
+ }
