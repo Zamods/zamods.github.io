@@ -1,2109 +1,1582 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>zamods – Premium Daz Studio 3D Content</title>
-  <meta name="description" content="zamods creates premium Daz Studio assets — eyelashes, sunglasses, props, materials, and Blender tools for Genesis 9, 8.1, 8, 3. Available on RenderHub, Renderosity & 3DShards." />
-  <meta name="keywords" content="Daz Studio, Daz content, Genesis 9, Genesis 8, 3D assets, zamods, RenderHub, Renderosity, 3DShards" />
-  <meta name="author" content="zamods" />
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://zamods.com/" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="zamods – Premium Daz Studio 3D Content" />
-  <meta property="og:description" content="High-quality Daz Studio assets for artists who demand more." />
-  <meta property="og:url" content="https://zamods.com/" />
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Store","name":"zamods","url":"https://zamods.com","sameAs":["https://www.renderhub.com/zamods"]}
-  </script>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=JetBrains+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
-
-  <style>
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   CUSTOM PROPERTIES
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-:root {
-  --bg:          #07090d;
-  --bg2:         #0d1017;
-  --bg3:         #12151e;
-  --bg4:         #181c27;
-  --bg5:         #1e2332;
-  --panel:       #111419;
-  --border:      rgba(255,255,255,0.06);
-  --border2:     rgba(255,255,255,0.10);
-  --border3:     rgba(255,255,255,0.16);
-  --text:        #dde0eb;
-  --muted:       #7e8898;
-  --dim:         #4d5668;
-  --gold:        #c8a84a;
-  --gold-light:  #e4c46a;
-  --gold-dim:    rgba(200,168,74,0.15);
-  --gold-border: rgba(200,168,74,0.28);
-  --accent:      #4a78f0;
-  --accent-dim:  rgba(74,120,240,0.12);
-  --accent-brd:  rgba(74,120,240,0.28);
-  --green:       #3ecf72;
-  --green-dim:   rgba(62,207,114,0.12);
-  --green-brd:   rgba(62,207,114,0.28);
-  --ember:       #e05a2b;
-
-  --font-display: 'Syne', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
-  --font-body:    'DM Sans', sans-serif;
-
-  --radius:      12px;
-  --radius-lg:   18px;
-  --transition:  0.24s ease;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESET & BASE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font-body);
-  font-weight: 300;
-  font-size: 15px;
-  line-height: 1.7;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
-img { display: block; max-width: 100%; }
-a { text-decoration: none; color: inherit; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   ANIMATIONS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0);     }
-}
-@keyframes pulseGlow {
-  0%, 100% { opacity: 0.5; transform: scaleY(1);   }
-  50%       { opacity: 1;   transform: scaleY(1.15); }
-}
-@keyframes shimmerText {
-  0%   { background-position: 0%   }
-  100% { background-position: 200% }
-}
-@keyframes overlayIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-@keyframes panelIn {
-  from { opacity: 0; transform: translateY(28px) scale(0.97); }
-  to   { opacity: 1; transform: translateY(0)    scale(1);    }
-}
-
-.anim-fade-1 { animation: fadeUp 0.7s 0.05s both; }
-.anim-fade-2 { animation: fadeUp 0.7s 0.20s both; }
-.anim-fade-3 { animation: fadeUp 0.7s 0.35s both; }
-.anim-fade-4 { animation: fadeUp 0.7s 0.50s both; }
-.anim-fade-5 { animation: fadeUp 0.7s 0.65s both; }
-
-/* Scroll-reveal applied by JS */
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NOISE TEXTURE OVERLAY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.noise-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  z-index: 0;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SHARED SECTION LAYOUT
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.container       { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-.container--sm   { max-width: 820px;  margin: 0 auto; padding: 0 32px; }
-.divider-line    { height: 1px; background: var(--border); }
-.divider-line--gold { background: linear-gradient(90deg, transparent, var(--gold-border), transparent); }
-
-.section-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-  display: block;
-}
-.section-eyebrow--green { color: var(--green); }
-.section-eyebrow--blue  { color: var(--accent); }
-
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(30px, 4vw, 46px);
-  letter-spacing: -0.02em;
-  color: #fff;
-  line-height: 1.1;
-  margin-bottom: 12px;
-}
-.section-title em { font-style: normal; color: var(--gold); }
-.section-title .em-green { color: var(--green); }
-
-.section-body {
-  color: var(--muted);
-  font-size: 14px;
-  max-width: 540px;
-  line-height: 1.7;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NAVIGATION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.site-nav {
-  position: sticky;
-  top: 0;
-  z-index: 200;
-  background: rgba(7,9,13,0.85);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border2);
-  padding: 0 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  height: 60px;
-}
-.nav-logo {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 22px;
-  letter-spacing: 0.08em;
-  color: #fff;
-  white-space: nowrap;
-}
-.nav-logo span { color: var(--gold); }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  list-style: none;
-}
-.nav-links a {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--muted);
-  padding: 6px 14px;
-  border-radius: 6px;
-  transition: color var(--transition), background var(--transition);
-}
-.nav-links a:hover { color: var(--text); background: var(--border); }
-.nav-cta {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--gold);
-  color: #080a0d;
-  padding: 8px 20px;
-  border-radius: 6px;
-  transition: background var(--transition), transform var(--transition);
-  white-space: nowrap;
-}
-.nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   HERO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.hero {
-  position: relative;
-  min-height: calc(100vh - 60px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
-  padding: 80px 32px;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 65% 55% at 20% 50%,  rgba(200,168,74,0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 45% at 90% 20%,  rgba(74,120,240,0.05) 0%, transparent 70%),
-    radial-gradient(ellipse 50% 35% at 75% 90%,  rgba(224,90,43,0.04) 0%, transparent 60%),
-    var(--bg);
-}
-/* Dot grid */
-.hero-bg::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 80%);
-}
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 820px;
-}
-.hero-tag {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 28px;
-  padding: 6px 14px 6px 6px;
-  border: 1px solid var(--gold-border);
-  border-radius: 4px;
-  background: var(--gold-dim);
-}
-.hero-tag-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--gold);
-}
-.hero-headline {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(52px, 9vw, 108px);
-  letter-spacing: -0.03em;
-  line-height: 0.95;
-  color: #fff;
-  margin-bottom: 28px;
-}
-.hero-headline em {
-  font-style: normal;
-  background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 40%, var(--gold) 70%);
-  background-size: 200%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmerText 4s linear infinite;
-}
-.hero-sub {
-  font-size: 15px;
-  font-weight: 300;
-  color: var(--muted);
-  max-width: 520px;
-  line-height: 1.75;
-  margin-bottom: 40px;
-}
-.hero-sub strong { color: var(--text); font-weight: 500; }
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  align-items: center;
-}
-.btn-primary {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  background: var(--gold);
-  color: #080a0d;
-  padding: 14px 32px;
-  border-radius: 6px;
-  transition: background var(--transition), transform var(--transition);
-  display: inline-block;
-}
-.btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
-.btn-secondary {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--green);
-  padding: 13px 32px;
-  border-radius: 6px;
-  border: 1px solid var(--green-brd);
-  background: var(--green-dim);
-  transition: background var(--transition), border-color var(--transition), transform var(--transition);
-  display: inline-block;
-}
-.btn-secondary:hover { background: rgba(62,207,114,0.2); border-color: var(--green); transform: translateY(-2px); }
-.hero-scroll-line {
-  position: absolute;
-  bottom: 32px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-  width: 1px;
-  height: 48px;
-  background: linear-gradient(to bottom, var(--gold-border), transparent);
-  animation: pulseGlow 2.5s ease-in-out infinite;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STATS BAR
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.stats-bar {
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  padding: 28px 32px;
-}
-.stats-bar-inner {
-  max-width: 900px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 0;
-}
-.stat-item {
-  text-align: center;
-  padding: 0 20px;
-  position: relative;
-}
-.stat-item + .stat-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 15%;
-  height: 70%;
-  width: 1px;
-  background: var(--border2);
-}
-.stat-value {
-  font-family: var(--font-mono);
-  font-size: 28px;
-  font-weight: 500;
-  color: var(--gold);
-  display: block;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 6px;
-}
-.stat-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   SECTION WRAPPER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.section {
-  padding: 88px 32px;
-}
-.section--alt { background: var(--bg2); }
-.section-header { margin-bottom: 52px; }
-.section-header--center { text-align: center; }
-.section-header--center .section-body { margin: 0 auto; }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PRODUCT CARDS  (paid)
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
-.product-card {
-  background: var(--panel);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-  display: flex;
-  flex-direction: column;
-}
-.product-card:hover {
-  border-color: var(--gold-border);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(200,168,74,0.1);
-}
-.product-card__image-wrap {
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: var(--bg4);
-  position: relative;
-}
-.product-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.55s ease;
-}
-.product-card:hover .product-card__image { transform: scale(1.06); }
-.product-card__badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 4px;
-  background: rgba(7,9,13,0.75);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.12);
-  color: var(--gold);
-}
-.product-card__badge--new {
-  background: rgba(200,168,74,0.18);
-  border-color: var(--gold-border);
-  color: var(--gold-light);
-}
-.product-card__body {
-  padding: 22px 22px 20px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.product-card__tag {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-.product-card__name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
-  color: #fff;
-  letter-spacing: -0.01em;
-  line-height: 1.25;
-  margin-bottom: 5px;
-}
-.product-card__sub {
-  font-size: 12.5px;
-  color: var(--muted);
-  margin-bottom: 18px;
-}
-.product-card__footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: auto;
-  padding-top: 16px;
-  border-top: 1px solid var(--border);
-}
-.product-card__price {
-  font-family: var(--font-mono);
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--gold);
-  letter-spacing: -0.01em;
-}
-.product-card__rating {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--dim);
-  letter-spacing: 0.05em;
-}
-.product-card__cta {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  transition: gap var(--transition), color var(--transition);
-}
-.product-card:hover .product-card__cta { gap: 9px; color: var(--gold-light); }
-.product-card__cta-arrow { font-size: 11px; }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FREEBIE CARDS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.freebie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-.freebie-card {
-  background: rgba(62,207,114,0.04);
-  border: 1px solid var(--green-brd);
-  border-radius: var(--radius);
-  overflow: hidden;
-  cursor: pointer;
-  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-  display: flex;
-  flex-direction: column;
-}
-.freebie-card:hover {
-  border-color: var(--green);
-  transform: translateY(-3px);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 28px rgba(62,207,114,0.08);
-}
-.freebie-card__image-wrap {
-  aspect-ratio: 1;
-  overflow: hidden;
-  background: var(--bg4);
-  position: relative;
-}
-.freebie-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.55s ease;
-}
-.freebie-card:hover .freebie-card__image { transform: scale(1.06); }
-.freebie-tag {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-family: var(--font-mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  background: var(--green);
-  color: #060d0a;
-  padding: 3px 9px;
-  border-radius: 3px;
-}
-.freebie-card__body {
-  padding: 16px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-.freebie-card__cat {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 7px;
-  opacity: 0.8;
-}
-.freebie-card__name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  color: #fff;
-  line-height: 1.3;
-  margin-bottom: 4px;
-}
-.freebie-card__sub {
-  font-size: 11.5px;
-  color: var(--muted);
-  margin-bottom: 14px;
-}
-.freebie-card__download {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--green);
-  text-align: center;
-  padding: 8px;
-  border: 1px solid var(--green-brd);
-  border-radius: 5px;
-  background: var(--green-dim);
-  margin-top: auto;
-  transition: background var(--transition), border-color var(--transition);
-}
-.freebie-card:hover .freebie-card__download {
-  background: rgba(62,207,114,0.2);
-  border-color: var(--green);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   WHY ZAMODS
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.why-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-.why-prose p {
-  font-size: 14px;
-  color: var(--muted);
-  line-height: 1.75;
-  margin-bottom: 14px;
-}
-.why-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.why-pill {
-  background: var(--panel);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius);
-  padding: 20px;
-  transition: border-color var(--transition);
-}
-.why-pill:hover { border-color: var(--border3); }
-.why-pill__label {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--green);
-  margin-bottom: 8px;
-  display: block;
-}
-.why-pill__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
-  color: #fff;
-  margin-bottom: 6px;
-}
-.why-pill__body {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   STORES SECTION
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.stores-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  max-width: 840px;
-  margin: 0 auto 40px;
-}
-.store-panel {
-  background: var(--panel);
-  border: 1px solid var(--border2);
-  border-radius: var(--radius-lg);
-  padding: 32px 24px;
-  text-align: center;
-  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-  display: block;
-}
-.store-panel:hover {
-  border-color: var(--gold-border);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 30px rgba(200,168,74,0.08);
-}
-.store-panel__logo-wrap {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
-  background: var(--bg4);
-  border: 1px solid var(--border2);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-  transition: transform var(--transition);
-}
-.store-panel:hover .store-panel__logo-wrap { transform: scale(1.08); }
-.store-panel__logo { width: 100%; height: 100%; object-fit: contain; }
-.store-panel__name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.06em;
-  color: #fff;
-  margin-bottom: 5px;
-}
-.store-panel__meta {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--muted);
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-.store-panel__link {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding-bottom: 2px;
-  border-bottom: 1px solid var(--gold-border);
-  transition: border-color var(--transition), gap var(--transition);
-}
-.store-panel:hover .store-panel__link { border-color: var(--gold); gap: 9px; }
-.store-cta-banner {
-  max-width: 840px;
-  margin: 0 auto;
-  background: var(--panel);
-  border: 1px solid var(--gold-border);
-  border-radius: var(--radius-lg);
-  padding: 36px 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-.store-cta-banner__text h3 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  color: #fff;
-  margin-bottom: 5px;
-}
-.store-cta-banner__text p {
-  font-size: 13px;
-  color: var(--muted);
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   NEWSLETTER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.newsletter-wrap {
-  max-width: 540px;
-  margin: 0 auto;
-  text-align: center;
-}
-.newsletter-form {
-  display: flex;
-  gap: 8px;
-  margin-top: 24px;
-}
-.newsletter-input {
-  flex: 1;
-  background: var(--bg3);
-  border: 1px solid var(--border2);
-  border-radius: 6px;
-  padding: 12px 18px;
-  font-family: var(--font-body);
-  font-size: 13px;
-  color: var(--text);
-  outline: none;
-  transition: border-color var(--transition);
-}
-.newsletter-input::placeholder { color: var(--dim); }
-.newsletter-input:focus { border-color: var(--gold-border); }
-.newsletter-btn {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  background: var(--gold);
-  color: #080a0d;
-  padding: 12px 22px;
-  border-radius: 6px;
-  cursor: pointer;
-  border: none;
-  font-weight: 500;
-  transition: background var(--transition);
-  white-space: nowrap;
-}
-.newsletter-btn:hover { background: var(--gold-light); }
-.newsletter-success {
-  font-family: var(--font-mono);
-  font-size: 12px;
-  color: var(--green);
-  padding: 16px;
-  border: 1px solid var(--green-brd);
-  border-radius: 8px;
-  background: var(--green-dim);
-  margin-top: 24px;
-}
-.hidden { display: none !important; }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   FOOTER
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.site-footer {
-  background: var(--panel);
-  border-top: 1px solid var(--border);
-  padding: 40px 32px;
-}
-.footer-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.footer-brand {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 18px;
-  letter-spacing: 0.08em;
-  color: #fff;
-}
-.footer-brand span { color: var(--gold); }
-.footer-links {
-  display: flex;
-  gap: 24px;
-  list-style: none;
-  flex-wrap: wrap;
-}
-.footer-links a {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--dim);
-  transition: color var(--transition);
-}
-.footer-links a:hover { color: var(--muted); }
-.footer-copy {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--dim);
-  letter-spacing: 0.06em;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   PRODUCT DETAIL OVERLAY
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.detail-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 400;
-  background: rgba(4,6,10,0.92);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  animation: overlayIn 0.25s ease;
-}
-.detail-overlay.closing { animation: none; opacity: 0; transition: opacity 0.2s ease; }
-
-.detail-panel {
-  background: var(--bg2);
-  border: 1px solid var(--border2);
-  border-radius: 20px;
-  width: 100%;
-  max-width: 1000px;
-  max-height: 92vh;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  position: relative;
-  animation: panelIn 0.3s cubic-bezier(0.16,1,0.3,1);
-  box-shadow: 0 40px 120px rgba(0,0,0,0.7), 0 0 80px rgba(200,168,74,0.06);
-}
-.detail-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 10;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(10,12,18,0.7);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--border2);
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background var(--transition), color var(--transition);
-}
-.detail-close:hover { background: rgba(255,255,255,0.1); color: #fff; }
-
-/* Gallery column */
-.detail-gallery-col {
-  background: var(--bg4);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.detail-gallery-main {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-}
-.detail-gallery-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity 0.3s ease;
-}
-.detail-gallery-thumbs {
-  display: flex;
-  gap: 6px;
-  padding: 10px;
-  background: var(--bg3);
-  border-top: 1px solid var(--border);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.detail-gallery-thumbs::-webkit-scrollbar { display: none; }
-.detail-thumb {
-  flex-shrink: 0;
-  width: 56px;
-  height: 56px;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: border-color var(--transition);
-  opacity: 0.6;
-  transition: opacity var(--transition), border-color var(--transition);
-}
-.detail-thumb.active { border-color: var(--gold); opacity: 1; }
-.detail-thumb:hover { opacity: 0.9; }
-.detail-thumb img { width: 100%; height: 100%; object-fit: cover; }
-
-/* Info column */
-.detail-info-col {
-  overflow-y: auto;
-  padding: 36px 32px 36px;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bg5) transparent;
-}
-.detail-info-col::-webkit-scrollbar { width: 4px; }
-.detail-info-col::-webkit-scrollbar-track { background: transparent; }
-.detail-info-col::-webkit-scrollbar-thumb { background: var(--bg5); border-radius: 2px; }
-
-.detail-eyebrow {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-.detail-eyebrow::before {
-  content: '';
-  width: 3px;
-  height: 12px;
-  background: var(--accent);
-  border-radius: 2px;
-  display: block;
-}
-.detail-name {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: clamp(22px, 2.8vw, 30px);
-  color: #fff;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin-bottom: 10px;
-}
-.detail-meta-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 16px;
-  flex-wrap: wrap;
-}
-.detail-rating {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--gold);
-  letter-spacing: 0.06em;
-}
-.detail-review-count {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--dim);
-}
-.detail-price {
-  font-family: var(--font-mono);
-  font-size: 28px;
-  font-weight: 500;
-  color: var(--gold);
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.detail-price--free { color: var(--green); }
-.detail-compat {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-bottom: 24px;
-}
-.compat-badge {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.1em;
-  padding: 4px 10px;
-  border-radius: 4px;
-  background: var(--accent-dim);
-  border: 1px solid var(--accent-brd);
-  color: var(--accent);
-}
-.detail-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 22px 0;
-}
-.detail-desc {
-  font-size: 13.5px;
-  color: var(--muted);
-  line-height: 1.75;
-  margin-bottom: 24px;
-}
-.detail-features {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-.detail-feature {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 14px 16px;
-  background: var(--bg3);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  transition: border-color var(--transition);
-}
-.detail-feature:hover { border-color: var(--border2); }
-.detail-feature__icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: var(--gold-dim);
-  border: 1px solid var(--gold-border);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 1px;
-}
-.detail-feature__icon svg { width: 14px; height: 14px; }
-.detail-feature__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13px;
-  color: #fff;
-  margin-bottom: 3px;
-}
-.detail-feature__body {
-  font-size: 12px;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-/* Specs table */
-.detail-specs-title {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 12px;
-}
-.detail-specs {
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 24px;
-}
-.spec-row {
-  display: flex;
-  border-bottom: 1px solid var(--border);
-}
-.spec-row:last-child { border-bottom: none; }
-.spec-row:hover { background: var(--bg3); }
-.spec-key {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--dim);
-  padding: 10px 16px;
-  width: 38%;
-  border-right: 1px solid var(--border);
-  letter-spacing: 0.05em;
-  display: flex;
-  align-items: center;
-}
-.spec-val {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--text);
-  padding: 10px 16px;
-  flex: 1;
-  display: flex;
-  align-items: center;
-}
-
-/* Purchase section */
-.detail-purchase-title {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--dim);
-  margin-bottom: 12px;
-}
-.detail-stores { display: flex; flex-direction: column; gap: 8px; }
-.detail-store-row {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 10px;
-  border: 1px solid var(--border2);
-  background: var(--bg3);
-  text-decoration: none;
-  transition: border-color var(--transition), background var(--transition);
-  cursor: pointer;
-}
-.detail-store-row--disabled {
-  opacity: 0.4;
-  cursor: default;
-  pointer-events: none;
-}
-/* Store brand colors via data-store */
-.detail-store-row[data-store="renderhub"]   { --s-color: #c8a84a; }
-.detail-store-row[data-store="renderosity"] { --s-color: #e07c4c; }
-.detail-store-row[data-store="shards3d"]    { --s-color: #6ec0e0; }
-.detail-store-row:not(.detail-store-row--disabled):hover {
-  border-color: rgba(var(--s-color-raw, 200,168,74), 0.4);
-  background: var(--bg4);
-}
-.detail-store-row[data-store="renderhub"]:hover   { border-color: rgba(200,168,74,0.4); }
-.detail-store-row[data-store="renderosity"]:hover { border-color: rgba(224,124,76,0.4); }
-.detail-store-row[data-store="shards3d"]:hover    { border-color: rgba(110,192,224,0.4); }
-.detail-store-logo {
-  width: 48px;
-  height: 28px;
-  object-fit: contain;
-  flex-shrink: 0;
-  opacity: 0.9;
-}
-.detail-store-info { flex: 1; }
-.detail-store-name {
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  font-weight: 500;
-  color: #fff;
-  letter-spacing: 0.04em;
-  display: block;
-  margin-bottom: 2px;
-}
-.detail-store-desc {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  color: var(--muted);
-}
-.detail-store-action {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  border-radius: 5px;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-.detail-store-row[data-store="renderhub"]   .detail-store-action { background: rgba(200,168,74,0.15); border: 1px solid rgba(200,168,74,0.3); color: #c8a84a; }
-.detail-store-row[data-store="renderosity"] .detail-store-action { background: rgba(224,124,76,0.15); border: 1px solid rgba(224,124,76,0.3); color: #e07c4c; }
-.detail-store-row[data-store="shards3d"]    .detail-store-action { background: rgba(110,192,224,0.15); border: 1px solid rgba(110,192,224,0.3); color: #6ec0e0; }
-.detail-store-row--disabled .detail-store-action { background: transparent; border: 1px solid var(--border); color: var(--dim); }
-
-/* Reviews */
-.detail-reviews { margin-top: 4px; }
-.review-stars {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: var(--gold);
-  margin-bottom: 12px;
-  letter-spacing: 0.05em;
-}
-.review-item {
-  padding: 14px 0;
-  border-bottom: 1px solid var(--border);
-}
-.review-item:last-child { border-bottom: none; }
-.review-author {
-  font-family: var(--font-mono);
-  font-size: 10.5px;
-  color: var(--text);
-  letter-spacing: 0.05em;
-  margin-bottom: 5px;
-}
-.review-stars-sm {
-  font-size: 11px;
-  color: var(--gold);
-  margin-bottom: 6px;
-  font-family: var(--font-mono);
-}
-.review-body {
-  font-size: 12.5px;
-  color: var(--muted);
-  line-height: 1.65;
-}
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   RESPONSIVE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-@media (max-width: 860px) {
-  .detail-panel {
-    grid-template-columns: 1fr;
-    grid-template-rows: 40vh 1fr;
-    max-height: 95vh;
-  }
-  .detail-gallery-col { max-height: 40vh; }
-  .why-layout { grid-template-columns: 1fr; gap: 36px; }
-  .stores-grid { grid-template-columns: 1fr; }
-  .store-cta-banner { flex-direction: column; text-align: center; }
-}
-@media (max-width: 680px) {
-  .site-nav { padding: 0 18px; }
-  .nav-links { display: none; }
-  .hero { padding: 56px 20px 80px; }
-  .section { padding: 60px 20px; }
-  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-  .stat-item::before { display: none; }
-  .product-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-  .freebie-grid { grid-template-columns: repeat(2, 1fr); }
-  .why-grid { grid-template-columns: 1fr; }
-  .newsletter-form { flex-direction: column; }
-  .footer-inner { flex-direction: column; text-align: center; }
-}
-  </style>
-</head>
-
-<body>
-
-<!-- ══════════════════════════════════════
-     NAV
-══════════════════════════════════════ -->
-<nav class="site-nav" role="navigation" aria-label="Main navigation">
-  <a href="#" class="nav-logo">ZA<span>MODS</span></a>
-  <ul class="nav-links">
-    <li><a href="#products">Products</a></li>
-    <li><a href="#freebies">Freebies</a></li>
-    <li><a href="#stores">Stores</a></li>
-  </ul>
-  <a href="#stores" class="nav-cta">Shop Now</a>
-</nav>
-
-<!-- ══════════════════════════════════════
-     HERO
-══════════════════════════════════════ -->
-<header class="hero" role="banner">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="noise-overlay" aria-hidden="true"></div>
-  <div class="hero-content">
-    <div class="hero-tag anim-fade-1">
-      <span class="hero-tag-dot" aria-hidden="true"></span>
-      Premium Daz Studio Assets
-    </div>
-    <h1 class="hero-headline anim-fade-2">
-      CRAFT<br/>YOUR<br/><em>VISION.</em>
-    </h1>
-    <p class="hero-sub anim-fade-3">
-      Meticulously built props, accessories, and materials for <strong>Genesis 9, 8.1, 8 & 3</strong> — for artists who refuse to compromise on quality.
-    </p>
-    <div class="hero-actions anim-fade-4">
-      <a href="#products" class="btn-primary">Browse Assets</a>
-      <a href="#freebies" class="btn-secondary">Free Downloads</a>
-    </div>
-  </div>
-  <div class="hero-scroll-line" aria-hidden="true"></div>
-</header>
-
-<!-- ══════════════════════════════════════
-     STATS BAR
-══════════════════════════════════════ -->
-<section class="stats-bar" aria-label="Store statistics">
-  <div class="stats-bar-inner">
-    <div class="stat-item">
-      <span class="stat-value" id="stat-rating">—</span>
-      <span class="stat-label">Avg Rating</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-value" id="stat-reviews">—</span>
-      <span class="stat-label">Reviews</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-value" id="stat-products">—</span>
-      <span class="stat-label">Products</span>
-    </div>
-    <div class="stat-item">
-      <span class="stat-value">3</span>
-      <span class="stat-label">Marketplaces</span>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     PAID ASSETS
-══════════════════════════════════════ -->
-<section class="section" id="products" aria-labelledby="section-products-title">
-  <div class="container">
-    <header class="section-header section-header--center">
-      <span class="section-eyebrow">Premium Paid Assets</span>
-      <h2 class="section-title" id="section-products-title">Featured <em>Assets</em></h2>
-      <p class="section-body">Hand-crafted with precision — every paid asset ships with an Extended Use License so your renders are commercially safe.</p>
-    </header>
-    <div class="product-grid" id="paid-grid" role="list" aria-label="Paid products"></div>
-  </div>
-</section>
-
-<div class="divider-line--gold" style="margin: 0 auto; max-width: 800px;"></div>
-
-<!-- ══════════════════════════════════════
-     FREEBIES
-══════════════════════════════════════ -->
-<section class="section section--alt" id="freebies" aria-labelledby="section-freebies-title">
-  <div class="container">
-    <header class="section-header section-header--center">
-      <span class="section-eyebrow section-eyebrow--green">100% Free</span>
-      <h2 class="section-title" id="section-freebies-title">Grab the <span class="em-green">Freebies</span></h2>
-      <p class="section-body">No strings attached. Download these assets completely free — because great tools should be accessible to every artist.</p>
-    </header>
-    <div class="freebie-grid" id="freebies-grid" role="list" aria-label="Free products"></div>
-    <div style="text-align:center; margin-top: 40px;">
-      <a href="https://www.renderhub.com/zamods" target="_blank" rel="noopener" class="btn-secondary">
-        See All Freebies on RenderHub
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="divider-line"></div>
-
-<!-- ══════════════════════════════════════
-     WHY ZAMODS
-══════════════════════════════════════ -->
-<section class="section" aria-labelledby="section-why-title">
-  <div class="container">
-    <div class="why-layout">
-      <div class="why-prose reveal">
-        <span class="section-eyebrow">The zamods Standard</span>
-        <h2 class="section-title" id="section-why-title">Built for<br/><em>serious artists</em></h2>
-        <p>Every asset is crafted with meticulous attention to geometry, UV mapping, and material response — so your renders look exactly how you imagined them, not how the software compromised them.</p>
-        <p>Whether you render character portraits, intimate scenes, or full-scale environments, zamods assets are tested for photorealistic output across Iray and Cycles.</p>
-      </div>
-      <div class="why-grid">
-        <div class="why-pill reveal">
-          <span class="why-pill__label">Compatibility</span>
-          <div class="why-pill__title">Genesis 9 Ready</div>
-          <p class="why-pill__body">Fully compatible with the latest Genesis 9 figures out of the box.</p>
-        </div>
-        <div class="why-pill reveal">
-          <span class="why-pill__label">Licensing</span>
-          <div class="why-pill__title">Extended License</div>
-          <p class="why-pill__body">All assets include extended commercial use licensing.</p>
-        </div>
-        <div class="why-pill reveal">
-          <span class="why-pill__label">Rendering</span>
-          <div class="why-pill__title">Iray Optimized</div>
-          <p class="why-pill__body">PBR materials tuned for Daz Studio's Iray renderer.</p>
-        </div>
-        <div class="why-pill reveal">
-          <span class="why-pill__label">Content</span>
-          <div class="why-pill__title">Adult-Friendly</div>
-          <p class="why-pill__body">Assets that perform beautifully in mature renders.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider-line"></div>
-
-<!-- ══════════════════════════════════════
-     STORES
-══════════════════════════════════════ -->
-<section class="section section--alt" id="stores" aria-labelledby="section-stores-title">
-  <div class="container">
-    <header class="section-header section-header--center">
-      <span class="section-eyebrow">Available On</span>
-      <h2 class="section-title" id="section-stores-title">Shop My <em>Stores</em></h2>
-      <p class="section-body">All zamods content lives across three trusted marketplaces. Pick your preferred platform below.</p>
-    </header>
-
-    <div class="stores-grid">
-      <a href="https://www.renderhub.com/zamods" target="_blank" rel="noopener" class="store-panel reveal" aria-label="Visit zamods on RenderHub">
-        <div class="store-panel__logo-wrap">
-          <img src="assets/rh.png" alt="RenderHub logo" class="store-panel__logo" loading="lazy" />
-        </div>
-        <div class="store-panel__name">RENDERHUB</div>
-        <div class="store-panel__meta">6 items · 4.9 ★<br/>Extended licenses included</div>
-        <span class="store-panel__link">Visit Store <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="https://www.renderosity.com/marketplace/vendors/zamods" target="_blank" rel="noopener" class="store-panel reveal" aria-label="Visit zamods on Renderosity">
-        <div class="store-panel__logo-wrap">
-          <img src="assets/ren.png" alt="Renderosity logo" class="store-panel__logo" loading="lazy" />
-        </div>
-        <div class="store-panel__name">RENDEROSITY</div>
-        <div class="store-panel__meta">Daz &amp; Poser<br/>Community marketplace</div>
-        <span class="store-panel__link">Visit Store <span aria-hidden="true">→</span></span>
-      </a>
-
-      <a href="https://3dshards.com/store/stupendous/" target="_blank" rel="noopener" class="store-panel reveal" aria-label="Visit zamods on 3DShards">
-        <div class="store-panel__logo-wrap">
-          <img src="assets/3ds.png" alt="3DShards logo" class="store-panel__logo" loading="lazy" />
-        </div>
-        <div class="store-panel__name">3DSHARDS</div>
-        <div class="store-panel__meta">Curated 3D<br/>Premium marketplace</div>
-        <span class="store-panel__link">Visit Store <span aria-hidden="true">→</span></span>
-      </a>
-    </div>
-
-    <div class="store-cta-banner reveal">
-      <div class="store-cta-banner__text">
-        <h3>New releases, first.</h3>
-        <p>Follow zamods on RenderHub to be notified of every new drop and exclusive freebie.</p>
-      </div>
-      <a href="https://www.renderhub.com/zamods" target="_blank" rel="noopener" class="btn-primary">Follow on RenderHub</a>
-    </div>
-  </div>
-</section>
-
-<div class="divider-line"></div>
-
-<!-- ══════════════════════════════════════
-     NEWSLETTER
-══════════════════════════════════════ -->
-<section class="section" aria-labelledby="section-newsletter-title">
-  <div class="newsletter-wrap reveal">
-    <span class="section-eyebrow section-eyebrow--blue" style="display:block; text-align:center;">Stay Updated</span>
-    <h2 class="section-title" id="section-newsletter-title" style="text-align:center; font-size: clamp(26px,3.5vw,38px);">New drops,<br/>straight to you</h2>
-    <p class="section-body" style="text-align:center; margin: 12px auto 0;">Get notified whenever a new asset lands — paid, free, or experimental.</p>
-    <form class="newsletter-form" id="newsletter-form" onsubmit="handleSubscribe(event)" aria-label="Newsletter signup">
-      <input
-        type="email"
-        class="newsletter-input"
-        placeholder="your@email.com"
-        required
-        aria-label="Email address"
-      />
-      <button type="submit" class="newsletter-btn">Subscribe</button>
-    </form>
-    <div class="newsletter-success hidden" id="nl-success" role="status" aria-live="polite">
-      You're on the list. Watch your inbox.
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     FOOTER
-══════════════════════════════════════ -->
-<footer class="site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <div class="footer-brand">ZA<span>MODS</span></div>
-    <ul class="footer-links">
-      <li><a href="https://www.renderhub.com/zamods" target="_blank" rel="noopener">RenderHub</a></li>
-      <li><a href="https://www.renderosity.com/marketplace/vendors/zamods" target="_blank" rel="noopener">Renderosity</a></li>
-      <li><a href="https://3dshards.com/store/stupendous/" target="_blank" rel="noopener">3DShards</a></li>
-    </ul>
-    <p class="footer-copy">&copy; 2025 zamods. All rights reserved.</p>
-  </div>
-</footer>
-
-<!-- ══════════════════════════════════════
-     PRODUCT DETAIL OVERLAY
-══════════════════════════════════════ -->
-<div id="detail-overlay" class="detail-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="detail-name">
-  <div class="detail-panel" id="detail-panel">
-    <button class="detail-close" id="detail-close-btn" aria-label="Close product detail">&times;</button>
-
-    <!-- Gallery -->
-    <div class="detail-gallery-col">
-      <div class="detail-gallery-main" id="detail-gallery-main">
-        <img id="detail-main-img" src="" alt="" loading="lazy" />
-      </div>
-      <div class="detail-gallery-thumbs" id="detail-thumbs"></div>
-    </div>
-
-    <!-- Info -->
-    <div class="detail-info-col" id="detail-info-col">
-      <span class="detail-eyebrow" id="detail-eyebrow"></span>
-      <h2 class="detail-name" id="detail-name"></h2>
-
-      <div class="detail-meta-row">
-        <span class="detail-rating" id="detail-rating"></span>
-        <span class="detail-review-count" id="detail-review-count"></span>
-      </div>
-
-      <div class="detail-price" id="detail-price"></div>
-
-      <div class="detail-compat" id="detail-compat"></div>
-
-      <div class="detail-divider"></div>
-
-      <p class="detail-desc" id="detail-desc"></p>
-
-      <div class="detail-features" id="detail-features"></div>
-
-      <div class="detail-divider"></div>
-
-      <p class="detail-specs-title">Technical Specifications</p>
-      <div class="detail-specs" id="detail-specs"></div>
-
-      <div class="detail-divider"></div>
-
-      <p class="detail-purchase-title">Purchase From</p>
-      <div class="detail-stores" id="detail-stores"></div>
-
-      <div class="detail-divider" id="detail-reviews-divider"></div>
-      <div class="detail-reviews" id="detail-reviews"></div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-══════════════════════════════════════ -->
-<script>
-"use strict";
-
-/* ── STORE META ──────────────────────────────────────────────── */
-const STORES = {
-  renderhub:   { name: 'RenderHub',   logo: 'assets/rh.png',  desc: 'Main store · Extended licenses' },
-  renderosity: { name: 'Renderosity', logo: 'assets/ren.png', desc: 'Daz & Poser community marketplace' },
-  shards3d:    { name: '3DShards',    logo: 'assets/3ds.png', desc: 'Curated 3D marketplace' },
-};
-
-/* ── FEATURE ICON SVG ────────────────────────────────────────── */
-function featureIcon(type) {
-  const icons = {
-    geometry: `<svg viewBox="0 0 16 16" fill="none" stroke="#c8a84a" stroke-width="1.5"><polygon points="8,2 14,12 2,12"/></svg>`,
-    material:  `<svg viewBox="0 0 16 16" fill="none" stroke="#c8a84a" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M8,2 Q12,8 8,14 Q4,8 8,2Z" fill="rgba(200,168,74,0.3)"/></svg>`,
-    compat:    `<svg viewBox="0 0 16 16" fill="none" stroke="#c8a84a" stroke-width="1.5"><rect x="2" y="4" width="12" height="8" rx="1.5"/><path d="M5,4V3M11,4V3"/></svg>`,
-    license:   `<svg viewBox="0 0 16 16" fill="none" stroke="#c8a84a" stroke-width="1.5"><path d="M8 2L2 5v4c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z"/></svg>`,
-    tool:      `<svg viewBox="0 0 16 16" fill="none" stroke="#c8a84a" stroke-width="1.5"><path d="M13 3L9 7M3 13l4-4M10 2l4 4-1 1-4-4 1-1zM3 9l4 4-1 1-4-4 1-1z"/></svg>`,
-    texture:   `<svg viewBox="0 0 16 16" fill="none" stroke="#c8a84a" stroke-width="1.5"><rect x="2" y="2" width="5" height="5" rx="1"/><rect x="9" y="2" width="5" height="5" rx="1"/><rect x="2" y="9" width="5" height="5" rx="1"/><rect x="9" y="9" width="5" height="5" rx="1"/></svg>`,
-  };
-  return icons[type] || icons.geometry;
-}
-
-/* ── STAR STRING ─────────────────────────────────────────────── */
-function stars(n) { return '★'.repeat(n) + '☆'.repeat(5 - n); }
-
-/* ── PRODUCTS DATA ───────────────────────────────────────────── */
-const PRODUCTS = {
-
-  'caty-sunglasses': {
-    freebie:  false,
-    title:    'Caty Sunglasses',
-    subtitle: 'Genesis 9, 8.1, 8, 3, 2, 1 — Unisex',
-    tag:      'Accessories · Sunglasses',
-    price:    '$6.99',
-    badge:    'New Drop',
-    badgeNew: true,
-    img:      'https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1.jpg',
-    gallery: [
-      'https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1.jpg',
-      'https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1-1.jpg',
-      'https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1-2.jpg',
-    ],
-    rating:   5.0,
-    reviews:  3,
-    compat:   ['Genesis 9','Genesis 8.1','Genesis 8','Genesis 3','Genesis 2','Genesis 1'],
-    description: 'Precision-fit cat-eye sunglasses designed for every major Genesis figure. Each variant is sculpted to sit naturally on figure bridges without manual adjustment — just load and render. Ships with five lens color presets and both gold and silver frame options, with full PBR material support.',
-    features: [
-      { icon: 'compat',   title: 'Universal Figure Fit',    body: 'Auto-fits Genesis 9, 8.1, 8, 3, 2 & 1 with no manual adjustments. Smart morphs handle all standard body dials.' },
-      { icon: 'material', title: 'Iray PBR Materials',      body: '5 lens color presets (smoke, amber, rose, blue, clear) with accurate glass shader and 2 frame finishes.' },
-      { icon: 'license',  title: 'Extended Commercial Use', body: 'Full Extended Use License included — sell renders, use in animations, publish commercially without royalties.' },
-    ],
-    specs: {
-      'Compatibility': 'Genesis 9 · 8.1 · 8 · 3 · 2 · 1',
-      'Format':        'DUF · DSA',
-      'Textures':      '4K PBR (Base, Rough, Metal, Normal)',
-      'Presets':       '5 lens colors · 2 frame finishes',
-      'License':       'Extended Commercial Use',
-      'Vendor':        'zamods',
-    },
-    reviewsList: [
-      { author: 'ShadowRender', rating: 5, body: 'Perfect fit on all my Genesis 9 characters. The glass shader is really convincing under Iray lighting. Worth every cent.' },
-      { author: 'ArtificialEye3D', rating: 5, body: 'Love the variety of lens options. My renders look so much more polished with these.' },
-      { author: 'PixelCraft_87', rating: 5, body: 'Loaded straight in with zero fiddling. That alone is rare for accessories.' },
-    ],
-    stores: {
-      renderhub:   { enabled: true,  url: 'https://www.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1' },
-      renderosity: { enabled: true,  url: 'https://www.renderosity.com/marketplace/products/164254/caty-sunglasses-for-genesis-figures' },
-      shards3d:    { enabled: true,  url: 'https://3dshards.com/product/caty-sunglasses-for-genesis-9-8-8-1-3-2-1-unisex/' },
-    }
-  },
-
-  'fake-lashes': {
-    freebie:  false,
-    title:    'Unisex Fake Eye Lashes Material Pack',
-    subtitle: 'Genesis 8.1, 8, 3 — Male & Female',
-    tag:      'Eyelashes · Materials',
-    price:    '$3.00',
-    img:      'https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1.jpg',
-    gallery: [
-      'https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1.jpg',
-      'https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1-1.jpg',
-    ],
-    rating:   5.0,
-    reviews:  1,
-    compat:   ['Genesis 8.1','Genesis 8','Genesis 3'],
-    description: 'A curated material pack that transforms the look of Genesis eyelash accessories with realistic Iray shader presets. Designed for both male and female Genesis 3, 8, and 8.1 figures. Each material preset accurately simulates individual lash fibers with correct translucency and reflectance values.',
-    features: [
-      { icon: 'material', title: 'Realistic Iray Shaders', body: 'Carefully tuned translucency, specular, and scatter values for individual lash fiber realism.' },
-      { icon: 'compat',   title: 'Unisex Design',          body: 'Works with both male and female Genesis 3, 8, and 8.1 eyelash props.' },
-      { icon: 'license',  title: 'Commercial License',     body: 'Extended commercial use license — render and sell without restrictions.' },
-    ],
-    specs: {
-      'Compatibility': 'Genesis 8.1 · 8 · 3',
-      'Format':        'DUF material presets',
-      'Textures':      '2K PBR maps',
-      'Type':          'Material / Shader pack',
-      'License':       'Extended Commercial Use',
-      'Vendor':        'zamods',
-    },
-    reviewsList: [
-      { author: 'CG_Portraits', rating: 5, body: 'Finally a lash material pack that actually looks like real lashes in Iray. The translucency is spot on.' },
-    ],
-    stores: {
-      renderhub:   { enabled: true,  url: 'https://www.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1' },
-      renderosity: { enabled: false, url: '' },
-      shards3d:    { enabled: false, url: '' },
-    }
-  },
-
-  'zcamera-tools': {
-    freebie:  true,
-    title:    'zCamera Tools for Blender 3D',
-    subtitle: 'Daz3D-like Camera Navigation',
-    tag:      'Blender · Software',
-    price:    'FREE',
-    img:      'https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d.jpg',
-    gallery: [
-      'https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d.jpg',
-      'https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d-1.jpg',
-    ],
-    rating:   5.0,
-    reviews:  4,
-    compat:   ['Blender 3.x','Blender 4.x'],
-    description: 'A free Blender addon that brings the intuitive Daz3D-style camera navigation workflow into Blender. If you are migrating from Daz3D or work across both apps, zCamera Tools makes the transition seamless with familiar orbit, pan, and zoom behaviors.',
-    features: [
-      { icon: 'tool',    title: 'Daz-Style Navigation', body: 'Replicates the Daz3D camera orbit, pan, and zoom workflow inside Blender.' },
-      { icon: 'compat',  title: 'Blender 3 & 4 Ready',  body: 'Tested and compatible with current Blender releases.' },
-      { icon: 'license', title: 'Free Forever',          body: 'Released as a free community tool with full commercial use permission.' },
-    ],
-    specs: {
-      'Compatibility': 'Blender 3.x · 4.x',
-      'Format':        'Python addon (.zip)',
-      'Type':          'Software / Plugin',
-      'License':       'Free · Commercial Use',
-      'Vendor':        'zamods',
-    },
-    reviewsList: [
-      { author: 'BlendMigrant', rating: 5, body: 'Coming from Daz3D, the camera controls in Blender always frustrated me. This fixed that completely.' },
-      { author: 'PolyArtist', rating: 5, body: 'Simple, lightweight, works perfectly. One of those tools I didn\'t know I needed until I had it.' },
-    ],
-    stores: {
-      renderhub:   { enabled: true, url: 'https://www.renderhub.com/zamods/zcamera-tools-for-blender3d' },
-      renderosity: { enabled: true, url: 'https://www.renderosity.com/freestuff/items/99380/zcamera-tools-for-blender3d' },
-      shards3d:    { enabled: true, url: 'https://3dshards.com/product/zcamera-tools-for-blender3d/' },
-    }
-  },
-
-  'bench-set': {
-    freebie:  true,
-    title:    'Bench Set for Daz Studio',
-    subtitle: '4K Textures & Smart Prop',
-    tag:      'Props · Environments',
-    price:    'FREE',
-    img:      'https://cdn.renderhub.com/zamods/bench-set/bench-set.jpg',
-    gallery: [
-      'https://cdn.renderhub.com/zamods/bench-set/bench-set.jpg',
-      'https://cdn.renderhub.com/zamods/bench-set/bench-set-1.jpg',
-    ],
-    rating:   5.0,
-    reviews:  9,
-    compat:   ['Daz Studio 4.x'],
-    description: 'A free outdoor bench set for Daz Studio scenes, featuring 4K PBR textures and a smart prop that adapts to any scene. Perfect for park, garden, or urban environment renders.',
-    features: [
-      { icon: 'geometry', title: '4K PBR Textures',   body: 'High-resolution base color, roughness, metallic, and normal maps for photorealistic renders.' },
-      { icon: 'compat',   title: 'Smart Prop',        body: 'Compatible with Daz Studio 4.x as a standard scene prop.' },
-      { icon: 'license',  title: 'Free Commercial',   body: 'Use freely in any personal or commercial render project.' },
-    ],
-    specs: {
-      'Compatibility': 'Daz Studio 4.x',
-      'Format':        'DUF · OBJ',
-      'Textures':      '4K PBR maps',
-      'Type':          'Prop / Environment',
-      'License':       'Free · Commercial Use',
-      'Vendor':        'zamods',
-    },
-    reviewsList: [
-      { author: 'SceneBuilder', rating: 5, body: 'The 4K textures look fantastic in Iray. Better quality than most paid props.' },
-    ],
-    stores: {
-      renderhub:   { enabled: true, url: 'https://www.renderhub.com/zamods/bench-set' },
-      renderosity: { enabled: true, url: 'https://www.renderosity.com/freestuff/items/97679/bench-set-for-daz-studio' },
-      shards3d:    { enabled: true, url: 'https://3dshards.com/product/bench-set-for-daz-studio/' },
-    }
-  },
-
-  'bfd-ear-ornament': {
-    freebie:  true,
-    title:    'BFD Ear Ornament for Genesis 9',
-    subtitle: 'Sci-Fi Ear Jewellery Prop',
-    tag:      'Accessories · Ornaments',
-    price:    'FREE',
-    img:      'https://cdn.renderhub.com/zamods/bfd-ear-ornament/bfd-ear-ornament.jpg',
-    gallery: [
-      'https://cdn.renderhub.com/zamods/bfd-ear-ornament/bfd-ear-ornament.jpg',
-    ],
-    rating:   4.0,
-    reviews:  1,
-    compat:   ['Genesis 9'],
-    description: 'A sci-fi inspired ear ornament prop for Genesis 9. Perfect for futuristic and cyberpunk render themes. Includes Iray metal material presets.',
-    features: [
-      { icon: 'geometry', title: 'Sci-Fi Aesthetic',  body: 'Designed for futuristic, cyberpunk, and dystopian 3D render themes.' },
-      { icon: 'material', title: 'Metal Materials',    body: 'Iray-ready metal presets with polished and brushed variants.' },
-      { icon: 'compat',   title: 'Genesis 9 Ready',   body: 'Designed and fitted specifically for Genesis 9 figures.' },
-    ],
-    specs: {
-      'Compatibility': 'Genesis 9',
-      'Format':        'DUF',
-      'Textures':      '2K PBR metal maps',
-      'Type':          'Accessory prop',
-      'License':       'Free · Personal Use',
-      'Vendor':        'zamods',
-    },
-    reviewsList: [
-      { author: 'CyberArtist', rating: 4, body: 'Nice little piece. Fits well and the metal material looks clean.' },
-    ],
-    stores: {
-      renderhub:   { enabled: true,  url: 'https://www.renderhub.com/zamods/bfd-ear-ornament' },
-      renderosity: { enabled: true,  url: 'https://www.renderosity.com/freestuff/items/97612/bfd-ear-ornament-for-genesis-9' },
-      shards3d:    { enabled: false, url: '' },
-    }
-  },
-
-  'bfd-aviator-materials': {
-    freebie:  true,
-    title:    'Materials Pack for BFD Aviator',
-    subtitle: 'Extended Use License Included',
-    tag:      'Materials · Textures',
-    price:    'FREE',
-    img:      'https://cdn.renderhub.com/zamods/materials-pack-for-bfd-aviator/materials-pack-for-bfd-aviator.jpg',
-    gallery: [
-      'https://cdn.renderhub.com/zamods/materials-pack-for-bfd-aviator/materials-pack-for-bfd-aviator.jpg',
-    ],
-    rating:   5.0,
-    reviews:  2,
-    compat:   ['Daz Studio 4.x','Genesis 8','Genesis 9'],
-    description: 'A free material expansion pack for the BFD Aviator accessory. Adds new lens tints and frame finish options with full Iray PBR shader accuracy. Extended use license allows commercial renders.',
-    features: [
-      { icon: 'material', title: 'PBR Iray Shaders',  body: 'New lens tint and frame finish presets with accurate PBR values for Iray rendering.' },
-      { icon: 'texture',  title: 'Multiple Presets',   body: 'Expands the BFD Aviator with additional color and material variants.' },
-      { icon: 'license',  title: 'Extended License',  body: 'Extended commercial use license — free to use in commercial renders.' },
-    ],
-    specs: {
-      'Compatibility': 'Daz Studio 4.x · Genesis 8 · Genesis 9',
-      'Requires':      'BFD Aviator (sold separately)',
-      'Format':        'DUF material presets',
-      'Type':          'Material expansion pack',
-      'License':       'Free · Extended Commercial Use',
-      'Vendor':        'zamods',
-    },
-    reviewsList: [
-      { author: 'GlassWorks3D', rating: 5, body: 'The bronze tint preset is exactly what my steampunk renders needed. Great freebie.' },
-    ],
-    stores: {
-      renderhub:   { enabled: true,  url: 'https://www.renderhub.com/zamods/materials-pack-for-bfd-aviator' },
-      renderosity: { enabled: false, url: '' },
-      shards3d:    { enabled: false, url: '' },
-    }
-  },
-};
-
-/* ════════════════════════════════════════════════════════════════
-   CARD RENDERERS
-════════════════════════════════════════════════════════════════ */
-function renderPaidCard(id, p) {
-  const el = document.createElement('article');
-  el.className = 'product-card reveal';
-  el.setAttribute('role', 'listitem');
-  el.setAttribute('tabindex', '0');
-  el.setAttribute('aria-label', p.title);
-  el.addEventListener('click', () => openDetail(id));
-  el.addEventListener('keydown', e => { if (e.key === 'Enter') openDetail(id); });
-
-  const ratingStr = `${p.rating.toFixed(1)} ★ · ${p.reviews} review${p.reviews !== 1 ? 's' : ''}`;
-  const badgeHtml = p.badge
-    ? `<span class="product-card__badge ${p.badgeNew ? 'product-card__badge--new' : ''}">${p.badge}</span>`
-    : `<span class="product-card__badge">${ratingStr}</span>`;
-
-  el.innerHTML = `
-    <div class="product-card__image-wrap">
-      <img src="${p.img}" alt="${p.title}" class="product-card__image" loading="lazy" />
-      ${badgeHtml}
-    </div>
-    <div class="product-card__body">
-      <span class="product-card__tag">${p.tag}</span>
-      <h3 class="product-card__name">${p.title}</h3>
-      <p class="product-card__sub">${p.subtitle || ''}</p>
-      <div class="product-card__footer">
-        <span class="product-card__price">${p.price}</span>
-        <span class="product-card__cta">View Details <span class="product-card__cta-arrow">→</span></span>
-      </div>
-    </div>`;
-  return el;
-}
-
-function renderFreebieCard(id, p) {
-  const el = document.createElement('article');
-  el.className = 'freebie-card reveal';
-  el.setAttribute('role', 'listitem');
-  el.setAttribute('tabindex', '0');
-  el.setAttribute('aria-label', p.title);
-  el.addEventListener('click', () => openDetail(id));
-  el.addEventListener('keydown', e => { if (e.key === 'Enter') openDetail(id); });
-
-  el.innerHTML = `
-    <div class="freebie-card__image-wrap">
-      <img src="${p.img}" alt="${p.title}" class="freebie-card__image" loading="lazy" />
-      <span class="freebie-tag">Free</span>
-    </div>
-    <div class="freebie-card__body">
-      <span class="freebie-card__cat">${p.tag}</span>
-      <h3 class="freebie-card__name">${p.title}</h3>
-      <p class="freebie-card__sub">${p.subtitle || ''}</p>
-      <span class="freebie-card__download">Download Now</span>
-    </div>`;
-  return el;
-}
-
-/* ════════════════════════════════════════════════════════════════
-   POPULATE GRIDS & STATS
-════════════════════════════════════════════════════════════════ */
-(function init() {
-  const paidGrid     = document.getElementById('paid-grid');
-  const freebiesGrid = document.getElementById('freebies-grid');
-
-  let totalReviews = 0, totalRating = 0, totalCount = 0;
-
-  Object.entries(PRODUCTS).forEach(([id, p]) => {
-    totalCount++;
-    totalReviews += p.reviews;
-    totalRating  += p.rating;
-
-    if (p.freebie) freebiesGrid.appendChild(renderFreebieCard(id, p));
-    else           paidGrid.appendChild(renderPaidCard(id, p));
-  });
-
-  document.getElementById('stat-rating').textContent   = (totalRating / totalCount).toFixed(1) + '★';
-  document.getElementById('stat-reviews').textContent  = totalReviews;
-  document.getElementById('stat-products').textContent = totalCount;
-})();
-
-/* ════════════════════════════════════════════════════════════════
-   PRODUCT DETAIL OVERLAY
-════════════════════════════════════════════════════════════════ */
-const detailOverlay = document.getElementById('detail-overlay');
-let activeThumbIndex = 0;
-let validGalleryUrls = [];
-
-function openDetail(id) {
-  const p = PRODUCTS[id];
-  if (!p) return;
-
-  activeThumbIndex = 0;
-  validGalleryUrls = [];
-
-  // Populate text content
-  document.getElementById('detail-eyebrow').textContent       = p.tag;
-  document.getElementById('detail-name').textContent          = p.title;
-  document.getElementById('detail-rating').textContent        = stars(Math.round(p.rating)) + ' ' + p.rating.toFixed(1);
-  document.getElementById('detail-review-count').textContent  = `${p.reviews} review${p.reviews !== 1 ? 's' : ''}`;
-
-  const priceEl = document.getElementById('detail-price');
-  priceEl.textContent = p.price;
-  priceEl.className   = p.price === 'FREE' ? 'detail-price detail-price--free' : 'detail-price';
-
-  // Compat badges
-  const compatEl = document.getElementById('detail-compat');
-  compatEl.innerHTML = (p.compat || []).map(c => `<span class="compat-badge">${c}</span>`).join('');
-
-  // Description
-  document.getElementById('detail-desc').textContent = p.description || '';
-
-  // Features
-  const featuresEl = document.getElementById('detail-features');
-  featuresEl.innerHTML = (p.features || []).map(f => `
-    <div class="detail-feature">
-      <div class="detail-feature__icon">${featureIcon(f.icon)}</div>
-      <div>
-        <div class="detail-feature__title">${f.title}</div>
-        <div class="detail-feature__body">${f.body}</div>
-      </div>
-    </div>`).join('');
-
-  // Specs
-  const specsEl = document.getElementById('detail-specs');
-  specsEl.innerHTML = Object.entries(p.specs || {}).map(([k, v]) =>
-    `<div class="spec-row">
-       <span class="spec-key">${k}</span>
-       <span class="spec-val">${v}</span>
-     </div>`
-  ).join('');
-
-  // Store buttons
-  const storesEl = document.getElementById('detail-stores');
-  storesEl.innerHTML = '';
-  Object.entries(p.stores).forEach(([key, store]) => {
-    const meta    = STORES[key];
-    const el      = store.enabled ? document.createElement('a') : document.createElement('div');
-    el.className  = 'detail-store-row' + (store.enabled ? '' : ' detail-store-row--disabled');
-    el.dataset.store = key;
-    if (store.enabled) { el.href = store.url; el.target = '_blank'; el.rel = 'noopener'; }
-
-    const actionLabel = store.enabled ? (p.price === 'FREE' ? 'Download' : 'Buy Now') : 'Coming Soon';
-    el.innerHTML = `
-      <img src="${meta.logo}" alt="${meta.name}" class="detail-store-logo" />
-      <div class="detail-store-info">
-        <span class="detail-store-name">${meta.name}</span>
-        <span class="detail-store-desc">${meta.desc}</span>
-      </div>
-      <span class="detail-store-action">${actionLabel}</span>`;
-    storesEl.appendChild(el);
-  });
-
-  // Reviews
-  const reviewsEl  = document.getElementById('detail-reviews');
-  const reviewsDiv = document.getElementById('detail-reviews-divider');
-  if (p.reviewsList && p.reviewsList.length) {
-    reviewsDiv.style.display = '';
-    reviewsEl.innerHTML = `
-      <p class="detail-purchase-title">What Artists Say</p>
-      <div class="review-stars">${stars(Math.round(p.rating))} ${p.rating.toFixed(1)} / 5.0</div>
-      ${p.reviewsList.map(r => `
-        <div class="review-item">
-          <div class="review-author">${r.author}</div>
-          <div class="review-stars-sm">${stars(r.rating)}</div>
-          <p class="review-body">${r.body}</p>
-        </div>`).join('')}`;
-  } else {
-    reviewsDiv.style.display = 'none';
-    reviewsEl.innerHTML = '';
-  }
-
-  // Gallery — load main image, probe extras
-  const mainImg = document.getElementById('detail-main-img');
-  mainImg.src = p.img;
-  mainImg.alt = p.title;
-  validGalleryUrls = [p.img];
-
-  const thumbsEl = document.getElementById('detail-thumbs');
-  thumbsEl.innerHTML = '';
-
-  if (p.gallery && p.gallery.length > 1) {
-    const toProbe = p.gallery.slice(1);
-    let probed = 0;
-    toProbe.forEach((url, i) => {
-      const probe = new Image();
-      probe.onload = () => {
-        validGalleryUrls.push(url);
-        rebuildThumbs(thumbsEl, mainImg, p.img);
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>zamods – Premium Daz Studio 3D Content</title>
+    <meta
+      name="description"
+      content="zamods creates premium Daz Studio assets — eyelashes, sunglasses, props, materials, and Blender tools for Genesis 9, 8.1, 8, 3."
+    />
+    <link rel="canonical" href="https://zamods.com/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              orbitron: ["Orbitron", "sans-serif"],
+              mono: ["Share Tech Mono", "monospace"],
+              raj: ["Rajdhani", "sans-serif"],
+            },
+            colors: {
+              bg: "#08080a",
+              bg2: "#0f0f12",
+              bg3: "#14141a",
+              panel: "#111116",
+              red: "#c0272d",
+              red2: "#e8313a",
+              gold: "#c8a84a",
+              goldlt: "#e4c46a",
+              green: "#3ecf72",
+              muted: "#7e8898",
+              dim: "#4d5668",
+              txt: "#d8dbe8",
+            },
+          },
+        },
       };
-      probe.onerror = () => { probed++; };
-      probe.src = url;
-    });
-    // Show first thumb immediately (always valid — it's the main img)
-    rebuildThumbs(thumbsEl, mainImg, p.img);
-  }
+    </script>
+    <style>
+      body {
+        font-family: "Rajdhani", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
 
-  // Show overlay
-  detailOverlay.classList.remove('hidden');
-  document.body.style.overflow = 'hidden';
-  document.getElementById('detail-info-col').scrollTop = 0;
-  setTimeout(() => document.getElementById('detail-close-btn').focus(), 50);
-}
+      /* Scanline overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.06) 2px,
+          rgba(0, 0, 0, 0.06) 4px
+        );
+      }
 
-function rebuildThumbs(thumbsEl, mainImg, mainUrl) {
-  thumbsEl.innerHTML = '';
-  validGalleryUrls.forEach((url, i) => {
-    const thumb = document.createElement('div');
-    thumb.className = 'detail-thumb' + (i === activeThumbIndex ? ' active' : '');
-    thumb.innerHTML = `<img src="${url}" alt="View ${i + 1}" loading="lazy" />`;
-    thumb.addEventListener('click', () => {
-      mainImg.style.opacity = '0';
-      setTimeout(() => { mainImg.src = url; mainImg.style.opacity = '1'; }, 150);
-      activeThumbIndex = i;
-      thumbsEl.querySelectorAll('.detail-thumb').forEach((t, j) => {
-        t.classList.toggle('active', j === i);
-      });
-    });
-    thumbsEl.appendChild(thumb);
-  });
-}
+      /* Noise texture */
+      .noise::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      }
 
-function closeDetail() {
-  detailOverlay.classList.add('hidden');
-  document.body.style.overflow = '';
-}
+      /* Clip-path buttons */
+      .btn-clip {
+        clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      }
+      .btn-clip-nav {
+        clip-path: polygon(8px 0%, 100% 0%, 100% 100%, 0% 100%);
+      }
 
-document.getElementById('detail-close-btn').addEventListener('click', closeDetail);
-detailOverlay.addEventListener('click', e => { if (e.target === detailOverlay) closeDetail(); });
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && !detailOverlay.classList.contains('hidden')) closeDetail();
-});
+      /* Section header arrow tag */
+      .tag-arrow {
+        clip-path: polygon(
+          0% 0%,
+          calc(100% - 10px) 0%,
+          100% 50%,
+          calc(100% - 10px) 100%,
+          0% 100%
+        );
+      }
 
-/* ════════════════════════════════════════════════════════════════
-   NEWSLETTER
-════════════════════════════════════════════════════════════════ */
-function handleSubscribe(e) {
-  e.preventDefault();
-  document.getElementById('newsletter-form').classList.add('hidden');
-  document.getElementById('nl-success').classList.remove('hidden');
-}
+      /* Hero grid overlay */
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(192, 39, 45, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(192, 39, 45, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(
+          ellipse 70% 70% at 15% 50%,
+          black 0%,
+          transparent 80%
+        );
+      }
 
-/* ════════════════════════════════════════════════════════════════
-   SCROLL REVEAL
-════════════════════════════════════════════════════════════════ */
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.08 });
+      /* Nav tab underline */
+      .nav-tab-link {
+        position: relative;
+      }
+      .nav-tab-link::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: #e8313a;
+        transform: scaleX(0);
+        transition: transform 0.2s;
+      }
+      .nav-tab-link:hover::after,
+      .nav-tab-link.active::after {
+        transform: scaleX(1);
+      }
 
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-</script>
+      /* Sidebar nav arrow */
+      .sidebar-link::before {
+        content: "▶";
+        font-size: 7px;
+        color: #c0272d;
+        opacity: 0;
+        transition: opacity 0.15s;
+        margin-right: 6px;
+      }
+      .sidebar-link:hover::before,
+      .sidebar-link.active::before {
+        opacity: 1;
+      }
 
-</body>
+      /* Hero eyebrow line */
+      .eyebrow-line::before {
+        content: "";
+        display: inline-block;
+        width: 28px;
+        height: 1px;
+        background: #e8313a;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+
+      /* Corner bracket decoration on cards */
+      .corner-bracket::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 28px 28px 0;
+        border-color: transparent rgba(192, 39, 45, 0.25) transparent
+          transparent;
+      }
+
+      /* Gallery frame corners */
+      .frame-corners {
+        position: relative;
+      }
+      .frame-corners::before,
+      .frame-corners::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-color: #e8313a;
+        border-style: solid;
+        z-index: 3;
+      }
+      .frame-corners::before {
+        top: -1px;
+        left: -1px;
+        border-width: 6px 0 0 6px;
+      }
+      .frame-corners::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 6px 6px 0;
+      }
+
+      /* Why item left stripe */
+      .why-stripe {
+        position: relative;
+        overflow: hidden;
+      }
+      .why-stripe::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #c0272d;
+      }
+
+      /* Reveal animation */
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Product/freebie card reveal */
+      .card-reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.45s ease,
+          transform 0.45s ease;
+      }
+      .card-reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Hero animations */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.25;
+        }
+      }
+
+      .anim-1 {
+        opacity: 0;
+        animation: fadeUp 0.5s 0.1s both;
+      }
+      .anim-2 {
+        opacity: 0;
+        animation: fadeUp 0.55s 0.2s both;
+      }
+      .anim-3 {
+        opacity: 0;
+        animation: fadeUp 0.55s 0.3s both;
+      }
+      .anim-4 {
+        opacity: 0;
+        animation: fadeUp 0.55s 0.4s both;
+      }
+
+      .blink-dot {
+        animation: blink 2s ease-in-out infinite;
+      }
+
+      /* Product card selected state */
+      .product-card.selected {
+        border-color: rgba(200, 168, 74, 0.9) !important;
+        border-top-color: #c8a84a !important;
+        box-shadow:
+          0 0 0 2px rgba(200, 168, 74, 0.25),
+          0 12px 40px rgba(0, 0, 0, 0.6),
+          0 0 30px rgba(200, 168, 74, 0.18) !important;
+      }
+      .product-card.selected .product-link {
+        color: #c8a84a !important;
+      }
+      .product-card.selected .product-price {
+        text-shadow: 0 0 20px rgba(200, 168, 74, 0.5);
+      }
+
+      .freebie-card.selected {
+        border-color: rgba(62, 207, 114, 0.7) !important;
+        border-top-color: #3ecf72 !important;
+        box-shadow:
+          0 0 0 2px rgba(62, 207, 114, 0.2),
+          0 10px 30px rgba(0, 0, 0, 0.5) !important;
+      }
+
+      /* Selected badge */
+      .selected-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        font-family: "Share Tech Mono", monospace;
+        font-size: 9px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        background: rgba(200, 168, 74, 0.95);
+        color: #040300;
+        padding: 3px 8px;
+        font-weight: 700;
+        display: none;
+      }
+      .product-card.selected .selected-badge,
+      .freebie-card.selected .selected-badge {
+        display: block;
+      }
+
+      /* Scrollbar hide */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="bg-bg text-txt text-[17px] font-raj leading-relaxed">
+    <!-- TOP BANNER -->
+    <div
+      class="h-[3px]"
+      style="
+        background: linear-gradient(
+          90deg,
+          #1a0204,
+          #c0272d 30%,
+          #e8313a 50%,
+          #c0272d 70%,
+          #1a0204
+        );
+      "
+    ></div>
+
+    <!-- NAV -->
+    <nav
+      class="sticky top-0 z-[100] border-b-2 border-red shadow-[0_2px_24px_rgba(192,39,45,.3)]"
+      style="background: linear-gradient(180deg, #111114 0%, #0d0d10 100%)"
+    >
+      <div
+        class="max-w-[1180px] mx-auto px-5 flex items-stretch gap-0 h-[52px]"
+      >
+        <a
+          href="index.html"
+          class="font-orbitron font-black text-[24px] tracking-[.12em] text-white flex items-center pr-5 border-r border-white/[.08] mr-1"
+          style="text-shadow: 0 0 20px rgba(192, 39, 45, 0.5)"
+          >ZA<span class="text-red2">MODS</span></a
+        >
+        <ul class="flex items-stretch list-none gap-0.5 flex-1">
+          <li>
+            <a
+              href="#"
+              id="nav-home"
+              class="nav-tab-link active font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] h-full flex items-center bg-[rgba(192,39,45,.12)] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#products"
+              id="nav-products"
+              class="nav-tab-link font-mono text-[16px] tracking-[.12em] uppercase text-muted px-[20px] h-full flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
+              >Products</a
+            >
+          </li>
+          <li>
+            <a
+              href="#freebies"
+              id="nav-freebies"
+              class="nav-tab-link font-mono text-[16px] tracking-[.12em] uppercase text-muted px-[20px] h-full flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
+              >Free Downloads</a
+            >
+          </li>
+          <li>
+            <a
+              href="#stores"
+              id="nav-stores"
+              class="nav-tab-link font-mono text-[16px] tracking-[.12em] uppercase text-muted px-[20px] h-full flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
+              >Stores</a
+            >
+          </li>
+        </ul>
+        <a
+          href="#stores"
+          class="btn-clip-nav font-mono text-[16px] tracking-[.14em] uppercase text-white px-5 flex items-center ml-auto border-l border-white/[.07] transition-all hover:brightness-110"
+          style="
+            background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+          "
+          >Shop Now</a
+        >
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <header
+      class="relative bg-bg overflow-hidden noise min-h-[calc(100vh-55px)] flex items-center"
+    >
+      <div
+        class="absolute inset-0"
+        style="
+          background:
+            radial-gradient(
+              ellipse 60% 60% at 10% 50%,
+              rgba(192, 39, 45, 0.08) 0%,
+              transparent 65%
+            ),
+            radial-gradient(
+              ellipse 40% 50% at 90% 20%,
+              rgba(200, 168, 74, 0.05) 0%,
+              transparent 60%
+            ),
+            radial-gradient(
+              ellipse 80% 40% at 50% 100%,
+              rgba(0, 0, 0, 0.6) 0%,
+              transparent 60%
+            );
+        "
+      ></div>
+      <div class="hero-grid"></div>
+      <div
+        class="relative z-[2] max-w-[1180px] mx-auto px-6 py-[60px] grid grid-cols-1 md:grid-cols-[1fr_420px] gap-16 items-center w-full"
+      >
+        <div>
+          <div
+            class="anim-1 font-mono text-[34px] tracking-[.06em] uppercase text-red2 inline-flex items-center mb-5"
+          >
+            Premium Daz Studio Assets
+          </div>
+          <h1
+            class="anim-2 font-orbitron font-black text-white leading-[.95] tracking-[-0.01em] mb-[22px]"
+            style="
+              font-size: clamp(44px, 6.5vw, 78px);
+              text-shadow: 0 0 60px rgba(192, 39, 45, 0.25);
+            "
+          >
+            CRAFT<br />YOUR<br /><span
+              class="text-gold"
+              style="text-shadow: 0 0 30px rgba(200, 168, 74, 0.3)"
+              >VISION.</span
+            >
+          </h1>
+          <p
+            class="anim-3 text-[20px] font-medium text-muted max-w-[500px] mb-9 leading-[1.7]"
+          >
+            Meticulously built props, accessories, and materials for
+            <strong class="text-txt font-semibold"
+              >Genesis 9, 8.1, 8 &amp; 3</strong
+            >
+            — for artists who refuse to compromise.
+          </p>
+          <div class="anim-4 flex gap-3.5 flex-wrap">
+            <a
+              href="#products"
+              class="btn-clip font-mono text-[16px] tracking-[.18em] uppercase text-white px-[26px] py-[13px] inline-block transition-all hover:brightness-110 hover:-translate-y-0.5"
+              style="
+                background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
+                box-shadow: 0 4px 20px rgba(192, 39, 45, 0.3);
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+              "
+              >Browse Assets</a
+            >
+            <a
+              href="#freebies"
+              class="btn-clip font-mono text-[16px] tracking-[.18em] uppercase text-green px-[26px] py-[13px] inline-block border border-green/35 transition-all hover:bg-green/10 hover:-translate-y-0.5"
+              >Free Downloads</a
+            >
+          </div>
+        </div>
+        <div class="hidden md:block">
+          <div class="relative">
+            <div
+              class="frame-corners border border-red/30"
+              style="
+                box-shadow:
+                  0 0 0 1px rgba(255, 255, 255, 0.04),
+                  0 32px 80px rgba(0, 0, 0, 0.7),
+                  0 0 60px rgba(192, 39, 45, 0.1);
+              "
+            >
+              <img
+                src="./assets/land.png"
+                alt="3D character render showcase"
+                loading="eager"
+                class="w-full aspect-[3/4] object-cover block"
+              />
+              <div
+                class="absolute inset-0 pointer-events-none"
+                style="
+                  background: linear-gradient(
+                    to top,
+                    rgba(8, 8, 10, 0.6) 0%,
+                    transparent 50%
+                  );
+                "
+              ></div>
+            </div>
+            <!-- <div class="mt-3 flex items-center gap-2.5">
+              <div class="blink-dot w-1.5 h-1.5 rounded-full bg-red2"></div>
+              <span
+                class="font-mono text-[10px] tracking-[.1em] text-dim uppercase"
+                >Sample render — replace with your artwork</span
+              >
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div
+      class="border-y border-red/25"
+      style="
+        background: linear-gradient(
+          90deg,
+          #0e0e12 0%,
+          #111116 50%,
+          #0e0e12 100%
+        );
+      "
+    >
+      <div class="max-w-[1000px] mx-auto grid grid-cols-4">
+        <div class="py-[18px] text-center border-r border-white/[.05]">
+          <span
+            id="stat-rating"
+            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
+            >—</span
+          >
+          <span
+            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
+            >Avg Rating</span
+          >
+        </div>
+        <div class="py-[18px] text-center border-r border-white/[.05]">
+          <span
+            id="stat-reviews"
+            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
+            >—</span
+          >
+          <span
+            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
+            >Reviews</span
+          >
+        </div>
+        <div class="py-[18px] text-center border-r border-white/[.05]">
+          <span
+            id="stat-products"
+            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
+            >—</span
+          >
+          <span
+            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
+            >Products</span
+          >
+        </div>
+        <div class="py-[18px] text-center">
+          <span
+            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
+            >3</span
+          >
+          <span
+            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
+            >Marketplaces</span
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-COL LAYOUT -->
+    <div
+      class="max-w-[1180px] mx-auto px-5 py-7 grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 items-start"
+    >
+      <!-- SIDEBAR -->
+      <aside class="hidden md:block sticky top-[72px]">
+        <div
+          class="border border-white/[.07] border-t-2 border-t-red mb-3.5 overflow-hidden"
+          style="background: linear-gradient(180deg, #161619 0%, #111114 100%)"
+        >
+          <div
+            class="font-mono text-[12px] tracking-[.20em] uppercase text-muted px-3.5 pt-2.5 pb-2 bg-[rgba(192,39,45,.12)] border-b border-white/[.05]"
+          >
+            Navigation
+          </div>
+          <ul class="list-none">
+            <li>
+              <a
+                href="#products"
+                id="side-products"
+                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >Paid Assets</a
+              >
+            </li>
+            <li>
+              <a
+                href="#freebies"
+                id="side-freebies"
+                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >Free Downloads</a
+              >
+            </li>
+            <li>
+              <a
+                href="#why"
+                id="side-why"
+                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >Why zamods</a
+              >
+            </li>
+            <li>
+              <a
+                href="#stores"
+                id="side-stores"
+                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >Stores</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="border border-white/[.07] border-t-2 border-t-red mb-3.5 overflow-hidden"
+          style="background: linear-gradient(180deg, #161619 0%, #111114 100%)"
+        >
+          <div
+            class="font-mono text-[12px] tracking-[.20em] uppercase text-muted px-3.5 pt-2.5 pb-2 bg-[rgba(192,39,45,.12)] border-b border-white/[.05]"
+          >
+            Marketplaces
+          </div>
+          <ul class="list-none">
+            <li>
+              <a
+                href="https://www.renderhub.com/zamods"
+                target="_blank"
+                rel="noopener"
+                class="sidebar-link font-raj font-semibold text-m text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >RenderHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.renderosity.com/marketplace/vendors/zamods"
+                target="_blank"
+                rel="noopener"
+                class="sidebar-link font-raj font-semibold text-m text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >Renderosity</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://3dshards.com/store/stupendous/"
+                target="_blank"
+                rel="noopener"
+                class="sidebar-link font-raj font-semibold text-m text-muted px-3.5 py-2.5 flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
+                >3DShards</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Featured product — rendered dynamically by JS -->
+        <div
+          id="sidebar-featured"
+          class="border border-white/[.07] border-t-2 border-t-red overflow-hidden"
+          style="background: linear-gradient(180deg, #161619 0%, #111114 100%)"
+        ></div>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <main>
+        <!-- PAID ASSETS -->
+        <section class="mb-9" id="products">
+          <div class="reveal flex items-center gap-0 mb-[18px]">
+            <span
+              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
+              style="
+                background: linear-gradient(90deg, #c0272d 0%, #e8313a 100%);
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+              "
+              >Premium Paid Assets</span
+            >
+            <div
+              class="flex-1 h-px ml-1"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  rgba(192, 39, 45, 0.4),
+                  transparent
+                );
+              "
+            ></div>
+          </div>
+          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
+            Hand-crafted with precision — every paid asset ships with an
+            Extended Use License.
+          </p>
+          <div
+            id="paid-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8"
+          ></div>
+        </section>
+
+        <div
+          class="h-px my-7"
+          style="
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(192, 39, 45, 0.2),
+              transparent
+            );
+          "
+        ></div>
+
+        <!-- FREEBIES -->
+        <section class="mb-9" id="freebies">
+          <div class="reveal flex items-center gap-0 mb-[18px]">
+            <span
+              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
+              style="
+                background: linear-gradient(90deg, #1a6e3f, #3ecf72);
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+              "
+              >Free Downloads</span
+            >
+            <div
+              class="flex-1 h-px ml-1"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  rgba(62, 207, 114, 0.35),
+                  transparent
+                );
+              "
+            ></div>
+          </div>
+          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
+            No strings attached — great tools should be accessible to every
+            artist.
+          </p>
+          <div
+            id="freebies-grid"
+            class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5"
+          ></div>
+          <div class="text-center mt-4">
+            <a
+              href="https://www.renderhub.com/zamods"
+              target="_blank"
+              rel="noopener"
+              class="btn-clip font-mono text-[16px] tracking-[.16em] uppercase text-green px-[28px] py-3 inline-block border border-green/35 transition-all hover:bg-green/10 hover:-translate-y-0.5"
+              >View All Freebies on RenderHub</a
+            >
+          </div>
+        </section>
+
+        <div
+          class="h-px my-7"
+          style="
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(192, 39, 45, 0.2),
+              transparent
+            );
+          "
+        ></div>
+
+        <!-- WHY ZAMODS -->
+        <section class="mb-9" id="why">
+          <div class="reveal flex items-center gap-0 mb-[18px]">
+            <span
+              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
+              style="
+                background: linear-gradient(90deg, #c0272d 0%, #e8313a 100%);
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+              "
+              >The zamods Standard</span
+            >
+            <div
+              class="flex-1 h-px ml-1"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  rgba(192, 39, 45, 0.4),
+                  transparent
+                );
+              "
+            ></div>
+          </div>
+          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
+            Every asset is crafted with meticulous attention to geometry, UV
+            mapping, and material response — so your renders look exactly how
+            you imagined.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-[18px]">
+            <div
+              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <span
+                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
+                >Compatibility</span
+              >
+              <div
+                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
+              >
+                Genesis 9 Ready
+              </div>
+              <p class="text-[16px] font-medium text-dim leading-[1.6]">
+                Compatible with the latest Genesis 9 figures out of the box.
+              </p>
+            </div>
+            <div
+              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <span
+                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
+                >Licensing</span
+              >
+              <div
+                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
+              >
+                Extended License
+              </div>
+              <p class="text-[16px] font-medium text-dim leading-[1.6]">
+                All paid assets include extended commercial use licensing.
+              </p>
+            </div>
+            <div
+              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <span
+                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
+                >Rendering</span
+              >
+              <div
+                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
+              >
+                Iray Optimized
+              </div>
+              <p class="text-[16px] font-medium text-dim leading-[1.6]">
+                PBR materials tuned for Daz Studio's Iray renderer.
+              </p>
+            </div>
+            <div
+              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <span
+                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
+                >Content</span
+              >
+              <div
+                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
+              >
+                Adult-Friendly
+              </div>
+              <p class="text-[16px] font-medium text-dim leading-[1.6]">
+                Assets that perform beautifully in mature renders.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <div
+          class="h-px my-7"
+          style="
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(192, 39, 45, 0.2),
+              transparent
+            );
+          "
+        ></div>
+
+        <!-- STORES -->
+        <section class="mb-9" id="stores">
+          <div class="reveal flex items-center gap-0 mb-[18px]">
+            <span
+              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
+              style="
+                background: linear-gradient(90deg, #7a6010, #c8a84a);
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+              "
+              >Available On</span
+            >
+            <div
+              class="flex-1 h-px ml-1"
+              style="
+                background: linear-gradient(
+                  90deg,
+                  rgba(200, 168, 74, 0.35),
+                  transparent
+                );
+              "
+            ></div>
+          </div>
+          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
+            All zamods content lives across three trusted marketplaces.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-[18px]">
+            <a
+              href="https://www.renderhub.com/zamods"
+              target="_blank"
+              rel="noopener"
+              class="reveal border border-white/[.07] border-t-2 border-t-gold/30 p-[22px] flex flex-col items-center text-center transition-all hover:border-gold/50 hover:border-t-gold hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,.5)]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <div
+                class="w-16 h-16 border border-white/[.07] bg-[#181820] flex items-center justify-content-center mb-3.5 p-3"
+              >
+                <img
+                  src="assets/rh.png"
+                  alt="RenderHub"
+                  onerror="this.style.display = 'none'"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div
+                class="font-orbitron font-bold text-[13px] tracking-[.08em] text-white mb-2"
+              >
+                RENDERHUB
+              </div>
+              <div
+                class="text-[16px] font-medium text-dim leading-[1.5] mb-3.5 flex-1"
+              >
+                6 items · 4.9 stars<br />Extended licenses included
+              </div>
+              <span
+                class="font-mono text-[12px] tracking-[.16em] uppercase text-gold px-4 py-1.5 border border-gold/30 transition-all group-hover:bg-gold/10"
+                >Visit Store</span
+              >
+            </a>
+            <a
+              href="https://www.renderosity.com/marketplace/vendors/zamods"
+              target="_blank"
+              rel="noopener"
+              class="reveal border border-white/[.07] border-t-2 border-t-gold/30 p-[22px] flex flex-col items-center text-center transition-all hover:border-gold/50 hover:border-t-gold hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,.5)]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <div
+                class="w-16 h-16 border border-white/[.07] bg-[#181820] flex items-center justify-center mb-3.5 p-3"
+              >
+                <img
+                  src="assets/ren.png"
+                  alt="Renderosity"
+                  onerror="this.style.display = 'none'"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div
+                class="font-orbitron font-bold text-[13px] tracking-[.08em] text-white mb-2"
+              >
+                RENDEROSITY
+              </div>
+              <div
+                class="text-[16px] font-medium text-dim leading-[1.5] mb-3.5 flex-1"
+              >
+                Daz &amp; Poser<br />Community marketplace
+              </div>
+              <span
+                class="font-mono text-[12px] tracking-[.16em] uppercase text-gold px-4 py-1.5 border border-gold/30"
+                >Visit Store</span
+              >
+            </a>
+            <a
+              href="https://3dshards.com/store/stupendous/"
+              target="_blank"
+              rel="noopener"
+              class="reveal border border-white/[.07] border-t-2 border-t-gold/30 p-[22px] flex flex-col items-center text-center transition-all hover:border-gold/50 hover:border-t-gold hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,.5)]"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
+              "
+            >
+              <div
+                class="w-16 h-16 border border-white/[.07] bg-[#181820] flex items-center justify-center mb-3.5 p-3"
+              >
+                <img
+                  src="assets/3ds.png"
+                  alt="3DShards"
+                  onerror="this.style.display = 'none'"
+                  class="w-full h-full object-contain"
+                />
+              </div>
+              <div
+                class="font-orbitron font-bold text-[13px] tracking-[.08em] text-white mb-2"
+              >
+                3DSHARDS
+              </div>
+              <div
+                class="text-[16px] font-medium text-dim leading-[1.5] mb-3.5 flex-1"
+              >
+                Curated 3D<br />Premium marketplace
+              </div>
+              <span
+                class="font-mono text-[12px] tracking-[.16em] uppercase text-gold px-4 py-1.5 border border-gold/30"
+                >Visit Store</span
+              >
+            </a>
+          </div>
+          <div
+            class="reveal border border-red/20 border-l-[3px] border-l-red p-[22px] flex items-center justify-between gap-5 flex-wrap mt-5"
+            style="
+              background: linear-gradient(
+                90deg,
+                rgba(192, 39, 45, 0.08),
+                rgba(192, 39, 45, 0.04)
+              );
+            "
+          >
+            <div>
+              <h3
+                class="font-orbitron font-bold text-[17px] text-white tracking-[.03em] mb-1"
+              >
+                New releases, first.
+              </h3>
+              <p class="text-[16px] font-medium text-dim">
+                Follow zamods on RenderHub to get notified of every new drop.
+              </p>
+            </div>
+            <a
+              href="https://www.renderhub.com/zamods"
+              target="_blank"
+              rel="noopener"
+              class="btn-clip font-mono text-[14px] tracking-[.18em] uppercase text-white px-[26px] py-[13px] inline-block transition-all hover:brightness-110 hover:-translate-y-0.5"
+              style="
+                background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
+                box-shadow: 0 4px 20px rgba(192, 39, 45, 0.3);
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+              "
+              >Follow on RenderHub</a
+            >
+          </div>
+        </section>
+
+        <div
+          class="h-px my-7"
+          style="
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(192, 39, 45, 0.2),
+              transparent
+            );
+          "
+        ></div>
+
+        <!-- NEWSLETTER -->
+        <section class="mb-9" id="newsletter">
+          <div
+            class="reveal border border-white/[.07] border-t-2 border-t-[rgba(74,100,200,.4)] p-8 text-center"
+            style="
+              background: linear-gradient(135deg, #131318 0%, #0f0f14 100%);
+            "
+          >
+            <h2
+              class="font-orbitron font-bold text-[22px] text-white tracking-[.04em] mb-2.5"
+            >
+              New drops, straight to you
+            </h2>
+            <p class="text-[16px] font-medium text-muted mb-[22px]">
+              Get notified whenever a new asset lands — paid, free, or
+              experimental.
+            </p>
+            <form
+              class="flex max-w-[420px] mx-auto"
+              id="newsletter-form"
+              onsubmit="handleSubscribe(event)"
+            >
+              <input
+                type="email"
+                required
+                placeholder="your@email.com"
+                class="flex-1 bg-white/[.04] border border-white/[.1] border-r-0 px-4 py-3 text-txt font-raj text-[15px] font-medium outline-none transition-colors focus:border-red/50 placeholder:text-dim"
+              />
+              <button
+                type="submit"
+                class="font-mono text-[14px] tracking-[.18em] uppercase text-white border-none px-5 py-3 cursor-pointer whitespace-nowrap transition-all hover:brightness-115"
+                style="
+                  background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
+                "
+              >
+                Subscribe
+              </button>
+            </form>
+            <div
+              id="nl-success"
+              class="hidden mt-[18px] font-mono text-[14px] text-green tracking-[.12em] uppercase"
+            >
+              ✓ &nbsp;You are on the list. Watch your inbox.
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer
+      class="border-t-2 border-red px-5 py-6 mt-10"
+      style="background: linear-gradient(180deg, #0c0c10 0%, #08080a 100%)"
+    >
+      <div
+        class="max-w-[1180px] mx-auto flex items-center justify-between gap-5 flex-wrap"
+      >
+        <span
+          class="font-orbitron font-black text-[18px] tracking-[.12em] text-white"
+          style="text-shadow: 0 0 15px rgba(192, 39, 45, 0.4)"
+          >ZA<span class="text-red2">MODS</span></span
+        >
+        <ul class="flex gap-6 list-none">
+          <li>
+            <a
+              href="https://www.renderhub.com/zamods"
+              target="_blank"
+              rel="noopener"
+              class="font-mono text-[14px] tracking-[.18em] uppercase text-dim transition-colors hover:text-muted"
+              >RenderHub</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.renderosity.com/marketplace/vendors/zamods"
+              target="_blank"
+              rel="noopener"
+              class="font-mono text-[14px] tracking-[.18em] uppercase text-dim transition-colors hover:text-muted"
+              >Renderosity</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://3dshards.com/store/stupendous/"
+              target="_blank"
+              rel="noopener"
+              class="font-mono text-[14px] tracking-[.18em] uppercase text-dim transition-colors hover:text-muted"
+              >3DShards</a
+            >
+          </li>
+        </ul>
+        <p class="font-mono text-[14px] tracking-[.1em] text-dim">
+          &copy; 2026 zamods. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      "use strict";
+
+      const PRODUCTS = {
+        "caty-sunglasses": {
+          featured: true,
+          freebie: false,
+          title: "Caty Sunglasses",
+          subtitle: "Genesis 9, 8.1, 8, 3, 2, 1 — Unisex",
+          tag: "Accessories · Sunglasses",
+          price: "$6.99",
+          badge: "New Drop",
+          img: "https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1.jpg",
+          rating: 5.0,
+          reviews: 3,
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/marketplace/products/164254/caty-sunglasses-for-genesis-figures",
+            },
+            shards3d: {
+              enabled: true,
+              url: "https://3dshards.com/product/caty-sunglasses-for-genesis-9-8-8-1-3-2-1-unisex/",
+            },
+          },
+        },
+        "fake-lashes": {
+          featured: false,
+          freebie: false,
+          title: "Unisex Fake Eye Lashes",
+          subtitle: "Genesis 8.1, 8, 3 — Material Pack",
+          tag: "Eyelashes · Materials",
+          price: "$3.00",
+          img: "https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1.jpg",
+          rating: 5.0,
+          reviews: 1,
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1",
+            },
+            renderosity: { enabled: false, url: "" },
+            shards3d: { enabled: false, url: "" },
+          },
+        },
+        "zcamera-tools": {
+          featured: false,
+          freebie: true,
+          title: "zCamera Tools for Blender",
+          subtitle: "Daz3D-like Camera Navigation",
+          tag: "Blender · Software",
+          price: "FREE",
+          img: "https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d.jpg",
+          rating: 5.0,
+          reviews: 4,
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/zcamera-tools-for-blender3d",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/freestuff/items/99380/zcamera-tools-for-blender3d",
+            },
+            shards3d: {
+              enabled: true,
+              url: "https://3dshards.com/product/zcamera-tools-for-blender3d/",
+            },
+          },
+        },
+        "bench-set": {
+          featured: false,
+          freebie: true,
+          title: "Bench Set for Daz Studio",
+          subtitle: "4K Textures & Smart Prop",
+          tag: "Props · Environments",
+          price: "FREE",
+          img: "https://cdn.renderhub.com/zamods/bench-set/bench-set.jpg",
+          rating: 5.0,
+          reviews: 9,
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/bench-set",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/freestuff/items/97679/bench-set-for-daz-studio",
+            },
+            shards3d: {
+              enabled: true,
+              url: "https://3dshards.com/product/bench-set-for-daz-studio/",
+            },
+          },
+        },
+        "bfd-ear-ornament": {
+          featured: false,
+          freebie: true,
+          title: "BFD Ear Ornament",
+          subtitle: "Genesis 9 — Sci-Fi Ear Jewellery",
+          tag: "Accessories · Ornaments",
+          price: "FREE",
+          img: "https://cdn.renderhub.com/zamods/bfd-ear-ornament/bfd-ear-ornament.jpg",
+          rating: 4.0,
+          reviews: 1,
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/bfd-ear-ornament",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/freestuff/items/97612/bfd-ear-ornament-for-genesis-9",
+            },
+            shards3d: { enabled: false, url: "" },
+          },
+        },
+        "bfd-aviator-materials": {
+          featured: false,
+          freebie: true,
+          title: "BFD Aviator Materials Pack",
+          subtitle: "Extended Use License Included",
+          tag: "Materials · Textures",
+          price: "FREE",
+          img: "https://cdn.renderhub.com/zamods/materials-pack-for-bfd-aviator/materials-pack-for-bfd-aviator.jpg",
+          rating: 5.0,
+          reviews: 2,
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/materials-pack-for-bfd-aviator",
+            },
+            renderosity: { enabled: false, url: "" },
+            shards3d: { enabled: false, url: "" },
+          },
+        },
+      };
+
+      // Track selected product
+      let selectedProductId = null;
+
+      function toggleSelected(el, id, isFreebie) {
+        const wasSelected = el.classList.contains("selected");
+        // Deselect all
+        document
+          .querySelectorAll(".product-card.selected, .freebie-card.selected")
+          .forEach((c) => c.classList.remove("selected"));
+        selectedProductId = null;
+        if (!wasSelected) {
+          el.classList.add("selected");
+          selectedProductId = id;
+        }
+      }
+
+      function renderPaidCard(id, p) {
+        const el = document.createElement("div");
+        el.className =
+          "product-card card-reveal relative cursor-pointer flex flex-col overflow-hidden corner-bracket border border-white/[.07] border-t-2 border-t-[rgba(192,39,45,.35)] transition-all hover:border-red/70 hover:border-t-red2 hover:shadow-[0_12px_40px_rgba(0,0,0,.55),0_0_30px_rgba(192,39,45,.12)]";
+        el.style.background = "linear-gradient(135deg,#131318 0%,#0f0f14 100%)";
+
+        const rat = `${p.rating.toFixed(1)}★ ${p.reviews} review${p.reviews !== 1 ? "s" : ""}`;
+        const badgeTxt = p.badge || rat;
+        el.innerHTML = `
+    <div class="relative aspect-square overflow-hidden bg-[#181820]">
+      <img src="${p.img}" alt="${p.title}" class="ci w-full h-full object-cover transition-transform duration-[500ms] hover:scale-105" loading="lazy"/>
+      <div class="product-badge absolute top-2.5 right-2.5 font-mono text-[14px] tracking-[.06em] uppercase px-2.5 py-1 bg-[rgba(8,8,10,.85)] border border-gold/40 text-gold backdrop-blur-sm">${badgeTxt}</div>
+    </div>
+    <div class="p-4 flex-1 flex flex-col">
+      <span class="product-tag font-mono text-[14px] tracking-[.06em] uppercase text-red2 mb-[7px] block">${p.tag}</span>
+      <h3 class="product-title font-orbitron font-bold text-[16px] text-white leading-[1.3] mb-[5px] tracking-[.02em]">${p.title}</h3>
+      <p class="product-sub text-[16px] font-medium text-dim mb-4">${p.subtitle || ""}</p>
+      <div class="product-footer flex items-center justify-between pt-3 border-t border-white/[.05] mt-auto">
+        <span class="product-price font-orbitron font-bold text-[22px] text-gold tracking-[-0.01em]">${p.price}</span>
+        <span class="product-link font-mono text-[14px] tracking-[.06em] uppercase text-gold/65 transition-colors">View Details</span>
+      </div>
+    </div>`;
+
+        el.addEventListener("click", (e) => {
+          toggleSelected(el, id, false);
+          // Navigate on second click or direct click — navigate to product page
+          window.location.href = `product.html?id=${id}`;
+        });
+
+        // Single click = select, double click = navigate
+        //let clickTimer = null;
+        el.removeEventListener("click", null);
+        el.addEventListener("click", (e) => {
+          window.location.href = `product.html?id=${id}`;
+          // if (clickTimer) {
+          //   clearTimeout(clickTimer);
+          //   clickTimer = null;
+          //   window.location.href = `product.html?id=${id}`;
+          // } else {
+          //   clickTimer = setTimeout(() => {
+          //     clickTimer = null;
+          //     toggleSelected(el, id, false);
+          //   }, 220);
+          // }
+        });
+
+        return el;
+      }
+
+      function renderFreebieCard(id, p) {
+        const el = document.createElement("div");
+        el.className =
+          "freebie-card card-reveal relative cursor-pointer flex flex-col overflow-hidden border border-green/15 border-t-2 border-t-green/35 transition-all hover:border-green/45 hover:border-t-green hover:shadow-[0_10px_30px_rgba(0,0,0,.5)]";
+        el.style.background = "rgba(62,207,114,.03)";
+
+        el.innerHTML = `
+    <div class="relative aspect-square overflow-hidden bg-[#181820]">
+      <img src="${p.img}" alt="${p.title}" class="ci w-full h-full object-cover transition-transform duration-[500ms] hover:scale-105" loading="lazy"/>
+      <span class="absolute top-2 right-2 font-mono text-[12px] tracking-[.12em] uppercase bg-green text-[#060e09] px-2 py-[3px] font-bold">Free</span>
+    </div>
+    <div class="p-3 flex-1 flex flex-col">
+      <span class="font-mono text-[12px] tracking-[.06em] uppercase text-green/75 mb-1.5 block">${p.tag}</span>
+      <h3 class="font-raj font-bold text-[15px] text-white tracking-[.06em] mb-1">${p.title}</h3>
+      <p class="text-[14px] font-medium text-dim mb-3 flex-1">${p.subtitle || ""}</p>
+      <span class="font-mono text-[14px] tracking-[.06em] uppercase text-center text-green py-2 border border-green/25 bg-green/[.07] block transition-colors hover:bg-green/14">Download Now</span>
+    </div>`;
+
+        // Single click = select, double click = navigate
+        //let clickTimer = null;
+        el.addEventListener("click", () => {
+          window.location.href = `product.html?id=${id}`;
+          // if (clickTimer) {
+          //   clearTimeout(clickTimer);
+          //   clickTimer = null;
+          //   window.location.href = `product.html?id=${id}`;
+          // } else {
+          //   clickTimer = setTimeout(() => {
+          //     clickTimer = null;
+          //     toggleSelected(el, id, true);
+          //   }, 220);
+          // }
+        });
+
+        return el;
+      }
+
+      (function init() {
+        const pg = document.getElementById("paid-grid");
+        const fg = document.getElementById("freebies-grid");
+        let tr = 0,
+          trat = 0,
+          c = 0;
+        Object.entries(PRODUCTS).forEach(([id, p]) => {
+          c++;
+          tr += p.reviews;
+          trat += p.rating;
+          if (p.freebie) fg.appendChild(renderFreebieCard(id, p));
+          else pg.appendChild(renderPaidCard(id, p));
+        });
+        document.getElementById("stat-rating").textContent =
+          (trat / c).toFixed(1) + "★";
+        document.getElementById("stat-reviews").textContent = tr;
+        document.getElementById("stat-products").textContent = c;
+      })();
+
+      function handleSubscribe(e) {
+        e.preventDefault();
+        document.getElementById("newsletter-form").style.display = "none";
+        document.getElementById("nl-success").classList.remove("hidden");
+      }
+
+      // Intersection observer for reveals
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.07 },
+      );
+
+      document
+        .querySelectorAll(".reveal, .product-card, .freebie-card")
+        .forEach((el) => io.observe(el));
+
+      // Logic for navigation
+      (function initScrollSpy() {
+        const navItems = [
+          { id: "nav-home", section: null },
+          { id: "nav-products", section: document.getElementById("products") },
+          { id: "nav-freebies", section: document.getElementById("freebies") },
+          { id: "nav-stores", section: document.getElementById("stores") },
+        ];
+
+        const ACTIVE = ["text-white", "bg-[rgba(192,39,45,.12)]"];
+        const INACTIVE = ["text-muted", "bg-transparent"];
+
+        function setActive(activeId) {
+          navItems.forEach(({ id }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            if (id === activeId) {
+              el.classList.remove(...INACTIVE);
+              el.classList.add(...ACTIVE);
+              el.classList.add("active"); // triggers ::after underline via CSS
+            } else {
+              el.classList.remove(...ACTIVE);
+              el.classList.add(...INACTIVE);
+              el.classList.remove("active");
+            }
+          });
+        }
+
+        function onScroll() {
+          const scrollY = window.scrollY + 80; // offset for sticky nav height
+
+          // Walk sections bottom-up to find which one we're inside
+          let current = "nav-home";
+          for (let i = 1; i < navItems.length; i++) {
+            const sec = navItems[i].section;
+            if (sec && sec.offsetTop <= scrollY) {
+              current = navItems[i].id;
+            }
+          }
+          setActive(current);
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll(); // run once on load
+      })();
+
+      // Selection for side items
+      (function initSidebarSpy() {
+        const sideItems = [
+          { id: "side-products", section: document.getElementById("products") },
+          { id: "side-freebies", section: document.getElementById("freebies") },
+          { id: "side-why", section: document.getElementById("why") },
+          { id: "side-stores", section: document.getElementById("stores") },
+        ];
+
+        const ACTIVE = "text-red2 bg-[rgba(192,39,45,.1)]";
+        const INACTIVE = "text-muted";
+
+        function setSideActive(activeId) {
+          sideItems.forEach(({ id }) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            ACTIVE.split(" ").forEach((c) =>
+              el.classList.toggle(c, id === activeId),
+            );
+            el.classList.toggle(INACTIVE, id !== activeId);
+            el.classList.toggle("active", id === activeId); // triggers ::before arrow via CSS
+          });
+        }
+
+        function onScroll() {
+          const scrollY = window.scrollY + 80;
+          let current = sideItems[0].id;
+          sideItems.forEach(({ id, section }) => {
+            if (section && section.offsetTop <= scrollY) current = id;
+          });
+          setSideActive(current);
+        }
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      })();
+
+      // Use to render feature product on side bar
+      (function initFeatured() {
+        // ── FLAG: add  featured: true  to any one product in PRODUCTS to spotlight it ──
+        const entry = Object.entries(PRODUCTS).find(([, p]) => p.featured);
+        const el = document.getElementById("sidebar-featured");
+        if (!entry || !el) return;
+
+        const [id, p] = entry;
+        const img = p.gallery ? p.gallery[0] : p.img;
+        const isFree = p.freebie || p.isFree;
+        const label = isFree ? "Free Download" : "Featured Asset";
+        const labelColor = isFree ? "text-green" : "text-gold";
+
+        el.innerHTML = `
+          <div>
+            <div class="font-mono text-[12px] tracking-[.20em] uppercase text-muted px-3.5 pt-2.5 pb-2 bg-[rgba(192,39,45,.12)] border-b border-white/[.05]">Featured</div>
+            <a href="product.html?id=${id}" class="block group">
+              <div class="frame-corners relative overflow-hidden border border-white/[.07] mb-2.5">
+                <img src="${img}" alt="${p.title}" loading="lazy"
+                    class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105" />
+                ${
+                  isFree
+                    ? `<span class="absolute top-1.5 right-1.5 font-mono text-[9px] tracking-[.12em] uppercase bg-green text-[#060e09] px-2 py-[2px] font-bold">Free</span>`
+                    : `<span class="absolute top-1.5 right-1.5 font-mono text-[12px] tracking-[.12em] uppercase bg-[rgba(8,8,10,.85)] border border-gold/40 text-gold px-2 py-[2px]">${p.badge || "Featured"}</span>`
+                }
+              </div>
+              <div class="pl-3.5 pr-3.5 pb-3 grid place-items-center">
+              <div class="font-raj font-bold text-[14px] text-txt leading-tight mb-1 group-hover:text-white transition-colors">${p.title}</div>
+              <div class="font-mono text-[16px] tracking-[.1em] uppercase" style="color:${isFree ? "#3ecf72" : "#c8a84a"}">${p.price}</div>
+              </div>
+            </a>
+          </div>`;
+      })();
+    </script>
+  </body>
 </html>

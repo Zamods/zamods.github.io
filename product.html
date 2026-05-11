@@ -1,0 +1,1477 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product — zamods</title>
+    <meta name="description" content="Premium Daz Studio 3D asset by zamods." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              orbitron: ["Orbitron", "sans-serif"],
+              mono: ["Share Tech Mono", "monospace"],
+              raj: ["Rajdhani", "sans-serif"],
+            },
+            colors: {
+              bg: "#08080a",
+              bg2: "#0f0f12",
+              panel: "#111116",
+              red: "#c0272d",
+              red2: "#e8313a",
+              gold: "#c8a84a",
+              goldlt: "#e4c46a",
+              green: "#3ecf72",
+              blue: "#4a78f0",
+              muted: "#7e8898",
+              dim: "#4d5668",
+              txt: "#d8dbe8",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Rajdhani", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* Scanline */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 9999;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.05) 2px,
+          rgba(0, 0, 0, 0.05) 4px
+        );
+      }
+
+      /* Corner brackets */
+      .frame-corners {
+        position: relative;
+      }
+      .frame-corners::before,
+      .frame-corners::after {
+        content: "";
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-color: #e8313a;
+        border-style: solid;
+        z-index: 3;
+      }
+      .frame-corners::before {
+        top: -1px;
+        left: -1px;
+        border-width: 6px 0 0 6px;
+      }
+      .frame-corners::after {
+        bottom: -1px;
+        right: -1px;
+        border-width: 0 6px 6px 0;
+      }
+
+      /* Clip path */
+      .btn-clip {
+        clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      }
+      .nav-buy-clip {
+        clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+      }
+
+      /* Tab underline */
+      .tab-btn {
+        position: relative;
+      }
+      .tab-btn::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #e8313a;
+        transform: scaleX(0);
+        transition: transform 0.2s;
+      }
+      .tab-btn.active::after {
+        transform: scaleX(1);
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(14px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .anim-in {
+        animation: fadeIn 0.5s both;
+      }
+
+      /* Thumb */
+      .thumb {
+        border: 2px solid transparent;
+        opacity: 0.5;
+        transition:
+          opacity 0.18s,
+          border-color 0.18s;
+      }
+      .thumb.active {
+        border-color: #e8313a;
+        opacity: 1;
+      }
+      .thumb:hover {
+        opacity: 0.85;
+      }
+
+      /* Tab panels */
+      .tab-panel {
+        display: none;
+      }
+      .tab-panel.active {
+        display: block;
+        animation: fadeIn 0.3s both;
+      }
+
+      /* Lightbox */
+      .lightbox {
+        display: none;
+      }
+      .lightbox.open {
+        display: flex;
+      }
+
+      /* Store row colors */
+      .store-row[data-color="gold"]:hover {
+        border-color: rgba(200, 168, 74, 0.4);
+      }
+      .store-row[data-color="ember"]:hover {
+        border-color: rgba(220, 100, 60, 0.4);
+      }
+      .store-row[data-color="cyan"]:hover {
+        border-color: rgba(100, 180, 220, 0.4);
+      }
+
+      /* No scrollbar */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        scrollbar-width: none;
+      }
+    </style>
+  </head>
+  <body class="bg-bg text-txt text-[17px] font-raj leading-relaxed">
+    <!-- TOP BANNER -->
+    <div
+      class="h-[3px]"
+      style="
+        background: linear-gradient(
+          90deg,
+          #1a0204,
+          #c0272d 30%,
+          #e8313a 50%,
+          #c0272d 70%,
+          #1a0204
+        );
+      "
+    ></div>
+
+    <!-- NAV -->
+    <nav
+      class="sticky top-0 z-[100] border-b-2 border-red shadow-[0_2px_24px_rgba(192,39,45,.3)]"
+      style="background: linear-gradient(180deg, #111114 0%, #0d0d10 100%)"
+    >
+      <div
+        class="max-w-[1180px] mx-auto px-5 flex items-stretch h-[52px] gap-3"
+      >
+        <a
+          href="index.html"
+          class="font-mono text-[16px] tracking-[.14em] uppercase text-muted flex items-center gap-2 pr-4 border-r border-white/[.07] transition-colors hover:text-white group"
+        >
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            class="transition-transform group-hover:-translate-x-0.5"
+          >
+            <path d="M9 2L4 7l5 5" />
+          </svg>
+          Back
+        </a>
+        <a
+          href="index.html"
+          class="font-orbitron font-black text-[24px] tracking-[.12em] text-white flex items-center"
+          style="text-shadow: 0 0 20px rgba(192, 39, 45, 0.5)"
+          >ZA<span class="text-red2">MODS</span></a
+        >
+        <a
+          href="#purchase"
+          class="nav-buy-clip font-mono text-[16px] tracking-[.14em] uppercase text-white px-5 flex items-center ml-auto transition-all hover:brightness-115"
+          id="nav-buy-btn"
+          style="
+            background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 2px 14px rgba(192, 39, 45, 0.3);
+          "
+          >Get This Asset</a
+        >
+      </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="bg-[#0d0d10] border-b border-white/[.05] px-5 py-2">
+      <div class="max-w-[1180px] mx-auto flex items-center gap-2">
+        <a
+          href="index.html"
+          class="font-mono text-[14px] tracking-[.04em] uppercase text-dim hover:text-muted transition-colors"
+          >zamods</a
+        >
+        <span class="font-mono text-[14px] text-white/20">/</span>
+        <span
+          id="breadcrumb-tag"
+          class="font-mono text-[14px] tracking-[.04em] uppercase text-dim"
+          >Products</span
+        >
+        <span class="font-mono text-[14px] text-white/20">/</span>
+        <span
+          class="current font-mono text-[14px] tracking-[.04em] uppercase text-txt"
+          id="breadcrumb-name"
+          >Loading...</span
+        >
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <main class="max-w-[1180px] mx-auto px-5 py-6 pb-[60px]" id="main-content">
+      <div
+        id="loading-state"
+        class="text-center py-20 font-mono text-[14px] tracking-[.14em] uppercase text-dim"
+      >
+        Loading product...
+      </div>
+
+      <div id="not-found" class="text-center py-20 hidden">
+        <h2 class="font-orbitron font-bold text-[32px] text-white mb-5">
+          Product not found
+        </h2>
+        <a
+          href="index.html"
+          class="btn-clip font-mono text-[14px] tracking-[.14em] uppercase text-white px-6 py-3 inline-block"
+          style="background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%)"
+          >Back to Store</a
+        >
+      </div>
+
+      <div id="product-content" class="hidden">
+        <!-- TITLE HEADER -->
+        <div class="anim-in mb-6">
+          <span
+            id="pd-tag"
+            class="font-mono text-[14px] tracking-[.2em] uppercase text-red2 block mb-2.5"
+          ></span>
+          <h1
+            id="pd-title"
+            class="font-orbitron font-black text-white leading-[1.05] tracking-[.01em]"
+            style="
+              font-size: clamp(26px, 4.5vw, 52px);
+              text-shadow: 0 0 40px rgba(192, 39, 45, 0.15);
+            "
+          ></h1>
+        </div>
+
+        <!-- 2-COL PRODUCT LAYOUT -->
+        <div
+          class="grid grid-cols-1 md:grid-cols-[1fr_380px] gap-7 items-start mb-12"
+        >
+          <!-- LEFT: gallery + tabs -->
+          <div>
+            <div
+              class="frame-corners relative overflow-hidden bg-[#181820] border border-[rgba(192,39,45,.2)] cursor-zoom-in"
+              id="gallery-main"
+              onclick="openLightbox()"
+            >
+              <img
+                id="gallery-main-img"
+                src=""
+                alt=""
+                loading="eager"
+                class="w-full aspect-square object-cover block transition-opacity duration-200"
+              />
+              <!-- <div
+                class="absolute top-3 right-3 font-mono text-[12px] tracking-[.1em] uppercase bg-[rgba(8,8,10,.8)] border border-white/[.1] text-white/55 px-[11px] py-[5px] backdrop-blur-sm z-[2]"
+              >
+                Click to Expand
+              </div> -->
+            </div>
+            <div
+              class="flex gap-2 overflow-x-auto no-scrollbar pb-1 mt-2.5"
+              id="gallery-thumbs"
+            ></div>
+
+            <!-- TABS -->
+            <div class="mt-7">
+              <div
+                class="flex bg-[#0e0e12] border border-white/[.07] border-b-2 border-b-[rgba(192,39,45,.25)] overflow-x-auto no-scrollbar"
+                role="tablist"
+              >
+                <button
+                  class="tab-btn active font-mono text-[14px] tracking-[.06em] uppercase px-5 py-3 border-none border-r border-white/[.05] bg-[rgba(192,39,45,.08)] text-white cursor-pointer whitespace-nowrap transition-colors hover:text-muted hover:bg-white/[.03]"
+                  data-tab="overview"
+                  role="tab"
+                >
+                  Overview
+                </button>
+                <button
+                  class="tab-btn font-mono text-[14px] tracking-[.06em] uppercase px-5 py-3 border-none border-r border-white/[.05] bg-transparent text-dim cursor-pointer whitespace-nowrap transition-colors hover:text-muted hover:bg-white/[.03]"
+                  data-tab="gallery"
+                  role="tab"
+                >
+                  Gallery
+                </button>
+                <button
+                  class="tab-btn font-mono text-[14px] tracking-[.06em] uppercase px-5 py-3 border-none border-r border-white/[.05] bg-transparent text-dim cursor-pointer whitespace-nowrap transition-colors hover:text-muted hover:bg-white/[.03]"
+                  data-tab="specs"
+                  role="tab"
+                >
+                  Specs
+                </button>
+                <button
+                  class="tab-btn font-mono text-[14px] tracking-[.06em] uppercase px-5 py-3 border-none border-r border-white/[.05] bg-transparent text-dim cursor-pointer whitespace-nowrap transition-colors hover:text-muted hover:bg-white/[.03]"
+                  data-tab="reviews"
+                  role="tab"
+                >
+                  Reviews
+                </button>
+              </div>
+
+              <!-- Overview -->
+              <div class="tab-panel active pt-[22px]" data-panel="overview">
+                <p
+                  class="text-[16px] font-medium text-muted leading-[1.75] mb-5"
+                  id="pd-desc"
+                ></p>
+                <div id="pd-features"></div>
+                <div class="mt-[22px]">
+                  <div
+                    class="font-orbitron font-bold text-[18px] text-white tracking-[.04em] mb-3.5 pb-2.5 border-b border-white/[.06]"
+                  >
+                    What's Included
+                  </div>
+                  <ul class="list-none" id="pd-includes"></ul>
+                </div>
+              </div>
+
+              <!-- Gallery tab -->
+              <div class="tab-panel pt-[22px]" data-panel="gallery">
+                <p class="text-[14px] font-medium text-muted mb-3.5">
+                  Click any image to enlarge.
+                </p>
+                <div
+                  class="grid grid-cols-3 gap-2.5"
+                  id="pd-gallery-grid"
+                ></div>
+                <p
+                  class="text-center mt-4 font-mono text-[14px] tracking-[.04em] uppercase text-dim"
+                >
+                  Render images by zamods — results may vary by scene lighting.
+                </p>
+              </div>
+
+              <!-- Specs -->
+              <div class="tab-panel pt-[22px]" data-panel="specs">
+                <div
+                  class="border border-white/[.06] overflow-hidden"
+                  id="pd-specs"
+                ></div>
+                <div
+                  class="mt-3.5 p-4 border border-gold/15 border-l-2 border-l-gold bg-[rgba(200,168,74,.04)]"
+                >
+                  <span
+                    class="font-mono text-[14px] tracking-[.06em] uppercase text-gold mb-2 block"
+                    >Compatibility Note</span
+                  >
+                  <p
+                    class="text-[16px] font-medium text-muted"
+                    id="pd-compat-note"
+                  ></p>
+                </div>
+              </div>
+
+              <!-- Reviews -->
+              <div class="tab-panel pt-[22px]" data-panel="reviews">
+                <div
+                  class="flex items-center gap-6 p-[18px] bg-panel border border-white/[.07] mb-[18px]"
+                  id="pd-rating-summary"
+                ></div>
+                <div id="pd-reviews"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: purchase sidebar -->
+          <div class="md:sticky md:top-[70px]" id="purchase">
+            <div
+              class="border border-white/[.08] border-t-2 border-t-[rgba(192,39,45,.4)] p-5 mb-3.5"
+              style="
+                background: linear-gradient(135deg, #131318 0%, #0f0f14 100%);
+              "
+            >
+              <span
+                class="font-mono text-[16px] tracking-[-.02em] uppercase text-dim mb-1.5 block"
+                >Price</span
+              >
+              <div
+                class="font-orbitron font-black text-[38px] tracking-[-0.02em] leading-none mb-3.5"
+                id="pd-price-sidebar"
+              ></div>
+              <div
+                class="flex items-center gap-2.5 pb-4 border-b border-white/[.06] mb-4"
+              >
+                <span
+                  class="text-[17px] text-gold tracking-[.02em]"
+                  id="pd-stars-sidebar"
+                ></span>
+                <span
+                  class="font-mono text-[16px] tracking-[-.02em] uppercase text-dim"
+                  id="pd-review-count-sidebar"
+                ></span>
+              </div>
+              <span
+                class="font-mono text-[16px] tracking-[-.02em] uppercase text-dim mb-2.5 block"
+                >Available from</span
+              >
+              <div id="pd-stores-sidebar"></div>
+              <div class="mt-4">
+                <span
+                  class="font-mono text-[16px] tracking-[.02em] uppercase text-dim mb-2.5 block"
+                  >Compatibility</span
+                >
+                <div id="pd-compat-sidebar"></div>
+              </div>
+            </div>
+
+            <div
+              class="border border-green/18 border-l-2 border-l-green p-4 mb-3.5 flex gap-3 items-start bg-[rgba(62,207,114,.03)]"
+            >
+              <div
+                class="w-[34px] h-[34px] bg-[rgba(62,207,114,.1)] border border-[rgba(62,207,114,.22)] flex items-center justify-center flex-shrink-0"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  stroke="#3ecf72"
+                  stroke-width="1.6"
+                >
+                  <path d="M8 2L2 5v4c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z" />
+                </svg>
+              </div>
+              <div>
+                <span
+                  class="font-mono text-[14px] tracking-[.02em] uppercase text-green mb-1.5 block"
+                  id="pd-license-type"
+                  >Extended Commercial License</span
+                >
+                <p
+                  class="text-[16px] font-medium text-muted leading-[1.55]"
+                  id="pd-license-desc"
+                >
+                  Use in commercial renders without royalties. Sell rendered
+                  artwork freely.
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="bg-panel border border-white/[.07] p-[14px] flex gap-3 items-center"
+            >
+              <div
+                class="w-[38px] h-[38px] rounded-full bg-[rgba(200,168,74,.14)] border border-[rgba(200,168,74,.28)] flex items-center justify-center flex-shrink-0"
+              >
+                <span class="font-orbitron font-black text-[16px] text-gold"
+                  >Z</span
+                >
+              </div>
+              <div>
+                <div
+                  class="font-orbitron font-bold text-[14px] text-white tracking-[.04em] mb-[3px]"
+                >
+                  zamods
+                </div>
+                <a
+                  href="https://www.renderhub.com/zamods"
+                  target="_blank"
+                  rel="noopener"
+                  class="font-mono text-[14px] tracking-[-.02em] uppercase text-gold transition-colors hover:text-goldlt"
+                  >View All Products</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RELATED -->
+        <div
+          class="h-px my-9"
+          style="
+            background: linear-gradient(
+              90deg,
+              transparent,
+              rgba(192, 39, 45, 0.2),
+              transparent
+            );
+          "
+        ></div>
+        <div class="mb-[18px]">
+          <span
+            class="font-mono text-[14px] tracking-[.12em] uppercase text-dim block mb-1.5"
+            >More from zamods</span
+          >
+          <h2
+            class="font-orbitron font-bold text-[20px] text-white tracking-[.04em]"
+          >
+            You might also like
+          </h2>
+        </div>
+        <div
+          id="related-grid"
+          class="grid grid-cols-2 md:grid-cols-3 gap-3.5"
+        ></div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="border-t-2 border-red px-5 py-5 mt-5"
+      style="background: linear-gradient(180deg, #0c0c10 0%, #08080a 100%)"
+    >
+      <div
+        class="max-w-[1180px] mx-auto flex items-center justify-between gap-5 flex-wrap"
+      >
+        <span
+          class="font-orbitron font-black text-[18px] tracking-[.12em] text-white"
+          style="text-shadow: 0 0 15px rgba(192, 39, 45, 0.4)"
+          >ZA<span class="text-red2">MODS</span></span
+        >
+        <p class="font-mono text-[14px] tracking-[.1em] text-dim">
+          &copy; 2026 zamods. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
+
+    <!-- LIGHTBOX -->
+    <div
+      class="lightbox fixed inset-0 z-[1000] bg-[rgba(4,4,6,.96)] backdrop-blur-2xl items-center justify-center p-6"
+      id="lightbox"
+      onclick="closeLightbox()"
+    >
+      <img
+        id="lightbox-img"
+        src=""
+        alt=""
+        class="max-w-[92vw] max-h-[92vh] object-contain shadow-[0_40px_100px_rgba(0,0,0,.8)]"
+      />
+    </div>
+
+    <script>
+      "use strict";
+
+      const STORE_META = {
+        renderhub: {
+          name: "RenderHub",
+          logo: "assets/rh.png",
+          color: "gold",
+          actionClass: "action-gold",
+        },
+        renderosity: {
+          name: "Renderosity",
+          logo: "assets/ren.png",
+          color: "ember",
+          actionClass: "action-ember",
+        },
+        shards3d: {
+          name: "3DShards",
+          logo: "assets/3ds.png",
+          color: "cyan",
+          actionClass: "action-cyan",
+        },
+      };
+
+      const STORE_DESCS = {
+        renderhub: "Main store · Extended licenses",
+        renderosity: "Daz & Poser community marketplace",
+        shards3d: "Curated premium 3D marketplace",
+      };
+
+      const PRODUCTS = {
+        "caty-sunglasses": {
+          freebie: false,
+          isFree: false,
+          title: "Caty Sunglasses",
+          subtitle: "Genesis 9, 8.1, 8, 3, 2, 1 — Unisex",
+          tag: "Accessories · Sunglasses",
+          price: "$6.99",
+          badge: "New Drop",
+          gallery: [
+            "https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1.jpg",
+            "https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1-1.jpg",
+            "https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1-2.jpg",
+            "https://cdn.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1/caty-sunglasses-g9-8-8-1-3-2-1-3.jpg",
+          ],
+          rating: 5.0,
+          reviews: 3,
+          compat: [
+            "Genesis 9",
+            "Genesis 8.1",
+            "Genesis 8",
+            "Genesis 3",
+            "Genesis 2",
+            "Genesis 1",
+          ],
+          compatNote:
+            "Designed to fit all listed Genesis generations with no manual adjustments. Smart morphs handle all standard body dials automatically.",
+          description:
+            "Precision-fit cat-eye sunglasses designed for every major Genesis figure. Each variant is sculpted to sit naturally on figure bridges without manual adjustment — just load and render. Ships with five lens color presets and both gold and silver frame options, with full PBR material support for photorealistic Iray output.",
+          features: [
+            {
+              icon: "compat",
+              title: "Universal Figure Fit",
+              body: "Auto-fits Genesis 9, 8.1, 8, 3, 2 and 1 with no manual adjustments.",
+            },
+            {
+              icon: "mat",
+              title: "Iray PBR Materials",
+              body: "5 lens color presets with accurate glass shader and 2 frame finishes.",
+            },
+            {
+              icon: "license",
+              title: "Extended Commercial Use",
+              body: "Full Extended Use License included — sell renders, use in animations.",
+            },
+          ],
+          includes: [
+            "5 lens color material presets (Smoke, Amber, Rose, Blue, Clear)",
+            "2 frame finish presets (Gold, Silver)",
+            "Auto-fit morphs for all supported figures",
+            "4K PBR textures (Base Color, Roughness, Metallic, Normal)",
+            "Daz Studio scene file (.DUF)",
+          ],
+          specs: {
+            Compatibility: "Genesis 9 · 8.1 · 8 · 3 · 2 · 1",
+            Software: "Daz Studio 4.x",
+            Renderer: "Iray (primary) · 3Delight compatible",
+            Format: "DUF · DSA",
+            Textures: "4K PBR — Base, Rough, Metal, Normal",
+            Presets: "5 lens colors · 2 frame finishes",
+            Geometry: "Subdivision-ready",
+            License: "Extended Commercial Use",
+            Vendor: "zamods",
+            Version: "1.0",
+          },
+          license: {
+            type: "Extended Commercial License",
+            desc: "Use in commercial renders without royalties. Sell rendered artwork, use in publications and animations freely.",
+          },
+          reviewsList: [
+            {
+              author: "ShadowRender",
+              rating: 5,
+              date: "March 2025",
+              body: "Perfect fit on all my Genesis 9 characters. The glass shader is really convincing under Iray lighting. Worth every cent.",
+            },
+            {
+              author: "ArtificialEye3D",
+              rating: 5,
+              date: "February 2025",
+              body: "Love the variety of lens options. My renders look so much more polished with these.",
+            },
+            {
+              author: "PixelCraft_87",
+              rating: 5,
+              date: "January 2025",
+              body: "Loaded straight in with zero fiddling. That alone is rare for accessories in Daz.",
+            },
+          ],
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/marketplace/products/164254/caty-sunglasses-for-genesis-figures",
+            },
+            shards3d: {
+              enabled: true,
+              url: "https://3dshards.com/product/caty-sunglasses-for-genesis-9-8-8-1-3-2-1-unisex/",
+            },
+          },
+        },
+        "fake-lashes": {
+          freebie: false,
+          isFree: false,
+          title: "Unisex Fake Eye Lashes Material Pack",
+          subtitle: "Genesis 8.1, 8, 3 — Male & Female",
+          tag: "Eyelashes · Materials",
+          price: "$3.00",
+          gallery: [
+            "https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1.jpg",
+            "https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1-1.jpg",
+          ],
+          rating: 5.0,
+          reviews: 1,
+          compat: ["Genesis 8.1", "Genesis 8", "Genesis 3"],
+          compatNote:
+            "Requires a Genesis eyelash prop. Works with Genesis 3, 8, and 8.1 male and female figures.",
+          description:
+            "A curated material pack that transforms the look of Genesis eyelash accessories with realistic Iray shader presets.",
+          features: [
+            {
+              icon: "mat",
+              title: "Realistic Iray Shaders",
+              body: "Carefully tuned translucency, specular, and scatter values for individual lash fiber realism.",
+            },
+            {
+              icon: "compat",
+              title: "Unisex Design",
+              body: "Works with both male and female Genesis 3, 8, and 8.1 eyelash props.",
+            },
+            {
+              icon: "license",
+              title: "Commercial License",
+              body: "Extended commercial use license included — render and sell without restrictions.",
+            },
+          ],
+          includes: [
+            "Multiple material presets for Genesis eyelash props",
+            "2K PBR texture maps",
+            "Iray shader optimized values",
+            "Daz Studio material files (.DUF)",
+          ],
+          specs: {
+            Compatibility: "Genesis 8.1 · 8 · 3",
+            Software: "Daz Studio 4.x",
+            Renderer: "Iray",
+            Format: "DUF material presets",
+            Textures: "2K PBR maps",
+            Type: "Material expansion pack",
+            License: "Extended Commercial Use",
+            Vendor: "zamods",
+          },
+          license: {
+            type: "Extended Commercial License",
+            desc: "Use in commercial renders and sell artwork without royalties.",
+          },
+          reviewsList: [
+            {
+              author: "CG_Portraits",
+              rating: 5,
+              date: "April 2025",
+              body: "Finally a lash material pack that actually looks like real lashes in Iray. The translucency is spot on.",
+            },
+          ],
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1",
+            },
+            renderosity: { enabled: false, url: "" },
+            shards3d: { enabled: false, url: "" },
+          },
+        },
+        "zcamera-tools": {
+          freebie: true,
+          isFree: true,
+          title: "zCamera Tools for Blender 3D",
+          subtitle: "Daz3D-like Camera Navigation",
+          tag: "Blender · Software",
+          price: "FREE",
+          gallery: [
+            "https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d.jpg",
+            "https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d-1.jpg",
+          ],
+          rating: 5.0,
+          reviews: 4,
+          compat: ["Blender 3.x", "Blender 4.x"],
+          compatNote:
+            "Tested with Blender 3.x and 4.x on Windows, macOS and Linux. Install via Edit > Preferences > Add-ons.",
+          description:
+            "A free Blender addon that brings the intuitive Daz3D-style camera navigation workflow into Blender.",
+          features: [
+            {
+              icon: "tool",
+              title: "Daz-Style Navigation",
+              body: "Replicates the Daz3D camera orbit, pan, and zoom workflow inside Blender.",
+            },
+            {
+              icon: "compat",
+              title: "Blender 3 and 4 Ready",
+              body: "Tested and compatible with current Blender releases on all major platforms.",
+            },
+            {
+              icon: "license",
+              title: "Free Forever",
+              body: "Released as a free community tool with full commercial use permission.",
+            },
+          ],
+          includes: [
+            "Python addon (.zip) — install via Blender preferences",
+            "Daz-style orbit, pan and zoom camera navigation",
+            "Compatible with Blender 3.x and 4.x",
+            "Full commercial use permission",
+          ],
+          specs: {
+            Compatibility: "Blender 3.x · 4.x",
+            Platform: "Windows · macOS · Linux",
+            Format: "Python addon (.zip)",
+            Install: "Edit > Preferences > Add-ons",
+            Type: "Software plugin",
+            License: "Free · Commercial Use",
+            Vendor: "zamods",
+          },
+          license: {
+            type: "Free — Commercial Use Permitted",
+            desc: "Download and use freely in personal and commercial projects. No attribution required.",
+          },
+          reviewsList: [
+            {
+              author: "BlendMigrant",
+              rating: 5,
+              date: "March 2025",
+              body: "Coming from Daz3D, the camera controls in Blender always frustrated me. This fixed that completely.",
+            },
+            {
+              author: "PolyArtist",
+              rating: 5,
+              date: "February 2025",
+              body: "Simple, lightweight, works perfectly. One of those tools I did not know I needed until I had it.",
+            },
+            {
+              author: "CyclesUser99",
+              rating: 5,
+              date: "January 2025",
+              body: "Exactly what I needed to switch between apps without relearning controls every time.",
+            },
+            {
+              author: "BlenderNewbie",
+              rating: 5,
+              date: "December 2024",
+              body: "Made the transition from Daz to Blender so much smoother. Highly recommend.",
+            },
+          ],
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/zcamera-tools-for-blender3d",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/freestuff/items/99380/zcamera-tools-for-blender3d",
+            },
+            shards3d: {
+              enabled: true,
+              url: "https://3dshards.com/product/zcamera-tools-for-blender3d/",
+            },
+          },
+        },
+        "bench-set": {
+          freebie: true,
+          isFree: true,
+          title: "Bench Set for Daz Studio",
+          subtitle: "4K Textures & Smart Prop",
+          tag: "Props · Environments",
+          price: "FREE",
+          gallery: [
+            "https://cdn.renderhub.com/zamods/bench-set/bench-set.jpg",
+            "https://cdn.renderhub.com/zamods/bench-set/bench-set-1.jpg",
+          ],
+          rating: 5.0,
+          reviews: 9,
+          compat: ["Daz Studio 4.x"],
+          compatNote:
+            "Compatible with Daz Studio 4.x. Works as a standard scene prop with no additional dependencies.",
+          description:
+            "A free outdoor bench set for Daz Studio scenes, featuring 4K PBR textures and a smart prop that adapts to any scene.",
+          features: [
+            {
+              icon: "geo",
+              title: "4K PBR Textures",
+              body: "High-resolution base color, roughness, metallic, and normal maps for photorealistic renders.",
+            },
+            {
+              icon: "compat",
+              title: "Smart Prop",
+              body: "Compatible with Daz Studio 4.x as a standard scene prop with no dependencies.",
+            },
+            {
+              icon: "license",
+              title: "Free Commercial",
+              body: "Use freely in any personal or commercial render project without restrictions.",
+            },
+          ],
+          includes: [
+            "Bench prop with 4K PBR texture maps",
+            "Daz Studio scene file (.DUF)",
+            "OBJ export for use in other applications",
+          ],
+          specs: {
+            Compatibility: "Daz Studio 4.x",
+            Format: "DUF · OBJ",
+            Textures: "4K PBR (Base, Rough, Metal, Normal)",
+            Type: "Prop / Environment",
+            Renderer: "Iray · 3Delight",
+            License: "Free · Commercial Use",
+            Vendor: "zamods",
+          },
+          license: {
+            type: "Free — Commercial Use Permitted",
+            desc: "Download and use in personal and commercial projects freely.",
+          },
+          reviewsList: [
+            {
+              author: "SceneBuilder",
+              rating: 5,
+              date: "April 2025",
+              body: "The 4K textures look fantastic in Iray. Better quality than most paid props.",
+            },
+            {
+              author: "EnvironmentArt",
+              rating: 5,
+              date: "March 2025",
+              body: "Exactly what my park scene needed. Dropped right in with no adjustments.",
+            },
+          ],
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/bench-set",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/freestuff/items/97679/bench-set-for-daz-studio",
+            },
+            shards3d: {
+              enabled: true,
+              url: "https://3dshards.com/product/bench-set-for-daz-studio/",
+            },
+          },
+        },
+        "bfd-ear-ornament": {
+          freebie: true,
+          isFree: true,
+          title: "BFD Ear Ornament for Genesis 9",
+          subtitle: "Sci-Fi Ear Jewellery Prop",
+          tag: "Accessories · Ornaments",
+          price: "FREE",
+          gallery: [
+            "https://cdn.renderhub.com/zamods/bfd-ear-ornament/bfd-ear-ornament.jpg",
+          ],
+          rating: 4.0,
+          reviews: 1,
+          compat: ["Genesis 9"],
+          compatNote:
+            "Designed and fitted specifically for Genesis 9. Not compatible with earlier Genesis generations.",
+          description:
+            "A sci-fi inspired ear ornament prop for Genesis 9. Perfect for futuristic and cyberpunk render themes.",
+          features: [
+            {
+              icon: "geo",
+              title: "Sci-Fi Aesthetic",
+              body: "Designed for futuristic, cyberpunk, and dystopian 3D render themes.",
+            },
+            {
+              icon: "mat",
+              title: "Metal Materials",
+              body: "Iray-ready metal presets with polished and brushed variants.",
+            },
+            {
+              icon: "compat",
+              title: "Genesis 9 Ready",
+              body: "Designed and fitted specifically for Genesis 9 figures.",
+            },
+          ],
+          includes: [
+            "Ear ornament prop with Iray metal materials",
+            "Daz Studio scene file (.DUF)",
+          ],
+          specs: {
+            Compatibility: "Genesis 9",
+            Software: "Daz Studio 4.x",
+            Format: "DUF",
+            Type: "Prop / Accessory",
+            Renderer: "Iray",
+            License: "Free · Commercial Use",
+            Vendor: "zamods",
+          },
+          license: {
+            type: "Free — Commercial Use Permitted",
+            desc: "Download and use freely in personal and commercial projects.",
+          },
+          reviewsList: [
+            {
+              author: "CyberpunkStudio",
+              rating: 4,
+              date: "February 2025",
+              body: "Nice freebie for sci-fi scenes. Fits well on Genesis 9.",
+            },
+          ],
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/bfd-ear-ornament",
+            },
+            renderosity: {
+              enabled: true,
+              url: "https://www.renderosity.com/freestuff/items/97612/bfd-ear-ornament-for-genesis-9",
+            },
+            shards3d: { enabled: false, url: "" },
+          },
+        },
+        "bfd-aviator-materials": {
+          freebie: true,
+          isFree: true,
+          title: "Materials Pack for BFD Aviator",
+          subtitle: "Extended Use License Included",
+          tag: "Materials · Textures",
+          price: "FREE",
+          gallery: [
+            "https://cdn.renderhub.com/zamods/materials-pack-for-bfd-aviator/materials-pack-for-bfd-aviator.jpg",
+          ],
+          rating: 5.0,
+          reviews: 2,
+          compat: ["Daz Studio 4.x"],
+          compatNote:
+            "Requires the BFD Aviator prop. Extended commercial use included with this free pack.",
+          description:
+            "Extended material presets for the BFD Aviator accessory. Includes multiple color and finish variations with accurate Iray PBR values.",
+          features: [
+            {
+              icon: "mat",
+              title: "Multiple Finishes",
+              body: "Color and finish presets including bronze, silver, matte, and reflective variants.",
+            },
+            {
+              icon: "license",
+              title: "Extended License",
+              body: "Extended commercial use included — use in paid renders and published artwork.",
+            },
+          ],
+          includes: [
+            "Material presets for BFD Aviator",
+            "Iray PBR values optimized",
+            "Daz Studio material files (.DUF)",
+          ],
+          specs: {
+            Compatibility: "Daz Studio 4.x",
+            Format: "DUF material presets",
+            Type: "Material expansion pack",
+            Renderer: "Iray",
+            License: "Free · Extended Commercial Use",
+            Vendor: "zamods",
+          },
+          license: {
+            type: "Free — Extended Commercial License",
+            desc: "Download and use in personal and commercial projects. Extended use included.",
+          },
+          reviewsList: [
+            {
+              author: "GlassWorks3D",
+              rating: 5,
+              date: "January 2025",
+              body: "The bronze tint preset is exactly what my steampunk renders needed. Excellent freebie.",
+            },
+            {
+              author: "IrayMaster",
+              rating: 5,
+              date: "December 2024",
+              body: "Great material values — translucency feels right in Iray. Thanks for making this free.",
+            },
+          ],
+          stores: {
+            renderhub: {
+              enabled: true,
+              url: "https://www.renderhub.com/zamods/materials-pack-for-bfd-aviator",
+            },
+            renderosity: { enabled: false, url: "" },
+            shards3d: { enabled: false, url: "" },
+          },
+        },
+      };
+
+      /* ── HELPERS ── */
+      function stars(n) {
+        return "★".repeat(n) + "☆".repeat(5 - n);
+      }
+
+      function featureIconSVG(type) {
+        const s = {
+          strokeWidth: "1.6",
+          fill: "none",
+          stroke: "#c8a84a",
+          width: "16",
+          height: "16",
+        };
+        const a = (o) =>
+          Object.entries({ ...s, ...o })
+            .map(([k, v]) => `${k}="${v}"`)
+            .join(" ");
+        const icons = {
+          compat: `<svg ${a({})} viewBox="0 0 16 16"><rect x="2" y="4" width="12" height="8" rx="1"/><path d="M5,4V3M11,4V3"/></svg>`,
+          mat: `<svg ${a({})} viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8,2 Q12,8 8,14 Q4,8 8,2Z" fill="rgba(200,168,74,.3)" stroke="none"/></svg>`,
+          license: `<svg ${a({})} viewBox="0 0 16 16"><path d="M8 2L2 5v4c0 3 2.5 5 6 6 3.5-1 6-3 6-6V5L8 2z"/></svg>`,
+          tool: `<svg ${a({})} viewBox="0 0 16 16"><path d="M13 3L9 7M3 13l4-4M10 2l4 4-1 1-4-4 1-1zM3 9l4 4-1 1-4-4 1-1z"/></svg>`,
+          geo: `<svg ${a({})} viewBox="0 0 16 16"><polygon points="8,2 14,12 2,12"/></svg>`,
+        };
+        return icons[type] || icons.geo;
+      }
+
+      /* ── GALLERY ── */
+      let galleryImages = [],
+        galleryActive = 0;
+
+      function setActiveGallery(idx) {
+        if (idx < 0 || idx >= galleryImages.length) return;
+        galleryActive = idx;
+        const mainImg = document.getElementById("gallery-main-img");
+        mainImg.style.opacity = "0";
+        setTimeout(() => {
+          mainImg.src = galleryImages[idx];
+          mainImg.style.opacity = "1";
+        }, 200);
+        document
+          .querySelectorAll(".thumb")
+          .forEach((t, i) => t.classList.toggle("active", i === idx));
+        document.getElementById("lightbox-img").src = galleryImages[idx];
+      }
+
+      function openLightbox() {
+        document.getElementById("lightbox-img").src =
+          galleryImages[galleryActive];
+        document.getElementById("lightbox").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        document.getElementById("lightbox").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeLightbox();
+      });
+
+      /* ── TABS ── */
+      document.querySelectorAll(".tab-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const tab = btn.dataset.tab;
+          document.querySelectorAll(".tab-btn").forEach((b) => {
+            b.classList.toggle("active", b.dataset.tab === tab);
+            if (b.dataset.tab === tab) {
+              b.classList.add("bg-[rgba(192,39,45,.08)]", "text-white");
+              b.classList.remove("bg-transparent", "text-dim");
+            } else {
+              b.classList.remove("bg-[rgba(192,39,45,.08)]", "text-white");
+              b.classList.add("bg-transparent", "text-dim");
+            }
+          });
+          document
+            .querySelectorAll(".tab-panel")
+            .forEach((p) =>
+              p.classList.toggle("active", p.dataset.panel === tab),
+            );
+        });
+      });
+
+      /* ── PROBE IMAGE ── */
+      function probeImage(url) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(url);
+          img.onerror = () => resolve(null);
+          img.src = url;
+        });
+      }
+
+      /* ── RENDER PRODUCT ── */
+      async function renderProduct(p) {
+        document.title = `${p.title} — zamods`;
+        document.getElementById("breadcrumb-tag").textContent = p.tag;
+        document.getElementById("breadcrumb-name").textContent = p.title;
+        document.getElementById("pd-tag").textContent = p.tag;
+        document.getElementById("pd-title").textContent = p.title;
+        document.getElementById("pd-desc").textContent = p.description || "";
+
+        // Price
+        const priceEl = document.getElementById("pd-price-sidebar");
+        priceEl.textContent = p.price;
+        priceEl.style.color = p.isFree ? "#3ecf72" : "#c8a84a";
+
+        // Stars
+        document.getElementById("pd-stars-sidebar").textContent =
+          stars(Math.round(p.rating)) + " " + p.rating.toFixed(1);
+        document.getElementById("pd-review-count-sidebar").textContent =
+          `${p.reviews} review${p.reviews !== 1 ? "s" : ""}`;
+
+        // Nav buy btn
+        document.getElementById("nav-buy-btn").textContent = p.isFree
+          ? "Download Free"
+          : `Get for ${p.price}`;
+
+        // Store buttons
+        const storesSidebar = document.getElementById("pd-stores-sidebar");
+        storesSidebar.innerHTML = "";
+        Object.entries(p.stores).forEach(([key, store]) => {
+          const meta = STORE_META[key];
+          const desc = STORE_DESCS[key];
+          const el = store.enabled
+            ? document.createElement("a")
+            : document.createElement("div");
+          el.className =
+            "store-row flex items-center gap-3 p-3 border border-white/[.07] bg-[#0e0e12] mb-2 cursor-pointer transition-all hover:bg-[#131318]" +
+            (!store.enabled ? " opacity-35 pointer-events-none" : "");
+          el.dataset.color = meta.color;
+          if (store.enabled) {
+            el.href = store.url;
+            el.target = "_blank";
+            el.rel = "noopener";
+          }
+          const actionLabel = store.enabled
+            ? p.isFree
+              ? "Download"
+              : "Buy Now"
+            : "Coming Soon";
+          const actionColors = {
+            "action-gold": "text-gold border-gold/35 bg-gold/10",
+            "action-ember":
+              "text-[#e07c4c] border-[rgba(224,124,76,.35)] bg-[rgba(224,124,76,.1)]",
+            "action-cyan":
+              "text-[#6ec0e0] border-[rgba(110,192,224,.35)] bg-[rgba(110,192,224,.1)]",
+            "action-dim": "text-dim border-white/10 bg-transparent",
+          };
+          const actionCls = store.enabled
+            ? actionColors[meta.actionClass] || ""
+            : actionColors["action-dim"];
+          el.innerHTML = `
+      <img src="${meta.logo}" alt="${meta.name}" class="w-[52px] h-7 object-contain opacity-85 flex-shrink-0" onerror="this.style.display='none'" />
+      <div class="flex-1">
+        <div class="font-raj font-bold text-[16px] text-white mb-0.5">${meta.name}</div>
+        <div class="font-mono text-[14px] text-dim tracking-[-.04em]">${desc}</div>
+      </div>
+      <span class="font-mono text-[14px] tracking-[-.02em] uppercase px-3 py-1.5 border flex-shrink-0 whitespace-nowrap ${actionCls}">${actionLabel}</span>`;
+          storesSidebar.appendChild(el);
+        });
+
+        // Compat chips
+        const compatSidebar = document.getElementById("pd-compat-sidebar");
+        compatSidebar.innerHTML = (p.compat || [])
+          .map(
+            (c) =>
+              `<span class="inline-flex items-center font-mono text-[14px] tracking-[0.04em] uppercase px-2.5 py-1 border mr-1 mb-1 bg-blue/10 border-blue/28 text-[#6a9aff]">${c}</span>`,
+          )
+          .join("");
+
+        // License
+        if (p.license) {
+          document.getElementById("pd-license-type").textContent =
+            p.license.type;
+          document.getElementById("pd-license-desc").textContent =
+            p.license.desc;
+        }
+
+        // Features
+        const featEl = document.getElementById("pd-features");
+        featEl.innerHTML = (p.features || [])
+          .map(
+            (f) => `
+    <div class="flex items-start gap-3.5 p-4 bg-panel border border-white/[.07] border-l-2 border-l-red mb-2.5 transition-colors hover:border-white/[.1] hover:border-l-red2">
+      <div class="w-9 h-9 bg-gold/10 border border-gold/22 flex items-center justify-center flex-shrink-0">${featureIconSVG(f.icon)}</div>
+      <div>
+        <div class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-1">${f.title}</div>
+        <div class="text-[14px] font-medium text-muted leading-[1.6]">${f.body}</div>
+      </div>
+    </div>`,
+          )
+          .join("");
+
+        // Includes
+        const inclEl = document.getElementById("pd-includes");
+        inclEl.innerHTML = (p.includes || [])
+          .map(
+            (item) => `
+    <li class="flex items-start gap-3 py-2.5 border-b border-white/[.04] text-[16px] font-medium text-txt leading-[1.55]">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#3ecf72" stroke-width="1.8" class="flex-shrink-0 mt-[3px]"><path d="M2.5 7l3.5 3.5 5.5-5.5"/></svg>
+      <span>${item}</span>
+    </li>`,
+          )
+          .join("");
+
+        // Specs
+        const specEl = document.getElementById("pd-specs");
+        specEl.innerHTML = Object.entries(p.specs || {})
+          .map(
+            ([k, v]) => `
+    <div class="flex border-b border-white/[.05] last:border-b-0 transition-colors hover:bg-white/[.025]">
+      <span class="font-mono text-[16px] tracking-[.06em] uppercase text-dim px-4 py-3 w-[38%] border-r border-white/[.05] flex items-center">${k}</span>
+      <span class="font-mono text-[16px] tracking-[-.02em] text-txt px-4 py-3 flex-1 flex items-center">${v}</span>
+    </div>`,
+          )
+          .join("");
+        document.getElementById("pd-compat-note").textContent =
+          p.compatNote || "";
+
+        // Rating summary
+        const ratingSum = document.getElementById("pd-rating-summary");
+        ratingSum.innerHTML = `
+    <div class="text-center min-w-[100px]">
+      <div class="font-orbitron font-black text-[48px] text-gold leading-none tracking-[-0.02em]">${p.rating.toFixed(1)}</div>
+      <span class="text-[18px] text-gold tracking-[.06em] block my-1.5">${stars(Math.round(p.rating))}</span>
+      <span class="font-mono text-[14px] text-dim tracking-[.02em]">${p.reviews} review${p.reviews !== 1 ? "s" : ""}</span>
+    </div>
+    <div class="flex-1 flex flex-col gap-2 pl-5 border-l border-white/[.06]">
+      ${[5, 4, 3, 2, 1]
+        .map((n) => {
+          const count = (p.reviewsList || []).filter(
+            (r) => r.rating === n,
+          ).length;
+          const pct = p.reviews > 0 ? (count / p.reviews) * 100 : 0;
+          return `<div class="flex items-center gap-2.5">
+          <span class="font-mono text-[16px] text-dim w-4">${n}</span>
+          <div class="flex-1 h-[5px] bg-white/[.06]"><div class="h-full bg-gold" style="width:${pct}%"></div></div>
+          <span class="font-mono text-[16px] text-dim w-[18px] text-right">${count}</span>
+        </div>`;
+        })
+        .join("")}
+    </div>`;
+
+        // Reviews
+        const revEl = document.getElementById("pd-reviews");
+        revEl.innerHTML = (p.reviewsList || [])
+          .map(
+            (r) => `
+    <div class="p-[18px] bg-panel border border-white/[.07] border-t-2 border-t-[rgba(200,168,74,.2)] mb-2.5">
+      <div class="flex justify-between items-start mb-2.5">
+        <div>
+          <div class="font-orbitron font-bold text-[14px] text-txt tracking-[.02em]">${r.author}</div>
+          <div class="font-mono text-[14px] text-dim mt-[3px] tracking-[-.02em]">${r.date || ""}</div>
+        </div>
+        <span class="text-[18px] text-gold tracking-[.04em]">${stars(r.rating)}</span>
+      </div>
+      <p class="text-[16px] font-medium text-muted leading-[1.65]">${r.body}</p>
+    </div>`,
+          )
+          .join("");
+
+        // Gallery
+        const rawGallery = p.gallery || [];
+        const probed = await Promise.all(rawGallery.map(probeImage));
+        galleryImages = probed.filter(Boolean);
+        if (galleryImages.length === 0 && rawGallery.length > 0)
+          galleryImages = [rawGallery[0]];
+        galleryActive = 0;
+
+        const mainImg = document.getElementById("gallery-main-img");
+        if (galleryImages[0]) {
+          mainImg.src = galleryImages[0];
+          mainImg.alt = p.title;
+        }
+
+        const thumbsEl = document.getElementById("gallery-thumbs");
+        thumbsEl.innerHTML = "";
+        if (galleryImages.length > 1) {
+          galleryImages.forEach((url, i) => {
+            const t = document.createElement("div");
+            t.className =
+              "thumb w-[68px] h-[68px] overflow-hidden cursor-pointer flex-shrink-0" +
+              (i === 0 ? " active" : "");
+            t.innerHTML = `<img src="${url}" alt="View ${i + 1}" loading="lazy" class="w-full h-full object-cover"/>`;
+            t.addEventListener("click", () => setActiveGallery(i));
+            thumbsEl.appendChild(t);
+          });
+        }
+
+        // Gallery grid tab
+        const gallGrid = document.getElementById("pd-gallery-grid");
+        gallGrid.innerHTML = galleryImages
+          .map(
+            (url, i) => `
+    <div class="overflow-hidden border border-white/[.07] cursor-pointer aspect-square transition-colors hover:border-red/40 gallery-grid-item" onclick="galleryActive=${i};openLightbox();">
+      <img src="${url}" alt="Render ${i + 1}" loading="lazy" class="w-full h-full object-cover transition-transform duration-[400ms] hover:scale-[1.06]" />
+    </div>`,
+          )
+          .join("");
+      }
+
+      /* ── RELATED ── */
+      function renderRelated(currentId) {
+        const grid = document.getElementById("related-grid");
+        const others = Object.entries(PRODUCTS)
+          .filter(([id]) => id !== currentId)
+          .slice(0, 3);
+        others.forEach(([id, p]) => {
+          const el = document.createElement("a");
+          el.href = `product.html?id=${id}`;
+          el.className =
+            "flex flex-col bg-panel border border-white/[.07] border-t-2 border-t-[rgba(192,39,45,.25)] overflow-hidden cursor-pointer transition-all hover:border-red/60 hover:-translate-y-[3px]";
+          el.innerHTML = `
+      <div class="aspect-square overflow-hidden bg-[#181820]">
+        <img src="${p.gallery ? p.gallery[0] : p.img}" alt="${p.title}" loading="lazy" class="w-full h-full object-cover transition-transform duration-[400ms] hover:scale-105" />
+      </div>
+      <div class="p-3.5">
+        <span class="font-mono text-[12px] tracking-[.06em] uppercase text-red2 mb-1.5 block">${p.tag}</span>
+        <div class="font-raj font-bold text-[15px] text-white leading-[1.3] mb-1.5">${p.title}</div>
+        <span class="font-orbitron font-bold text-[15px]" style="color:${p.isFree ? "#3ecf72" : "#c8a84a"}">${p.price}</span>
+      </div>`;
+          grid.appendChild(el);
+        });
+      }
+
+      /* ── INIT ── */
+      (function init() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id") || "";
+        const p = PRODUCTS[id];
+
+        document.getElementById("loading-state").style.display = "none";
+
+        if (!p) {
+          document.getElementById("not-found").classList.remove("hidden");
+          return;
+        }
+
+        document.getElementById("product-content").classList.remove("hidden");
+        renderProduct(p);
+        renderRelated(id);
+      })();
+    </script>
+  </body>
+</html>
