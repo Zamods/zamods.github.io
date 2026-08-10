@@ -1,1321 +1,3582 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-CA">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>zamods – Premium Daz Studio 3D Content</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClearPath ADAS: Mobile ADAS Calibration, Anywhere in Canada</title>
     <meta
       name="description"
-      content="zamods creates premium Daz Studio assets — eyelashes, sunglasses, props, materials, and Blender tools for Genesis 9, 8.1, 8, 3."
+      content="OEM-spec ADAS calibration that comes to your driveway, dealership, or shop. Same-day mobile service, insurance-ready reports, and warranty-backed work, coast to coast in Canada."
     />
-    <link rel="stylesheet" href="/assets/style.css" />
-    <link rel="canonical" href="https://zamods.com/" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              orbitron: ["Orbitron", "sans-serif"],
-              mono: ["Share Tech Mono", "monospace"],
-              raj: ["Rajdhani", "sans-serif"],
-            },
-            colors: {
-              bg: "#08080a",
-              bg2: "#0f0f12",
-              bg3: "#14141a",
-              panel: "#111116",
-              red: "#c0272d",
-              red2: "#e8313a",
-              gold: "#c8a84a",
-              goldlt: "#e4c46a",
-              green: "#3ecf72",
-              muted: "#7e8898",
-              dim: "#4d5668",
-              txt: "#d8dbe8",
-            },
-          },
-        },
-      };
-    </script>
-  </head>
-  <body class="bg-bg text-txt text-[17px] font-raj leading-relaxed">
-    <!-- TOP BANNER -->
-    <div
-      class="h-[3px]"
-      style="
+    <style>
+      /* ============================================================
+   TOKENS
+   ============================================================ */
+      :root {
+        --navy-950: #0b1220;
+        --navy-800: #141f33;
+        --white: #ffffff;
+        --gray-50: #f4f6f9;
+        --gray-600: #4b5568;
+        --ink-900: #0f1626;
+        --amber-500: #f5a524;
+        --amber-700: #b97300;
+        --green-500: #2ecc71;
+        --red-500: #e5484d;
+
+        --fs-display: 2.25rem;
+        --fs-h2: 1.75rem;
+        --fs-h3: 1.25rem;
+        --fs-body-lg: 1.125rem;
+        --fs-body: 1rem;
+        --fs-medium: 1.3rem;
+        --fs-small: 1rem;
+        --fs-button: 1.0625rem;
+
+        --radius: 12px;
+        --radius-sm: 8px;
+        --section-pad: clamp(3rem, 8vw, 6rem);
+        --side-pad: clamp(1.25rem, 5vw, 4rem);
+        --content-max: 1200px;
+      }
+
+      @media (min-width: 768px) {
+        :root {
+          --fs-display: 3rem;
+          --fs-h2: 2.125rem;
+          --fs-h3: 1.375rem;
+        }
+      }
+      @media (min-width: 1200px) {
+        :root {
+          --fs-display: 3.75rem;
+          --fs-h2: 2.5rem;
+          --fs-h3: 1.5rem;
+          --fs-body-lg: 1.25rem;
+          --fs-body: 1.0625rem;
+          --fs-button: 1.125rem;
+        }
+      }
+
+      /* ============================================================
+   RESET / BASE
+   ============================================================ */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+      body {
+        margin: 0;
+        font-family:
+          "Inter",
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          "Helvetica Neue",
+          Arial,
+          sans-serif;
+        font-size: var(--fs-body);
+        line-height: 1.6;
+        color: var(--ink-900);
+        background: var(--white);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        width: 100%;
+      }
+      img,
+      svg {
+        max-width: 100%;
+      }
+      img {
+        display: block;
+      }
+      a {
+        color: inherit;
+      }
+      h1,
+      h2,
+      h3,
+      p,
+      figure {
+        margin: 0;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: inherit;
+        max-width: 100%;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      :focus-visible {
+        outline: 2px solid var(--amber-500);
+        outline-offset: 2px;
+      }
+      :focus:not(:focus-visible) {
+        outline: none;
+      }
+
+      .wrap {
+        max-width: var(--content-max);
+        margin-inline: auto;
+        padding-inline: var(--side-pad);
+      }
+      .section {
+        padding-block: var(--section-pad);
+      }
+      .section-label {
+        font-size: var(--fs-medium);
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--amber-700);
+        font-family: "SFMono-Regular", Tahoma, sans-serif;
+      }
+      .section-header {
+        max-width: 100%;
+        margin-bottom: 2.5rem;
+      }
+      .section-header h2 {
+        font-size: var(--fs-h2);
+        font-weight: 700;
+        line-height: 1.2;
+        margin-top: 0.5rem;
+        max-width: none;
+      }
+      .section-header p {
+        font-size: var(--fs-body-lg);
+        color: var(--gray-600);
+        margin-top: 0.75rem;
+        max-width: none;
+      }
+      .on-dark .section-header p {
+        color: rgba(255, 255, 255, 0.72);
+      }
+      .on-dark .section-label {
+        color: var(--amber-500);
+      }
+
+      /* ============================================================
+   BUTTONS
+   ============================================================ */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: var(--fs-button);
+        font-weight: 600;
+        line-height: 1;
+        padding: 14px 28px;
+        border-radius: var(--radius-sm);
+        min-height: 44px;
+        border: 2px solid transparent;
+        cursor: pointer;
+        text-decoration: none;
+        transition: filter 0.15s ease;
+        white-space: nowrap;
+      }
+      .btn:hover,
+      .btn:active {
+        filter: brightness(0.92);
+      }
+      .btn-primary {
+        background: var(--amber-500);
+        color: var(--navy-950);
+        border-color: var(--amber-500);
+      }
+      .btn-secondary-light {
+        background: transparent;
+        color: var(--white);
+        border-color: var(--white);
+      }
+      .btn-secondary-dark {
+        background: transparent;
+        color: var(--navy-950);
+        border-color: var(--navy-950);
+      }
+      .btn-block {
+        width: 100%;
+      }
+
+      /* ============================================================
+   HEADER / NAV
+   ============================================================ */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: var(--navy-950);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .site-header .wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-block: 0.85rem;
+        flex-wrap: nowrap;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.15rem;
+        letter-spacing: -0.01em;
+        flex: none;
+        white-space: nowrap;
+      }
+      .brand svg {
+        flex: none;
+      }
+      .brand .mark-sub {
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        color: var(--amber-500);
+        display: block;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .primary-nav {
+        display: none;
+        flex: none;
+      }
+      .primary-nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+        white-space: nowrap;
+      }
+      .primary-nav a {
+        color: rgba(255, 255, 255, 0.82);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: var(--fs-small);
+        padding: 0.5rem 0;
+        border-bottom: 2px solid transparent;
+      }
+      .primary-nav a:hover {
+        color: var(--white);
+        border-color: var(--amber-500);
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .header-book-btn {
+        display: none;
+      }
+      .header-phone {
+        display: none;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: var(--fs-small);
+        white-space: nowrap;
+      }
+      .hamburger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: var(--radius-sm);
+        color: var(--white);
+        cursor: pointer;
+      }
+      .mobile-nav {
+        display: none;
+        flex-direction: column;
+        background: var(--navy-950);
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding: 0.5rem var(--side-pad) 1.25rem;
+      }
+      .mobile-nav.open {
+        display: flex;
+      }
+      .mobile-nav a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        padding: 0.85rem 0;
+        font-size: var(--fs-body-lg);
+        font-weight: 500;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .mobile-nav .header-phone {
+        display: flex;
+        padding-top: 0.85rem;
+      }
+
+      @media (min-width: 768px) {
+        .header-book-btn {
+          display: inline-flex;
+        }
+      }
+      @media (min-width: 1024px) {
+        .primary-nav {
+          display: block;
+        }
+        .header-phone {
+          display: flex;
+        }
+        .hamburger {
+          display: none;
+        }
+        .mobile-nav {
+          display: none !important;
+        }
+      }
+
+      /* ============================================================
+   HERO
+   ============================================================ */
+      .hero {
+        background: var(--navy-950);
+        color: var(--white);
+        position: relative;
+        overflow: hidden;
+        padding-block: clamp(2.5rem, 6vw, 4rem) var(--section-pad);
+      }
+      .hero .wrap {
+        display: grid;
+        gap: 2.5rem;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+      }
+      @media (min-width: 1024px) {
+        .hero .wrap {
+          grid-template-columns: 1.05fr 0.95fr;
+          gap: 3rem;
+        }
+      }
+      .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: var(--fs-small);
+        font-weight: 700;
+        color: var(--amber-500);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.85rem;
+      }
+      .hero h1 {
+        font-size: var(--fs-display);
+        font-weight: 700;
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+      }
+      .hero h1 .accent {
+        color: var(--amber-500);
+      }
+      .hero .lead {
+        font-size: var(--fs-body-lg);
+        color: rgba(255, 255, 255, 0.78);
+        margin-top: 1.25rem;
+      }
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.85rem;
+        margin-top: 2rem;
+      }
+      .hero-ctas .btn {
+        min-width: 196px;
+      }
+      .trust-badges {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem 1.25rem;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .trust-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: var(--fs-small);
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.88);
+      }
+      .trust-badge svg {
+        flex: none;
+        color: var(--amber-500);
+      }
+
+      .hero-visual {
+        position: relative;
+        display: none;
+      }
+      @media (min-width: 1024px) {
+        .hero-visual {
+          display: block;
+        }
+      }
+      .hud-frame {
+        position: relative;
+        border-radius: 16px;
+        overflow: hidden;
+        background: var(--navy-800);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        aspect-ratio: 4/5;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hud-frame svg {
+        width: 100%;
+        height: 100%;
+      }
+      .hud-readout {
+        position: absolute;
+        left: 14px;
+        bottom: 14px;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: var(--fs-small);
+        font-weight: 700;
+        background: rgba(11, 18, 32, 0.82);
+        border: 1px solid rgba(245, 165, 36, 0.4);
+        color: var(--green-500);
+        padding: 0.5rem 0.75rem;
+        border-radius: 6px;
+        line-height: 1.4;
+      }
+      .hud-readout span {
+        display: block;
+        color: var(--amber-500);
+      }
+      @keyframes sweep {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .hud-sweep {
+        transform-origin: center;
+        animation: sweep 6s linear infinite;
+      }
+
+      /* ============================================================
+   WHY US
+   ============================================================ */
+      .card-grid-3 {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        .card-grid-3 {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .why-card {
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .media-placeholder {
+        position: relative;
+        aspect-ratio: 16/11;
+        background: linear-gradient(135deg, #d6dce7 0%, #bfc8d8 100%);
+        overflow: hidden;
+      }
+      .media-placeholder .media-icon {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8b96ab;
+        opacity: 0.55;
+      }
+      .media-placeholder .media-photo {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .media-placeholder .media-scrim {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
         background: linear-gradient(
-          90deg,
-          #1a0204,
-          #c0272d 30%,
-          #e8313a 50%,
-          #c0272d 70%,
-          #1a0204
+          to top,
+          rgba(11, 18, 32, 0.82) 0%,
+          rgba(11, 18, 32, 0.35) 45%,
+          rgba(11, 18, 32, 0) 75%
         );
-      "
-    ></div>
+      }
+      .why-card .media-placeholder {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .why-card .media-placeholder .media-tag {
+        position: relative;
+        z-index: 3;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: var(--fs-small);
+        font-weight: 700;
+        color: var(--amber-500);
+        letter-spacing: 0.06em;
+      }
+      .why-card .media-placeholder h3 {
+        position: relative;
+        z-index: 3;
+        margin-top: auto;
+        color: var(--white);
+        font-size: var(--fs-h3);
+        font-weight: 700;
+        line-height: 1.25;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .why-card-body {
+        padding: 1.25rem 1.75rem 1.75rem;
+      }
+      .why-card-body p {
+        color: var(--gray-600);
+        font-size: var(--fs-body);
+      }
 
-    <!-- NAV -->
-    <nav
-      class="sticky top-0 z-[100] border-b-2 border-red shadow-[0_2px_24px_rgba(192,39,45,.3)]"
-      style="background: linear-gradient(180deg, #111114 0%, #0d0d10 100%)"
-    >
-      <div
-        class="max-w-[1180px] mx-auto px-5 flex items-stretch gap-0 h-[52px]"
-      >
-        <a
-          href="index.html"
-          class="font-orbitron font-black text-[24px] tracking-[.12em] text-white flex items-center pr-5 border-r border-white/[.08] mr-1"
-          style="text-shadow: 0 0 20px rgba(192, 39, 45, 0.5)"
-          >ZA<span class="text-red2">MODS</span></a
-        >
-        <ul class="flex items-stretch list-none gap-0.5 flex-1">
-          <li>
-            <a
-              href="#"
-              id="nav-home"
-              class="nav-tab-link active font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] h-full flex items-center bg-[rgba(192,39,45,.12)] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
-              >Home</a
-            >
-          </li>
-          <li>
-            <a
-              href="#products"
-              id="nav-products"
-              class="nav-tab-link font-mono text-[16px] tracking-[.12em] uppercase text-muted px-[20px] h-full flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
-              >Products</a
-            >
-          </li>
-          <li>
-            <a
-              href="#freebies"
-              id="nav-freebies"
-              class="nav-tab-link font-mono text-[16px] tracking-[.12em] uppercase text-muted px-[20px] h-full flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
-              >Free Downloads</a
-            >
-          </li>
-          <li>
-            <a
-              href="#stores"
-              id="nav-stores"
-              class="nav-tab-link font-mono text-[16px] tracking-[.12em] uppercase text-muted px-[20px] h-full flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.1)]"
-              >Stores</a
-            >
-          </li>
-        </ul>
-        <a
-          href="#stores"
-          class="btn-clip-nav font-mono text-[16px] tracking-[.14em] uppercase text-white px-5 flex items-center ml-auto border-l border-white/[.07] transition-all hover:brightness-110"
-          style="
-            background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-          "
-          >Shop Now</a
-        >
-      </div>
-    </nav>
+      /* ============================================================
+   SYSTEMS GRID (catalog-card pattern)
+   ============================================================ */
+      .bg-alt {
+        background: var(--gray-50);
+      }
+      .systems-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(2, 1fr);
+      }
+      @media (max-width: 479px) {
+        .systems-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (min-width: 768px) {
+        .systems-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (min-width: 1200px) {
+        .systems-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .sys-card {
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .sys-card .media-placeholder {
+        aspect-ratio: 1/1;
+        padding: 0.85rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .sys-card .chip-row {
+        position: relative;
+        z-index: 3;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .sys-card .sys-id {
+        position: relative;
+        z-index: 3;
+        margin-top: auto;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-size: var(--fs-small);
+        font-weight: 700;
+        color: var(--amber-500);
+      }
+      .sys-card .media-placeholder h3 {
+        position: relative;
+        z-index: 3;
+        color: var(--white);
+        font-size: 1.0625rem;
+        font-weight: 700;
+        margin-top: 0.15rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .sys-card-body {
+        padding: 1rem 1.25rem 1.25rem;
+      }
+      .sys-card-body p {
+        color: var(--gray-600);
+        font-size: var(--fs-body);
+      }
+      .chip {
+        font-size: var(--fs-small);
+        font-weight: 700;
+        padding: 0.25rem 0.6rem;
+        border-radius: 999px;
+        background: rgba(11, 18, 32, 0.82);
+        color: var(--white);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
 
-    <!-- HERO -->
-    <header
-      class="relative bg-bg overflow-hidden noise min-h-[calc(100vh-55px)] flex items-center"
-    >
-      <div
-        class="absolute inset-0"
-        style="
-          background:
-            radial-gradient(
-              ellipse 60% 60% at 10% 50%,
-              rgba(192, 39, 45, 0.08) 0%,
-              transparent 65%
-            ),
-            radial-gradient(
-              ellipse 40% 50% at 90% 20%,
-              rgba(200, 168, 74, 0.05) 0%,
-              transparent 60%
-            ),
-            radial-gradient(
-              ellipse 80% 40% at 50% 100%,
-              rgba(0, 0, 0, 0.6) 0%,
-              transparent 60%
-            );
-        "
-      ></div>
-      <div class="hero-grid"></div>
-      <div
-        class="relative z-[2] max-w-[1180px] mx-auto px-6 py-[60px] grid grid-cols-1 md:grid-cols-[1fr_420px] gap-16 items-center w-full"
-      >
-        <div>
-          <div
-            class="anim-1 font-mono text-[34px] tracking-[.06em] uppercase text-red2 inline-flex items-center mb-5"
+      /* ============================================================
+   HOW IT WORKS
+   ============================================================ */
+      .steps {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        .steps {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .step {
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--radius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .step .media-placeholder {
+        aspect-ratio: 4/3;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+      }
+      .step .step-num {
+        position: relative;
+        z-index: 3;
+        margin-top: auto;
+        font-family: "SFMono-Regular", Consolas, monospace;
+        font-weight: 700;
+        font-size: 1.75rem;
+        color: var(--amber-500);
+        line-height: 1;
+      }
+      .step .media-placeholder h3 {
+        position: relative;
+        z-index: 3;
+        color: var(--white);
+        font-size: var(--fs-h3);
+        font-weight: 700;
+        margin-top: 0.3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .step-body {
+        padding: 1rem 1.25rem 1.5rem;
+      }
+      .step-body p {
+        color: var(--gray-600);
+        font-size: var(--fs-body);
+      }
+
+      /* ============================================================
+   TRUST STRIP
+   ============================================================ */
+      .trust-strip {
+        background: var(--navy-950);
+        color: var(--white);
+      }
+      .trust-statement {
+        font-size: var(--fs-h2);
+        font-weight: 700;
+        line-height: 1.25;
+        letter-spacing: -0.01em;
+      }
+      .trust-statement .accent {
+        color: var(--amber-500);
+      }
+      .trust-detail {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: var(--fs-body-lg);
+        margin-top: 1.25rem;
+      }
+      .certs-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2.5rem;
+        padding-top: 2rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      @media (min-width: 768px) {
+        .certs-row {
+          justify-content: space-evenly;
+        }
+      }
+      .cert-item {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        background: var(--amber-500);
+        color: var(--navy-950);
+        font-weight: 700;
+        font-size: var(--fs-small);
+        padding: 0.55rem 1.1rem;
+        border-radius: 999px;
+      }
+      .cert-item svg {
+        color: var(--navy-950);
+      }
+
+      /* ============================================================
+   COVERAGE
+   ============================================================ */
+      .city-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 1.75rem;
+      }
+      .city-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--white);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 999px;
+        padding: 0.6rem 1.1rem;
+        font-size: var(--fs-small);
+        font-weight: 600;
+        color: var(--ink-900);
+      }
+      .city-chip svg {
+        color: var(--amber-700);
+        flex: none;
+      }
+      .coverage-note {
+        margin-top: 1.75rem;
+        font-size: var(--fs-h3);
+        font-weight: 600;
+        color: var(--ink-900);
+        width: 100%;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+      }
+      .coverage-note a {
+        color: var(--amber-700);
+        font-weight: 700;
+        text-decoration: underline;
+      }
+
+      /* ============================================================
+   PRICING
+   ============================================================ */
+      .pricing-grid {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        .pricing-grid {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 2rem;
+          align-items: center;
+        }
+      }
+      .price-card {
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        background: var(--white);
+      }
+      .price-card.featured {
+        background: var(--navy-950);
+        color: var(--white);
+        border-color: var(--navy-950);
+        position: relative;
+        box-shadow: 0 20px 40px -12px rgba(11, 18, 32, 0.35);
+      }
+      @media (min-width: 768px) {
+        .price-card.featured {
+          padding-block: 2.25rem;
+          transform: scale(1.06);
+          z-index: 1;
+        }
+      }
+      .price-card.featured .price-tag,
+      .price-card.featured h3 {
+        color: var(--white);
+      }
+      .price-card.featured p {
+        color: rgba(255, 255, 255, 0.75);
+      }
+      .price-card.featured li {
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .featured-tag {
+        position: absolute;
+        top: -13px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--amber-500);
+        color: var(--navy-950);
+        font-size: var(--fs-small);
+        font-weight: 700;
+        padding: 0.25rem 0.9rem;
+        border-radius: 999px;
+        white-space: nowrap;
+      }
+      .price-card h3 {
+        font-size: var(--fs-h3);
+        font-weight: 600;
+      }
+      .price-tag {
+        font-size: 2.25rem;
+        font-weight: 700;
+        margin-top: 0.75rem;
+        letter-spacing: -0.02em;
+      }
+      .price-tag sup {
+        font-size: 1rem;
+        font-weight: 600;
+        vertical-align: top;
+        margin-right: 0.15rem;
+      }
+      .price-tag .per {
+        font-size: var(--fs-small);
+        font-weight: 500;
+        color: var(--gray-600);
+      }
+      .price-card.featured .price-tag .per {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .price-card p.desc {
+        margin-top: 0.6rem;
+        color: var(--gray-600);
+        font-size: var(--fs-body);
+      }
+      .price-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        flex: 1;
+      }
+      .price-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.55rem;
+        font-size: var(--fs-body);
+        color: var(--ink-900);
+      }
+      .price-list svg {
+        flex: none;
+        margin-top: 3px;
+        color: var(--green-500);
+      }
+      .price-card .btn {
+        margin-top: auto;
+      }
+
+      /* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+      .testi-grid {
+        display: grid;
+        gap: 1.25rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        .testi-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      .testi-card {
+        background: var(--gray-50);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .stars {
+        display: flex;
+        gap: 0.2rem;
+        color: var(--amber-500);
+      }
+      .testi-quote {
+        font-size: var(--fs-body-lg);
+        color: var(--ink-900);
+      }
+      .testi-who {
+        font-size: var(--fs-small);
+        color: var(--gray-600);
+        font-weight: 600;
+      }
+
+      /* ============================================================
+   CONTACT / FORM
+   ============================================================ */
+      .contact-grid {
+        display: grid;
+        gap: 2.5rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: 0.85fr 1.15fr;
+        }
+      }
+      .contact-info h2 {
+        font-size: var(--fs-h2);
+        font-weight: 700;
+      }
+      .contact-info p {
+        color: var(--gray-600);
+        margin-top: 0.9rem;
+      }
+      .contact-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.75rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .contact-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: var(--fs-body);
+        font-weight: 500;
+      }
+      .contact-list svg {
+        flex: none;
+        color: var(--amber-700);
+      }
+      .contact-list a {
+        text-decoration: none;
+      }
+      .contact-list a:hover {
+        text-decoration: underline;
+      }
+
+      .booking-form {
+        background: var(--gray-50);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: var(--radius);
+        padding: 1.75rem;
+      }
+      .form-row {
+        display: grid;
+        gap: 1.1rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 560px) {
+        .form-row.two {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        margin-bottom: 1.1rem;
+      }
+      .field label {
+        font-size: var(--fs-small);
+        font-weight: 600;
+        color: var(--ink-900);
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        min-height: 44px;
+        border-radius: var(--radius-sm);
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        padding: 10px 14px;
+        font-size: 1rem;
+        background: var(--white);
+        color: var(--ink-900);
+      }
+      .field textarea {
+        min-height: 96px;
+        resize: vertical;
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--amber-500);
+      }
+      .field-hint {
+        font-size: var(--fs-small);
+        color: var(--gray-600);
+      }
+      .field-error {
+        font-size: var(--fs-small);
+        color: var(--red-500);
+        font-weight: 600;
+        display: none;
+      }
+      .field.invalid input,
+      .field.invalid select {
+        border-color: var(--red-500);
+      }
+      .field.invalid .field-error {
+        display: block;
+      }
+      .form-status {
+        font-size: var(--fs-body);
+        font-weight: 600;
+        padding: 0.85rem 1rem;
+        border-radius: var(--radius-sm);
+        margin-top: 1rem;
+        display: none;
+      }
+      .form-status.show {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .form-status.success {
+        background: rgba(46, 204, 113, 0.12);
+        color: #1a7a44;
+        display: flex;
+      }
+      .form-status.error {
+        background: rgba(229, 72, 77, 0.12);
+        color: #a72327;
+        display: flex;
+      }
+
+      /* ============================================================
+   MID-PAGE CTA
+   ============================================================ */
+      .mid-cta {
+        background: var(--amber-500);
+      }
+      .mid-cta .wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding-block: 2.5rem;
+      }
+      .mid-cta h2 {
+        font-size: var(--fs-h3);
+        font-weight: 700;
+        color: var(--navy-950);
+        flex: 1 1 320px;
+      }
+      .mid-cta .btn-primary {
+        background: var(--navy-950);
+        color: var(--white);
+        border-color: var(--navy-950);
+      }
+
+      /* ============================================================
+   FOOTER
+   ============================================================ */
+      .site-footer {
+        background: var(--navy-950);
+        color: rgba(255, 255, 255, 0.75);
+        padding-block: var(--section-pad) calc(var(--section-pad) * 0.6);
+      }
+      .footer-grid {
+        display: grid;
+        gap: 2.5rem;
+        grid-template-columns: 1fr;
+      }
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 1.3fr 1fr 1fr 1fr;
+        }
+      }
+      .footer-brand .brand {
+        margin-bottom: 1rem;
+      }
+      .footer-brand p {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: var(--fs-body);
+      }
+      .footer-col h3 {
+        font-size: var(--fs-small);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--white);
+        margin-bottom: 1rem;
+      }
+      .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+      }
+      .footer-col a {
+        color: rgba(255, 255, 255, 0.75);
+        text-decoration: none;
+        font-size: var(--fs-body);
+      }
+      .footer-col a:hover {
+        color: var(--amber-500);
+      }
+      .footer-social {
+        display: flex;
+        gap: 0.75rem;
+        margin-top: 1.25rem;
+      }
+      .footer-social a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-social a:hover {
+        border-color: var(--amber-500);
+        color: var(--amber-500);
+      }
+      .footer-bottom {
+        margin-top: 3rem;
+        padding-top: 1.75rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        font-size: var(--fs-small);
+        color: rgba(255, 255, 255, 0.55);
+      }
+
+      /* ============================================================
+   STICKY MOBILE CTA BAR
+   ============================================================ */
+      .sticky-cta {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 50;
+        display: flex;
+        height: 56px;
+        background: var(--navy-950);
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      .sticky-cta a {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-weight: 700;
+        font-size: var(--fs-button);
+        text-decoration: none;
+      }
+      .sticky-cta .call {
+        color: var(--white);
+      }
+      .sticky-cta .book {
+        background: var(--amber-500);
+        color: var(--navy-950);
+      }
+      @media (min-width: 1024px) {
+        .sticky-cta {
+          display: none;
+        }
+      }
+      body {
+        padding-bottom: 56px;
+      }
+      @media (min-width: 1024px) {
+        body {
+          padding-bottom: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="visually-hidden">Skip to main content</a>
+
+    <!-- ============================================================
+     HEADER
+     ============================================================ -->
+    <header class="site-header">
+      <div class="wrap">
+        <a href="#top" class="brand">
+          <svg
+            width="34"
+            height="34"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
           >
-            Premium Daz Studio Assets
-          </div>
-          <h1
-            class="anim-2 font-orbitron font-black text-white leading-[.95] tracking-[-0.01em] mb-[22px]"
-            style="
-              font-size: clamp(44px, 6.5vw, 78px);
-              text-shadow: 0 0 60px rgba(192, 39, 45, 0.25);
-            "
+            <circle
+              cx="12"
+              cy="12"
+              r="9.25"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <circle
+              cx="12"
+              cy="12"
+              r="4.5"
+              stroke="#F5A524"
+              stroke-width="1.5"
+            />
+            <line
+              x1="12"
+              y1="1.5"
+              x2="12"
+              y2="4.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <line
+              x1="12"
+              y1="19.5"
+              x2="12"
+              y2="22.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <line
+              x1="1.5"
+              y1="12"
+              x2="4.5"
+              y2="12"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <line
+              x1="19.5"
+              y1="12"
+              x2="22.5"
+              y2="12"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+          </svg>
+          <span
+            >ClearPath ADAS<span class="mark-sub"
+              >MOBILE CALIBRATION · CANADA</span
+            ></span
           >
-            CRAFT<br />YOUR<br /><span
-              class="text-gold"
-              style="text-shadow: 0 0 30px rgba(200, 168, 74, 0.3)"
-              >VISION.</span
+        </a>
+        <nav class="primary-nav" aria-label="Primary">
+          <ul>
+            <li><a href="#systems">Systems</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#coverage">Coverage</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <a class="header-phone" href="tel:+18005551234">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
             >
-          </h1>
-          <p
-            class="anim-3 text-[20px] font-medium text-muted max-w-[500px] mb-9 leading-[1.7]"
-          >
-            Meticulously built props, accessories, and materials for
-            <strong class="text-txt font-semibold"
-              >Genesis 9, 8.1, 8 &amp; 3</strong
-            >
-            — for artists who refuse to compromise.
-          </p>
-          <div class="anim-4 flex gap-3.5 flex-wrap">
-            <a
-              href="#products"
-              class="btn-clip font-mono text-[16px] tracking-[.18em] uppercase text-white px-[26px] py-[13px] inline-block transition-all hover:brightness-110 hover:-translate-y-0.5"
-              style="
-                background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
-                box-shadow: 0 4px 20px rgba(192, 39, 45, 0.3);
-                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-              "
-              >Browse Assets</a
-            >
-            <a
-              href="#freebies"
-              class="btn-clip font-mono text-[16px] tracking-[.18em] uppercase text-green px-[26px] py-[13px] inline-block border border-green/35 transition-all hover:bg-green/10 hover:-translate-y-0.5"
-              >Free Downloads</a
-            >
-          </div>
-        </div>
-        <div class="hidden md:block">
-          <div class="relative">
-            <div
-              class="frame-corners border border-red/30"
-              style="
-                box-shadow:
-                  0 0 0 1px rgba(255, 255, 255, 0.04),
-                  0 32px 80px rgba(0, 0, 0, 0.7),
-                  0 0 60px rgba(192, 39, 45, 0.1);
-              "
-            >
-              <img
-                src="./assets/land.png"
-                alt="3D character render showcase"
-                loading="eager"
-                class="w-full aspect-[3/4] object-cover block"
+              <path
+                d="M4 5c0-1 1-2 2-2h2l2 5-2 1.5c1 2.5 3 4.5 5.5 5.5L15 13l5 2v2c0 1-1 2-2 2-8 0-14-6-14-14z"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linejoin="round"
               />
-              <div
-                class="absolute inset-0 pointer-events-none"
-                style="
-                  background: linear-gradient(
-                    to top,
-                    rgba(8, 8, 10, 0.6) 0%,
-                    transparent 50%
-                  );
-                "
-              ></div>
-            </div>
-            <!-- <div class="mt-3 flex items-center gap-2.5">
-              <div class="blink-dot w-1.5 h-1.5 rounded-full bg-red2"></div>
-              <span
-                class="font-mono text-[10px] tracking-[.1em] text-dim uppercase"
-                >Sample render — replace with your artwork</span
-              >
-            </div> -->
-          </div>
+            </svg>
+            +1 (800) 555-1234
+          </a>
+          <a class="btn btn-primary header-book-btn" href="#contact"
+            >Book Calibration</a
+          >
+          <button
+            class="hamburger"
+            id="hamburgerBtn"
+            aria-expanded="false"
+            aria-controls="mobileNav"
+            aria-label="Open menu"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 6h18M3 12h18M3 18h18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
+      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile">
+        <a href="#systems">Systems</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#pricing">Pricing</a>
+        <a class="header-phone" href="tel:+18005551234">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 5c0-1 1-2 2-2h2l2 5-2 1.5c1 2.5 3 4.5 5.5 5.5L15 13l5 2v2c0 1-1 2-2 2-8 0-14-6-14-14z"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linejoin="round"
+            />
+          </svg>
+          +1 (800) 555-1234
+        </a>
+      </nav>
     </header>
 
-    <!-- STATS BAR -->
-    <div
-      class="border-y border-red/25"
-      style="
-        background: linear-gradient(
-          90deg,
-          #0e0e12 0%,
-          #111116 50%,
-          #0e0e12 100%
-        );
-      "
-    >
-      <div class="max-w-[1000px] mx-auto grid grid-cols-4">
-        <div class="py-[18px] text-center border-r border-white/[.05]">
-          <span
-            id="stat-rating"
-            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
-            >—</span
-          >
-          <span
-            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
-            >Avg Rating</span
-          >
-        </div>
-        <div class="py-[18px] text-center border-r border-white/[.05]">
-          <span
-            id="stat-reviews"
-            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
-            >—</span
-          >
-          <span
-            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
-            >Reviews</span
-          >
-        </div>
-        <div class="py-[18px] text-center border-r border-white/[.05]">
-          <span
-            id="stat-products"
-            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
-            >—</span
-          >
-          <span
-            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
-            >Products</span
-          >
-        </div>
-        <div class="py-[18px] text-center">
-          <span
-            class="font-orbitron font-bold text-2xl text-gold block mb-1 tracking-[.02em]"
-            >3</span
-          >
-          <span
-            class="font-mono text-[14px] tracking-[.16em] uppercase text-dim"
-            >Marketplaces</span
-          >
-        </div>
-      </div>
-    </div>
-
-    <!-- 2-COL LAYOUT -->
-    <div
-      class="max-w-[1180px] mx-auto px-5 py-7 grid grid-cols-1 md:grid-cols-[180px_1fr] gap-5 items-start"
-    >
-      <!-- SIDEBAR -->
-      <aside class="hidden md:block sticky top-[72px]">
-        <div
-          class="border border-white/[.07] border-t-2 border-t-red mb-3.5 overflow-hidden"
-          style="background: linear-gradient(180deg, #161619 0%, #111114 100%)"
-        >
-          <div
-            class="font-mono text-[12px] tracking-[.20em] uppercase text-muted px-3.5 pt-2.5 pb-2 bg-[rgba(192,39,45,.12)] border-b border-white/[.05]"
-          >
-            Navigation
-          </div>
-          <ul class="list-none">
-            <li>
-              <a
-                href="#products"
-                id="side-products"
-                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >Paid Assets</a
-              >
-            </li>
-            <li>
-              <a
-                href="#freebies"
-                id="side-freebies"
-                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >Free Downloads</a
-              >
-            </li>
-            <li>
-              <a
-                href="#why"
-                id="side-why"
-                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >Why zamods</a
-              >
-            </li>
-            <li>
-              <a
-                href="#stores"
-                id="side-stores"
-                class="sidebar-link font-raj font-semibold text-m tracking-[-.02em] text-muted px-3.5 py-2.5 flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >Stores</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <div
-          class="border border-white/[.07] border-t-2 border-t-red mb-3.5 overflow-hidden"
-          style="background: linear-gradient(180deg, #161619 0%, #111114 100%)"
-        >
-          <div
-            class="font-mono text-[12px] tracking-[.20em] uppercase text-muted px-3.5 pt-2.5 pb-2 bg-[rgba(192,39,45,.12)] border-b border-white/[.05]"
-          >
-            Marketplaces
-          </div>
-          <ul class="list-none">
-            <li>
-              <a
-                href="https://www.renderhub.com/zamods"
-                target="_blank"
-                rel="noopener"
-                class="sidebar-link font-raj font-semibold text-m text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >RenderHub</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://www.renderosity.com/marketplace/vendors/zamods"
-                target="_blank"
-                rel="noopener"
-                class="sidebar-link font-raj font-semibold text-m text-muted px-3.5 py-2.5 flex items-center border-b border-white/[.04] transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >Renderosity</a
-              >
-            </li>
-            <li>
-              <a
-                href="https://3dshards.com/store/stupendous/"
-                target="_blank"
-                rel="noopener"
-                class="sidebar-link font-raj font-semibold text-m text-muted px-3.5 py-2.5 flex items-center transition-colors hover:text-white hover:bg-[rgba(192,39,45,.08)]"
-                >3DShards</a
-              >
-            </li>
-          </ul>
-        </div>
-
-        <!-- Featured product — rendered dynamically by JS -->
-        <div
-          id="sidebar-featured"
-          class="border border-white/[.07] border-t-2 border-t-red overflow-hidden"
-          style="background: linear-gradient(180deg, #161619 0%, #111114 100%)"
-        ></div>
-      </aside>
-
-      <!-- MAIN CONTENT -->
-      <main>
-        <!-- PAID ASSETS -->
-        <section class="mb-9" id="products">
-          <div class="reveal flex items-center gap-0 mb-[18px]">
-            <span
-              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
-              style="
-                background: linear-gradient(90deg, #c0272d 0%, #e8313a 100%);
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-              "
-              >Premium Paid Assets</span
+    <main id="main">
+      <!-- ============================================================
+     HERO
+     ============================================================ -->
+      <section class="hero" id="top">
+        <div class="wrap">
+          <div class="hero-copy">
+            <span class="hero-eyebrow"
+              >Mobile ADAS calibration · coast to coast</span
             >
-            <div
-              class="flex-1 h-px ml-1"
-              style="
-                background: linear-gradient(
-                  90deg,
-                  rgba(192, 39, 45, 0.4),
-                  transparent
-                );
-              "
-            ></div>
-          </div>
-          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
-            Hand-crafted with precision — every paid asset ships with an
-            Extended Use License.
-          </p>
-          <div
-            id="paid-grid"
-            class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-8"
-          ></div>
-        </section>
-
-        <div
-          class="h-px my-7"
-          style="
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(192, 39, 45, 0.2),
-              transparent
-            );
-          "
-        ></div>
-
-        <!-- FREEBIES -->
-        <section class="mb-9" id="freebies">
-          <div class="reveal flex items-center gap-0 mb-[18px]">
-            <span
-              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
-              style="
-                background: linear-gradient(90deg, #1a6e3f, #3ecf72);
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-              "
-              >Free Downloads</span
-            >
-            <div
-              class="flex-1 h-px ml-1"
-              style="
-                background: linear-gradient(
-                  90deg,
-                  rgba(62, 207, 114, 0.35),
-                  transparent
-                );
-              "
-            ></div>
-          </div>
-          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
-            No strings attached — great tools should be accessible to every
-            artist.
-          </p>
-          <div
-            id="freebies-grid"
-            class="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-5"
-          ></div>
-          <div class="text-center mt-4">
-            <a
-              href="https://www.renderhub.com/zamods"
-              target="_blank"
-              rel="noopener"
-              class="btn-clip font-mono text-[16px] tracking-[.16em] uppercase text-green px-[28px] py-3 inline-block border border-green/35 transition-all hover:bg-green/10 hover:-translate-y-0.5"
-              >View All Freebies on RenderHub</a
-            >
-          </div>
-        </section>
-
-        <div
-          class="h-px my-7"
-          style="
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(192, 39, 45, 0.2),
-              transparent
-            );
-          "
-        ></div>
-
-        <!-- WHY ZAMODS -->
-        <section class="mb-9" id="why">
-          <div class="reveal flex items-center gap-0 mb-[18px]">
-            <span
-              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
-              style="
-                background: linear-gradient(90deg, #c0272d 0%, #e8313a 100%);
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-              "
-              >The zamods Standard</span
-            >
-            <div
-              class="flex-1 h-px ml-1"
-              style="
-                background: linear-gradient(
-                  90deg,
-                  rgba(192, 39, 45, 0.4),
-                  transparent
-                );
-              "
-            ></div>
-          </div>
-          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
-            Every asset is crafted with meticulous attention to geometry, UV
-            mapping, and material response — so your renders look exactly how
-            you imagined.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mt-[18px]">
-            <div
-              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <span
-                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
-                >Compatibility</span
-              >
-              <div
-                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
-              >
-                Genesis 9 Ready
-              </div>
-              <p class="text-[16px] font-medium text-dim leading-[1.6]">
-                Compatible with the latest Genesis 9 figures out of the box.
-              </p>
-            </div>
-            <div
-              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <span
-                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
-                >Licensing</span
-              >
-              <div
-                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
-              >
-                Extended License
-              </div>
-              <p class="text-[16px] font-medium text-dim leading-[1.6]">
-                All paid assets include extended commercial use licensing.
-              </p>
-            </div>
-            <div
-              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <span
-                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
-                >Rendering</span
-              >
-              <div
-                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
-              >
-                Iray Optimized
-              </div>
-              <p class="text-[16px] font-medium text-dim leading-[1.6]">
-                PBR materials tuned for Daz Studio's Iray renderer.
-              </p>
-            </div>
-            <div
-              class="why-stripe reveal border border-white/[.06] p-[18px] transition-colors hover:border-white/[.12]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <span
-                class="font-mono text-[14px] tracking-[.06em] uppercase text-green block mb-[7px]"
-                >Content</span
-              >
-              <div
-                class="font-orbitron font-bold text-[14px] text-white tracking-[.02em] mb-[7px]"
-              >
-                Adult-Friendly
-              </div>
-              <p class="text-[16px] font-medium text-dim leading-[1.6]">
-                Assets that perform beautifully in mature renders.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <div
-          class="h-px my-7"
-          style="
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(192, 39, 45, 0.2),
-              transparent
-            );
-          "
-        ></div>
-
-        <!-- STORES -->
-        <section class="mb-9" id="stores">
-          <div class="reveal flex items-center gap-0 mb-[18px]">
-            <span
-              class="tag-arrow font-mono text-[16px] tracking-[.12em] uppercase text-white px-[20px] py-2 pl-3.5"
-              style="
-                background: linear-gradient(90deg, #7a6010, #c8a84a);
-                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-              "
-              >Available On</span
-            >
-            <div
-              class="flex-1 h-px ml-1"
-              style="
-                background: linear-gradient(
-                  90deg,
-                  rgba(200, 168, 74, 0.35),
-                  transparent
-                );
-              "
-            ></div>
-          </div>
-          <p class="reveal text-[18px] text-dim font-medium -mt-2.5 mb-5">
-            All zamods content lives across three trusted marketplaces.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-[18px]">
-            <a
-              href="https://www.renderhub.com/zamods"
-              target="_blank"
-              rel="noopener"
-              class="reveal border border-white/[.07] border-t-2 border-t-gold/30 p-[22px] flex flex-col items-center text-center transition-all hover:border-gold/50 hover:border-t-gold hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,.5)]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <div
-                class="w-16 h-16 border border-white/[.07] bg-[#181820] flex items-center justify-content-center mb-3.5 p-3"
-              >
-                <img
-                  src="assets/rh.png"
-                  alt="RenderHub"
-                  onerror="this.style.display = 'none'"
-                  class="w-full h-full object-contain"
-                />
-              </div>
-              <div
-                class="font-orbitron font-bold text-[13px] tracking-[.08em] text-white mb-2"
-              >
-                RENDERHUB
-              </div>
-              <div
-                class="text-[16px] font-medium text-dim leading-[1.5] mb-3.5 flex-1"
-              >
-                6 items · 4.9 stars<br />Extended licenses included
-              </div>
-              <span
-                class="font-mono text-[12px] tracking-[.16em] uppercase text-gold px-4 py-1.5 border border-gold/30 transition-all group-hover:bg-gold/10"
-                >Visit Store</span
-              >
-            </a>
-            <a
-              href="https://www.renderosity.com/marketplace/vendors/zamods"
-              target="_blank"
-              rel="noopener"
-              class="reveal border border-white/[.07] border-t-2 border-t-gold/30 p-[22px] flex flex-col items-center text-center transition-all hover:border-gold/50 hover:border-t-gold hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,.5)]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <div
-                class="w-16 h-16 border border-white/[.07] bg-[#181820] flex items-center justify-center mb-3.5 p-3"
-              >
-                <img
-                  src="assets/ren.png"
-                  alt="Renderosity"
-                  onerror="this.style.display = 'none'"
-                  class="w-full h-full object-contain"
-                />
-              </div>
-              <div
-                class="font-orbitron font-bold text-[13px] tracking-[.08em] text-white mb-2"
-              >
-                RENDEROSITY
-              </div>
-              <div
-                class="text-[16px] font-medium text-dim leading-[1.5] mb-3.5 flex-1"
-              >
-                Daz &amp; Poser<br />Community marketplace
-              </div>
-              <span
-                class="font-mono text-[12px] tracking-[.16em] uppercase text-gold px-4 py-1.5 border border-gold/30"
-                >Visit Store</span
-              >
-            </a>
-            <a
-              href="https://3dshards.com/store/stupendous/"
-              target="_blank"
-              rel="noopener"
-              class="reveal border border-white/[.07] border-t-2 border-t-gold/30 p-[22px] flex flex-col items-center text-center transition-all hover:border-gold/50 hover:border-t-gold hover:-translate-y-1 hover:shadow-[0_12px_36px_rgba(0,0,0,.5)]"
-              style="
-                background: linear-gradient(135deg, #131318 0%, #0e0e13 100%);
-              "
-            >
-              <div
-                class="w-16 h-16 border border-white/[.07] bg-[#181820] flex items-center justify-center mb-3.5 p-3"
-              >
-                <img
-                  src="assets/3ds.png"
-                  alt="3DShards"
-                  onerror="this.style.display = 'none'"
-                  class="w-full h-full object-contain"
-                />
-              </div>
-              <div
-                class="font-orbitron font-bold text-[13px] tracking-[.08em] text-white mb-2"
-              >
-                3DSHARDS
-              </div>
-              <div
-                class="text-[16px] font-medium text-dim leading-[1.5] mb-3.5 flex-1"
-              >
-                Curated 3D<br />Premium marketplace
-              </div>
-              <span
-                class="font-mono text-[12px] tracking-[.16em] uppercase text-gold px-4 py-1.5 border border-gold/30"
-                >Visit Store</span
-              >
-            </a>
-          </div>
-          <div
-            class="reveal border border-red/20 border-l-[3px] border-l-red p-[22px] flex items-center justify-between gap-5 flex-wrap mt-5"
-            style="
-              background: linear-gradient(
-                90deg,
-                rgba(192, 39, 45, 0.08),
-                rgba(192, 39, 45, 0.04)
-              );
-            "
-          >
-            <div>
-              <h3
-                class="font-orbitron font-bold text-[17px] text-white tracking-[.03em] mb-1"
-              >
-                New releases, first.
-              </h3>
-              <p class="text-[16px] font-medium text-dim">
-                Follow zamods on RenderHub to get notified of every new drop.
-              </p>
-            </div>
-            <a
-              href="https://www.renderhub.com/zamods"
-              target="_blank"
-              rel="noopener"
-              class="btn-clip font-mono text-[14px] tracking-[.18em] uppercase text-white px-[26px] py-[13px] inline-block transition-all hover:brightness-110 hover:-translate-y-0.5"
-              style="
-                background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
-                box-shadow: 0 4px 20px rgba(192, 39, 45, 0.3);
-                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-              "
-              >Follow on RenderHub</a
-            >
-          </div>
-        </section>
-
-        <div
-          class="h-px my-7"
-          style="
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(192, 39, 45, 0.2),
-              transparent
-            );
-          "
-        ></div>
-
-        <!-- NEWSLETTER -->
-        <section class="mb-9" id="newsletter">
-          <div
-            class="reveal border border-white/[.07] border-t-2 border-t-[rgba(74,100,200,.4)] p-8 text-center"
-            style="
-              background: linear-gradient(135deg, #131318 0%, #0f0f14 100%);
-            "
-          >
-            <h2
-              class="font-orbitron font-bold text-[22px] text-white tracking-[.04em] mb-2.5"
-            >
-              New drops, straight to you
-            </h2>
-            <p class="text-[16px] font-medium text-muted mb-[22px]">
-              Get notified whenever a new asset lands — paid, free, or
-              experimental.
+            <h1>
+              Your safety systems, calibrated
+              <span class="accent">exactly where you park.</span>
+            </h1>
+            <p class="lead">
+              OEM-spec calibration for cameras, radar and sensors, done in your
+              driveway, at the dealership, or on the shop floor. No tow, no
+              downtime, no guesswork.
             </p>
-            <form
-              class="flex max-w-[420px] mx-auto"
-              id="newsletter-form"
-              onsubmit="handleSubscribe(event)"
-            >
-              <input
-                type="email"
-                required
-                placeholder="your@email.com"
-                class="flex-1 bg-white/[.04] border border-white/[.1] border-r-0 px-4 py-3 text-txt font-raj text-[15px] font-medium outline-none transition-colors focus:border-red/50 placeholder:text-dim"
-              />
-              <button
-                type="submit"
-                class="font-mono text-[14px] tracking-[.18em] uppercase text-white border-none px-5 py-3 cursor-pointer whitespace-nowrap transition-all hover:brightness-115"
-                style="
-                  background: linear-gradient(135deg, #c0272d 0%, #e8313a 100%);
-                "
-              >
-                Subscribe
-              </button>
-            </form>
-            <div
-              id="nl-success"
-              class="hidden mt-[18px] font-mono text-[14px] text-green tracking-[.12em] uppercase"
-            >
-              ✓ &nbsp;You are on the list. Watch your inbox.
+            <div class="hero-ctas">
+              <a class="btn btn-primary" href="#contact">Book a Calibration</a>
+              <a class="btn btn-secondary-light" href="tel:+18005551234">
+                Call Now
+              </a>
+            </div>
+            <div class="trust-badges">
+              <div class="trust-badge">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 3l7 3v6c0 5-3 8-7 9-4-1-7-4-7-9V6l7-3z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                OEM-spec procedures
+              </div>
+              <div class="trust-badge">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 20l3-9 5-6 5 6 3 9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <circle
+                    cx="12"
+                    cy="9"
+                    r="2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                </svg>
+                Red Seal certified techs
+              </div>
+              <div class="trust-badge">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="9"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M12 7v5l3.5 2"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                  />
+                </svg>
+                Same-day mobile service
+              </div>
+              <div class="trust-badge">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M6 3h9l3 3v15H6V3z"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linejoin="round"
+                  />
+                  <path
+                    d="M9 12l2 2 4-4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                Insurance-ready reports
+              </div>
             </div>
           </div>
-        </section>
-      </main>
-    </div>
+          <div class="hero-visual">
+            <div class="hud-frame">
+              <svg
+                viewBox="0 0 400 500"
+                width="100%"
+                height="100%"
+                role="img"
+                aria-label="Diagnostic HUD showing a calibration target board aligned in front of a vehicle windshield, with system status readouts."
+              >
+                <rect width="400" height="500" fill="#141F33" />
+                <g stroke="#F5A524" stroke-opacity="0.35" stroke-width="1">
+                  <line x1="0" y1="125" x2="400" y2="125" />
+                  <line x1="0" y1="250" x2="400" y2="250" />
+                  <line x1="0" y1="375" x2="400" y2="375" />
+                  <line x1="100" y1="0" x2="100" y2="500" />
+                  <line x1="200" y1="0" x2="200" y2="500" />
+                  <line x1="300" y1="0" x2="300" y2="500" />
+                </g>
+                <rect
+                  x="70"
+                  y="150"
+                  width="260"
+                  height="200"
+                  rx="6"
+                  fill="none"
+                  stroke="#F5A524"
+                  stroke-width="1.5"
+                  stroke-dasharray="6 5"
+                />
+                <g class="hud-sweep">
+                  <circle
+                    cx="200"
+                    cy="250"
+                    r="70"
+                    fill="none"
+                    stroke="#2ECC71"
+                    stroke-width="1"
+                    stroke-opacity="0.6"
+                  />
+                  <line
+                    x1="200"
+                    y1="250"
+                    x2="200"
+                    y2="182"
+                    stroke="#2ECC71"
+                    stroke-width="2"
+                  />
+                </g>
+                <circle
+                  cx="200"
+                  cy="250"
+                  r="46"
+                  fill="none"
+                  stroke="#FFFFFF"
+                  stroke-width="1.5"
+                />
+                <circle cx="200" cy="250" r="6" fill="#F5A524" />
+                <line
+                  x1="200"
+                  y1="204"
+                  x2="200"
+                  y2="296"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-opacity="0.5"
+                />
+                <line
+                  x1="154"
+                  y1="250"
+                  x2="246"
+                  y2="250"
+                  stroke="#FFFFFF"
+                  stroke-width="1"
+                  stroke-opacity="0.5"
+                />
+                <path
+                  d="M60 420 L200 340 L340 420 L340 470 L60 470 Z"
+                  fill="#0B1220"
+                  stroke="#FFFFFF"
+                  stroke-opacity="0.15"
+                />
+                <rect
+                  x="120"
+                  y="360"
+                  width="160"
+                  height="24"
+                  rx="4"
+                  fill="#0B1220"
+                  stroke="#F5A524"
+                  stroke-width="1.5"
+                />
+              </svg>
+              <div class="hud-readout" aria-hidden="true">
+                SYS: FRONT CAM<span>CAL 100% · IN SPEC</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <!-- FOOTER -->
-    <footer
-      class="border-t-2 border-red px-5 py-6 mt-10"
-      style="background: linear-gradient(180deg, #0c0c10 0%, #08080a 100%)"
-    >
-      <div
-        class="max-w-[1180px] mx-auto flex items-center justify-between gap-5 flex-wrap"
+      <!-- ============================================================
+     WHY US
+     ============================================================ -->
+      <section class="section" aria-label="Why choose ClearPath ADAS">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-label">Why ClearPath</span>
+            <h2>Precision, brought to your location.</h2>
+          </div>
+          <div class="card-grid-3">
+            <div class="why-card">
+              <div class="media-placeholder">
+                <img
+                  class="media-photo"
+                  src="assets/img/why-01-we-come-to-you-768.jpg"
+                  srcset="
+                    assets/img/why-01-we-come-to-you-480.jpg   480w,
+                    assets/img/why-01-we-come-to-you-768.jpg   768w,
+                    assets/img/why-01-we-come-to-you-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 33vw, 92vw"
+                  alt="Mobile ADAS calibration technician working beside a vehicle in a residential driveway"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/why-02-documented-precision-768.jpg"
+                  srcset="
+                    assets/img/why-02-documented-precision-480.jpg   480w,
+                    assets/img/why-02-documented-precision-768.jpg   768w,
+                    assets/img/why-02-documented-precision-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 33vw, 92vw"
+                  alt="Calibration report on a tablet showing before and after sensor readings"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/why-03-free-system-scan-768.jpg"
+                  srcset="
+                    assets/img/why-03-free-system-scan-480.jpg   480w,
+                    assets/img/why-03-free-system-scan-768.jpg   768w,
+                    assets/img/why-03-free-system-scan-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 33vw, 92vw"
+                  alt="Technician running a diagnostic scan tool on a vehicle's ADAS systems"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                />
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <h3>We come to you</h3>
+              </div>
+              <div class="why-card-body">
+                <p>
+                  Fully equipped mobile calibration bay. We set up in your
+                  driveway, bay, or lot: no tow truck, no lost bay time.
+                </p>
+              </div>
+            </div>
+            <div class="why-card">
+              <div class="media-placeholder">
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <h3>Documented precision</h3>
+              </div>
+              <div class="why-card-body">
+                <p>
+                  Every job ships with a before/after report showing exact
+                  calibration values, ready to hand to an adjuster or service
+                  manager.
+                </p>
+              </div>
+            </div>
+            <div class="why-card">
+              <div class="media-placeholder">
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <h3>Free system scan</h3>
+              </div>
+              <div class="why-card-body">
+                <p>
+                  Every visit starts with a full pre-scan so you know exactly
+                  which systems need calibration before we quote anything.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     SYSTEMS WE CALIBRATE
+     ============================================================ -->
+      <section
+        class="section bg-alt"
+        id="systems"
+        aria-label="Systems we calibrate"
       >
-        <span
-          class="font-orbitron font-black text-[18px] tracking-[.12em] text-white"
-          style="text-shadow: 0 0 15px rgba(192, 39, 45, 0.4)"
-          >ZA<span class="text-red2">MODS</span></span
-        >
-        <ul class="flex gap-6 list-none">
-          <li>
-            <a
-              href="https://www.renderhub.com/zamods"
-              target="_blank"
-              rel="noopener"
-              class="font-mono text-[14px] tracking-[.18em] uppercase text-dim transition-colors hover:text-muted"
-              >RenderHub</a
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-label">Coverage · 8 systems</span>
+            <h2>Systems we calibrate.</h2>
+            <p>
+              Clear is not calibrated. Every one of these systems is checked,
+              calibrated to OEM tolerance, and verified before we leave.
+            </p>
+          </div>
+          <div class="systems-grid">
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">Static + dynamic</span
+                  ><span class="chip">Target board</span>
+                </div>
+                <img
+                  class="media-photo"
+                  src="assets/img/sys-01-front-camera-768.jpg"
+                  srcset="
+                    assets/img/sys-01-front-camera-480.jpg   480w,
+                    assets/img/sys-01-front-camera-768.jpg   768w,
+                    assets/img/sys-01-front-camera-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Windshield-mounted front camera module used for lane keep and collision warning"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-02-radar-module-768.jpg"
+                  srcset="
+                    assets/img/sys-02-radar-module-480.jpg   480w,
+                    assets/img/sys-02-radar-module-768.jpg   768w,
+                    assets/img/sys-02-radar-module-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Front bumper radar sensor module exposed during calibration"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-03-360-surround-view-768.jpg"
+                  srcset="
+                    assets/img/sys-03-360-surround-view-480.jpg   480w,
+                    assets/img/sys-03-360-surround-view-768.jpg   768w,
+                    assets/img/sys-03-360-surround-view-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Wide-angle surround-view camera mounted on a vehicle side mirror"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-04-blind-spot-monitor-768.jpg"
+                  srcset="
+                    assets/img/sys-04-blind-spot-monitor-480.jpg   480w,
+                    assets/img/sys-04-blind-spot-monitor-768.jpg   768w,
+                    assets/img/sys-04-blind-spot-monitor-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Rear quarter panel radar sensor for blind spot monitoring"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-05-lane-keep-assist-768.jpg"
+                  srcset="
+                    assets/img/sys-05-lane-keep-assist-480.jpg   480w,
+                    assets/img/sys-05-lane-keep-assist-768.jpg   768w,
+                    assets/img/sys-05-lane-keep-assist-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Vehicle driving between clearly marked lane lines on a highway"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-06-adaptive-cruise-768.jpg"
+                  srcset="
+                    assets/img/sys-06-adaptive-cruise-480.jpg   480w,
+                    assets/img/sys-06-adaptive-cruise-768.jpg   768w,
+                    assets/img/sys-06-adaptive-cruise-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Front-facing radar and camera array used for adaptive cruise control"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-07-parking-sensors-768.jpg"
+                  srcset="
+                    assets/img/sys-07-parking-sensors-480.jpg   480w,
+                    assets/img/sys-07-parking-sensors-768.jpg   768w,
+                    assets/img/sys-07-parking-sensors-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Close-up of ultrasonic parking sensors on a rear bumper"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/sys-08-night-vision-768.jpg"
+                  srcset="
+                    assets/img/sys-08-night-vision-480.jpg   480w,
+                    assets/img/sys-08-night-vision-768.jpg   768w,
+                    assets/img/sys-08-night-vision-1200.jpg 1200w
+                  "
+                  sizes="(min-width:1200px) 23vw, (min-width:768px) 31vw, (min-width:480px) 46vw, 92vw"
+                  alt="Infrared night vision camera view of a dark road at night"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                />
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 01</span>
+                <h3>Front camera</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Forward-facing camera behind the windshield: the sensor behind
+                  lane keep, sign recognition, and collision warning.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">mm-wave align</span
+                  ><span class="chip">Bumper mount</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 02</span>
+                <h3>Radar module</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Front or rear radar behind the bumper fascia, aligned to the
+                  vehicle's true centerline for accurate distance sensing.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">4-camera stitch</span
+                  ><span class="chip">Ground plane</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 03</span>
+                <h3>360° surround view</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Four wide-angle cameras stitched into one overhead view; each
+                  one is re-aligned to the same ground plane.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">Rear quarter radar</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 04</span>
+                <h3>Blind spot monitor</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Rear-quarter radar pair that watches the lanes beside you,
+                  calibrated after any rear bumper or fender work.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">Front cam pair</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 05</span>
+                <h3>Lane keep assist</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Reads lane markings through the front camera pair and nudges
+                  steering back; precision here is a straight-line test.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">Radar + camera fusion</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 06</span>
+                <h3>Adaptive cruise</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Fuses front radar and camera data to hold following distance;
+                  both sensors are calibrated as one system.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">Ultrasonic array</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 07</span>
+                <h3>Parking sensors</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Ultrasonic sensors around the bumper, checked for correct
+                  range and angle after any bumper repair or repaint.
+                </p>
+              </div>
+            </article>
+            <article class="sys-card">
+              <div class="media-placeholder">
+                <div class="chip-row">
+                  <span class="chip">Infrared alignment</span>
+                </div>
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="sys-id">SYS / 08</span>
+                <h3>Night vision</h3>
+              </div>
+              <div class="sys-card-body">
+                <p>
+                  Infrared camera aligned for accurate pedestrian and animal
+                  detection well beyond headlight range.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     HOW IT WORKS
+     ============================================================ -->
+      <section class="section" id="how-it-works" aria-label="How it works">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-label">Process</span>
+            <h2>How it works.</h2>
+            <p>
+              Four steps, one visit: from booking to a signed, insurance-ready
+              calibration report.
+            </p>
+          </div>
+          <div class="steps">
+            <div class="step">
+              <div class="media-placeholder">
+                <img
+                  class="media-photo"
+                  src="assets/img/step-01-book-768.jpg"
+                  srcset="
+                    assets/img/step-01-book-480.jpg   480w,
+                    assets/img/step-01-book-768.jpg   768w,
+                    assets/img/step-01-book-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 23vw, 92vw"
+                  alt="Customer booking a mobile ADAS calibration appointment on a phone"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/step-02-scan-768.jpg"
+                  srcset="
+                    assets/img/step-02-scan-480.jpg   480w,
+                    assets/img/step-02-scan-768.jpg   768w,
+                    assets/img/step-02-scan-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 23vw, 92vw"
+                  alt="Technician connecting a diagnostic scanner to a vehicle's OBD port"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/step-03-calibrate-768.jpg"
+                  srcset="
+                    assets/img/step-03-calibrate-480.jpg   480w,
+                    assets/img/step-03-calibrate-768.jpg   768w,
+                    assets/img/step-03-calibrate-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 23vw, 92vw"
+                  alt="Technician setting up a calibration target board in front of a vehicle"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                /><img
+                  class="media-photo"
+                  src="assets/img/step-04-verify-768.jpg"
+                  srcset="
+                    assets/img/step-04-verify-480.jpg   480w,
+                    assets/img/step-04-verify-768.jpg   768w,
+                    assets/img/step-04-verify-1200.jpg 1200w
+                  "
+                  sizes="(min-width:768px) 23vw, 92vw"
+                  alt="Technician reviewing a post-calibration verification report on a laptop"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                />
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="step-num">01</span>
+                <h3>Book</h3>
+              </div>
+              <div class="step-body">
+                <p>
+                  Tell us your vehicle, location, and what happened: windshield
+                  swap, bumper repair, or a warning light.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="media-placeholder">
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="step-num">02</span>
+                <h3>Scan</h3>
+              </div>
+              <div class="step-body">
+                <p>
+                  We arrive, run a full pre-scan, and confirm exactly which
+                  systems are out of spec before any work starts.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="media-placeholder">
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="step-num">03</span>
+                <h3>Calibrate</h3>
+              </div>
+              <div class="step-body">
+                <p>
+                  Static or dynamic calibration is performed to the
+                  manufacturer's exact procedure and tolerances.
+                </p>
+              </div>
+            </div>
+            <div class="step">
+              <div class="media-placeholder">
+                <div class="media-icon" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
+                    <rect
+                      x="3"
+                      y="3"
+                      width="18"
+                      height="18"
+                      rx="2"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                    <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" />
+                    <path
+                      d="M21 15l-5-5-4 4-3-3-6 6"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <div class="media-scrim" aria-hidden="true"></div>
+                <span class="step-num">04</span>
+                <h3>Verify</h3>
+              </div>
+              <div class="step-body">
+                <p>
+                  A post-scan confirms every system reads "in spec," and you get
+                  a signed report for your records.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     TRUST / CREDIBILITY STRIP
+     ============================================================ -->
+      <section
+        class="section trust-strip on-dark"
+        aria-label="Credentials and warranty"
+      >
+        <div class="wrap">
+          <span class="section-label">Credentials</span>
+          <p class="trust-statement">
+            Clear is not <span class="accent">calibrated.</span>
+          </p>
+          <p class="trust-detail">
+            A windshield that looks straight can still be reading a lane line
+            three degrees off. We calibrate to the OEM procedure every time,
+            using Autel-class OEM-equivalent tooling, and back every job with a
+            workmanship warranty. If your insurer needs proof, we send it.
+          </p>
+          <div class="certs-row">
+            <div class="cert-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              I-CAR Gold Class
+            </div>
+            <div class="cert-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <path
+                  d="M8 13l-2 8 6-3 6 3-2-8"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              ASE Certified
+            </div>
+            <div class="cert-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M4 20l3-9 5-6 5 6 3 9"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+              </svg>
+              Red Seal Technicians
+            </div>
+            <div class="cert-item">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M6 3h9l3 3v15H6V3z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linejoin="round"
+                />
+                <path
+                  d="M9 12l2 2 4-4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Warranty-backed
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     COVERAGE
+     ============================================================ -->
+      <section class="section" id="coverage" aria-label="Coverage area">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-label">Coverage</span>
+            <h2>Serving shops, dealerships, and driveways across Canada.</h2>
+            <p>
+              One national booking line, one dispatch network: the same OEM-spec
+              calibration standard in every city we serve.
+            </p>
+          </div>
+          <div class="city-chips">
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Toronto, ON</span
             >
-          </li>
-          <li>
-            <a
-              href="https://www.renderosity.com/marketplace/vendors/zamods"
-              target="_blank"
-              rel="noopener"
-              class="font-mono text-[14px] tracking-[.18em] uppercase text-dim transition-colors hover:text-muted"
-              >Renderosity</a
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Ottawa, ON</span
             >
-          </li>
-          <li>
-            <a
-              href="https://3dshards.com/store/stupendous/"
-              target="_blank"
-              rel="noopener"
-              class="font-mono text-[14px] tracking-[.18em] uppercase text-dim transition-colors hover:text-muted"
-              >3DShards</a
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Montréal, QC</span
             >
-          </li>
-        </ul>
-        <p class="font-mono text-[14px] tracking-[.1em] text-dim">
-          &copy; 2026 zamods. All Rights Reserved.
-        </p>
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Vancouver, BC</span
+            >
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Calgary, AB</span
+            >
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Edmonton, AB</span
+            >
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Winnipeg, MB</span
+            >
+            <span class="city-chip"
+              ><svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 2c-4 0-7 3-7 7 0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"
+                  stroke="currentColor"
+                  stroke-width="2"
+                />
+                <circle
+                  cx="12"
+                  cy="9"
+                  r="2.5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                /></svg
+              >Halifax, NS</span
+            >
+          </div>
+          <h3 class="coverage-note">
+            Don't see your city? We're adding coverage every month, so
+            <a href="#contact">ask us</a> and we'll confirm.
+          </h3>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     MID-PAGE CTA
+     ============================================================ -->
+      <section class="mid-cta" aria-label="Book a calibration">
+        <div class="wrap">
+          <h2>
+            Windshield replaced or bumper repaired? Your ADAS needs
+            recalibration.
+          </h2>
+          <a class="btn btn-primary" href="#contact">Book a Calibration</a>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     PRICING
+     ============================================================ -->
+      <section class="section bg-alt" id="pricing" aria-label="Pricing">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-label">Pricing snapshot</span>
+            <h2>Straightforward, published pricing.</h2>
+            <p>
+              Final quote depends on make, model, and how many systems need
+              recalibration, confirmed after your free scan.
+            </p>
+          </div>
+          <div class="pricing-grid">
+            <div class="price-card">
+              <h3>Single-sensor</h3>
+              <p class="price-tag">
+                <sup>from</sup>$189<span class="per">&nbsp;CAD</span>
+              </p>
+              <p class="desc">
+                One camera or radar module, static or dynamic calibration.
+              </p>
+              <ul class="price-list">
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Free pre- and post-scan
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Mobile service included
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Digital calibration report
+                </li>
+              </ul>
+              <a class="btn btn-secondary-dark btn-block" href="#contact"
+                >Get a quote</a
+              >
+            </div>
+            <div class="price-card featured">
+              <span class="featured-tag">Most booked</span>
+              <h3>Multi-sensor</h3>
+              <p class="price-tag">
+                <sup>from</sup>$339<span class="per">&nbsp;CAD</span>
+              </p>
+              <p class="desc">
+                Two to three systems, typical after a windshield or bumper job.
+              </p>
+              <ul class="price-list">
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Free pre- and post-scan
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Mobile service included
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Insurance-ready report
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >90-day workmanship warranty
+                </li>
+              </ul>
+              <a class="btn btn-primary btn-block" href="#contact"
+                >Get a quote</a
+              >
+            </div>
+            <div class="price-card">
+              <h3>Full ADAS package</h3>
+              <p class="price-tag">
+                <sup>from</sup>$549<span class="per">&nbsp;CAD</span>
+              </p>
+              <p class="desc">
+                Every system on the vehicle, calibrated and verified in one
+                visit.
+              </p>
+              <ul class="price-list">
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Full-vehicle system scan
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Mobile service included
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >Insurance-ready report
+                </li>
+                <li>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 12l5 5L20 6"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    /></svg
+                  >1-year workmanship warranty
+                </li>
+              </ul>
+              <a class="btn btn-secondary-dark btn-block" href="#contact"
+                >Get a quote</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+      <section class="section" aria-label="Customer testimonials">
+        <div class="wrap">
+          <div class="section-header">
+            <span class="section-label">From the field</span>
+            <h2>What shops and drivers say.</h2>
+          </div>
+          <div class="testi-grid">
+            <div class="testi-card">
+              <div class="stars" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <span class="visually-hidden">5 out of 5 stars</span>
+              </div>
+              <p class="testi-quote">
+                They showed up on time, scanned before and after, and the
+                lane-keep warning was gone. Report was ready for my insurer same
+                day.
+              </p>
+              <p class="testi-who">Priya N., Mississauga, ON · 2022 RAV4</p>
+            </div>
+            <div class="testi-card">
+              <div class="stars" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <span class="visually-hidden">5 out of 5 stars</span>
+              </div>
+              <p class="testi-quote">
+                We use them for every ADAS-equipped vehicle after glass work.
+                Reports are clean, techs are certified, and it's one less bay
+                tied up.
+              </p>
+              <p class="testi-who">
+                Dan R., Service Manager, Ottawa, ON · Body Shop
+              </p>
+            </div>
+            <div class="testi-card">
+              <div class="stars" aria-hidden="true">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 2l3 6.5 7 1-5 5 1.5 7L12 18l-6.5 3.5L7 14.5 2 9.5l7-1L12 2z"
+                  />
+                </svg>
+                <span class="visually-hidden">5 out of 5 stars</span>
+              </div>
+              <p class="testi-quote">
+                Explained exactly what "in spec" meant and showed me the readout
+                before they packed up. Straightforward, no upsell.
+              </p>
+              <p class="testi-who">Marc T., Laval, QC · 2021 F-150</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+     CONTACT / BOOKING FORM
+     ============================================================ -->
+      <section
+        class="section bg-alt"
+        id="contact"
+        aria-label="Contact and booking"
+      >
+        <div class="wrap">
+          <div class="contact-grid">
+            <div class="contact-info">
+              <span class="section-label">Book a calibration</span>
+              <h2>Tell us about your vehicle.</h2>
+              <p>
+                We'll confirm your appointment window and arrive with everything
+                needed to scan, calibrate, and verify on-site.
+              </p>
+              <ul class="contact-list">
+                <li>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 5c0-1 1-2 2-2h2l2 5-2 1.5c1 2.5 3 4.5 5.5 5.5L15 13l5 2v2c0 1-1 2-2 2-8 0-14-6-14-14z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <a href="tel:+18005551234">+1 (800) 555-1234</a>
+                </li>
+                <li>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 6h18v12H3V6z"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M3 7l9 6 9-6"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <a href="mailto:book@clearpathadas.ca"
+                    >book@clearpathadas.ca</a
+                  >
+                </li>
+                <li>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="9"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    />
+                    <path
+                      d="M12 7v5l3.5 2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                  Mon–Sat, 7:00 AM – 7:00 PM (local time)
+                </li>
+              </ul>
+            </div>
+
+            <form class="booking-form" id="bookingForm" novalidate>
+              <h3 class="visually-hidden">Booking form</h3>
+              <div class="form-row two">
+                <div class="field">
+                  <label for="fullName">Full name</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    autocomplete="name"
+                    required
+                  />
+                  <span class="field-error" role="alert"
+                    >Please enter your name.</span
+                  >
+                </div>
+                <div class="field">
+                  <label for="phone">Phone number</label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autocomplete="tel"
+                    pattern="^[0-9()+\-\s]{7,}$"
+                    required
+                  />
+                  <span class="field-error" role="alert"
+                    >Please enter a valid phone number.</span
+                  >
+                </div>
+              </div>
+              <div class="form-row two">
+                <div class="field">
+                  <label for="vehicle">Vehicle make &amp; model</label>
+                  <input
+                    type="text"
+                    id="vehicle"
+                    name="vehicle"
+                    placeholder="e.g. 2022 Toyota RAV4"
+                    required
+                  />
+                  <span class="field-error" role="alert"
+                    >Please enter your vehicle's make and model.</span
+                  >
+                </div>
+                <div class="field">
+                  <label for="city">City &amp; province</label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="e.g. Ottawa, ON"
+                    required
+                  />
+                  <span class="field-error" role="alert"
+                    >Please enter your city and province.</span
+                  >
+                </div>
+              </div>
+              <div class="field">
+                <label for="service">Service needed</label>
+                <select id="service" name="service" required>
+                  <option value="">Select a service</option>
+                  <option value="single-sensor">
+                    Single-sensor calibration
+                  </option>
+                  <option value="multi-sensor">Multi-sensor calibration</option>
+                  <option value="full-adas">Full ADAS package</option>
+                  <option value="not-sure">Not sure, free scan first</option>
+                </select>
+                <span class="field-error" role="alert"
+                  >Please select a service.</span
+                >
+              </div>
+              <div class="field">
+                <label for="notes"
+                  >Notes <span class="field-hint">(optional)</span></label
+                >
+                <textarea
+                  id="notes"
+                  name="notes"
+                  placeholder="Recent windshield replacement, warning light on dash, insurance claim number, etc."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">
+                Request Booking
+              </button>
+              <div
+                class="form-status"
+                id="formStatus"
+                role="status"
+                aria-live="polite"
+              ></div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============================================================
+     FOOTER
+     ============================================================ -->
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#top" class="brand">
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9.25"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="4.5"
+                  stroke="#F5A524"
+                  stroke-width="1.5"
+                />
+              </svg>
+              ClearPath ADAS
+            </a>
+            <p>
+              OEM-spec mobile ADAS calibration for driveways, dealerships, and
+              shops across Canada.
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="ClearPath ADAS on Instagram"
+                ><svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="5"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="4"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" /></svg
+              ></a>
+              <a href="#" aria-label="ClearPath ADAS on Facebook"
+                ><svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v6h3v-6H16l.5-3h-3V9.5c0-.3.2-.5.5-.5z"
+                    fill="currentColor"
+                  /></svg
+              ></a>
+              <a href="#" aria-label="ClearPath ADAS on LinkedIn"
+                ><svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <rect
+                    x="3"
+                    y="3"
+                    width="18"
+                    height="18"
+                    rx="3"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  />
+                  <circle cx="8" cy="8" r="1.2" fill="currentColor" />
+                  <path
+                    d="M8 11v6M12 11v6M12 13.5c0-1.5 1-2.5 2.5-2.5S17 12 17 13.5V17"
+                    stroke="currentColor"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  /></svg
+              ></a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h3>Sitemap</h3>
+            <ul>
+              <li><a href="#systems">Systems</a></li>
+              <li><a href="#how-it-works">How It Works</a></li>
+              <li><a href="#coverage">Coverage</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="#contact">Book Now</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Contact</h3>
+            <ul>
+              <li><a href="tel:+18005551234">+1 (800) 555-1234</a></li>
+              <li>
+                <a href="mailto:book@clearpathadas.ca">book@clearpathadas.ca</a>
+              </li>
+              <li>Mon–Sat, 7 AM–7 PM local</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h3>Service area</h3>
+            <ul>
+              <li>Toronto &amp; GTA, ON</li>
+              <li>Ottawa, ON</li>
+              <li>Montréal, QC</li>
+              <li>Vancouver, BC</li>
+              <li>Calgary &amp; Edmonton, AB</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 ClearPath ADAS. All rights reserved.</span>
+          <span>Privacy Policy · Terms of Service</span>
+        </div>
       </div>
     </footer>
 
+    <!-- ============================================================
+     STICKY MOBILE CTA BAR
+     ============================================================ -->
+    <div class="sticky-cta" id="stickyCta">
+      <a class="call" href="tel:+18005551234"> Call Now </a>
+      <a class="book" href="#contact">Book Now</a>
+    </div>
+
     <script>
-      "use strict";
+      (function () {
+        "use strict";
 
-      const PRODUCTS = {
-        "caty-sunglasses": {
-          featured: true,
-          freebie: false,
-          title: "Caty Sunglasses",
-          subtitle: "Genesis 9, 8.1, 8, 3, 2, 1 — Unisex",
-          tag: "Accessories · Sunglasses",
-          price: "$6.99",
-          badge: "New Drop",
-          img: "./assets/products/caty-sunglasses/caty-sunglasses-card.jpg",
-          rating: 5.0,
-          reviews: 3,
-          stores: {
-            renderhub: {
-              enabled: true,
-              url: "https://www.renderhub.com/zamods/caty-sunglasses-g9-8-8-1-3-2-1",
-            },
-            renderosity: {
-              enabled: true,
-              url: "https://www.renderosity.com/marketplace/products/164254/caty-sunglasses-for-genesis-figures",
-            },
-            shards3d: {
-              enabled: true,
-              url: "https://3dshards.com/product/caty-sunglasses-for-genesis-9-8-8-1-3-2-1-unisex/",
-            },
-          },
-          gallery: {
-            author: "zamods",
-            alt_text: "",
-            url: "./assets/products/caty-sunglasses/caty-sunglasses-01.jpg",
-          },
-        },
-        "fake-lashes": {
-          featured: false,
-          freebie: false,
-          title: "Unisex Fake Eye Lashes",
-          subtitle: "Genesis 8.1, 8, 3 — Material Pack",
-          tag: "Eyelashes · Materials",
-          price: "$3.00",
-          img: "https://cdn.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1/fake-lashes-material-pack-for-genesis-3-8-8-1.jpg",
-          rating: 5.0,
-          reviews: 1,
-          stores: {
-            renderhub: {
-              enabled: true,
-              url: "https://www.renderhub.com/zamods/fake-lashes-material-pack-for-genesis-3-8-8-1",
-            },
-            renderosity: { enabled: false, url: "" },
-            shards3d: { enabled: false, url: "" },
-          },
-          gallery: {
-            author: "zamods",
-            alt_text: "",
-            url: "./assets/products/caty-sunglasses/caty-sunglasses-01.jpg",
-          },
-        },
-        "zcamera-tools": {
-          featured: false,
-          freebie: true,
-          title: "zCamera Tools for Blender",
-          subtitle: "Daz3D-like Camera Navigation",
-          tag: "Blender · Software",
-          price: "FREE",
-          img: "https://cdn.renderhub.com/zamods/zcamera-tools-for-blender3d/zcamera-tools-for-blender3d.jpg",
-          rating: 5.0,
-          reviews: 4,
-          stores: {
-            renderhub: {
-              enabled: true,
-              url: "https://www.renderhub.com/zamods/zcamera-tools-for-blender3d",
-            },
-            renderosity: {
-              enabled: true,
-              url: "https://www.renderosity.com/freestuff/items/99380/zcamera-tools-for-blender3d",
-            },
-            shards3d: {
-              enabled: true,
-              url: "https://3dshards.com/product/zcamera-tools-for-blender3d/",
-            },
-          },
-          gallery: {
-            author: "zamods",
-            alt_text: "",
-            url: "./assets/products/caty-sunglasses/caty-sunglasses-01.jpg",
-          },
-        },
-        "bench-set": {
-          featured: false,
-          freebie: true,
-          title: "Bench Set for Daz Studio",
-          subtitle: "4K Textures & Smart Prop",
-          tag: "Props · Environments",
-          price: "FREE",
-          img: "https://cdn.renderhub.com/zamods/bench-set/bench-set.jpg",
-          rating: 5.0,
-          reviews: 9,
-          stores: {
-            renderhub: {
-              enabled: true,
-              url: "https://www.renderhub.com/zamods/bench-set",
-            },
-            renderosity: {
-              enabled: true,
-              url: "https://www.renderosity.com/freestuff/items/97679/bench-set-for-daz-studio",
-            },
-            shards3d: {
-              enabled: true,
-              url: "https://3dshards.com/product/bench-set-for-daz-studio/",
-            },
-          },
-          gallery: {
-            author: "zamods",
-            alt_text: "",
-            url: "./assets/products/caty-sunglasses/caty-sunglasses-01.jpg",
-          },
-        },
-        "bfd-ear-ornament": {
-          featured: false,
-          freebie: true,
-          title: "BFD Ear Ornament",
-          subtitle: "Genesis 9 — Sci-Fi Ear Jewellery",
-          tag: "Accessories · Ornaments",
-          price: "FREE",
-          img: "https://cdn.renderhub.com/zamods/bfd-ear-ornament/bfd-ear-ornament.jpg",
-          rating: 4.0,
-          reviews: 1,
-          stores: {
-            renderhub: {
-              enabled: true,
-              url: "https://www.renderhub.com/zamods/bfd-ear-ornament",
-            },
-            renderosity: {
-              enabled: true,
-              url: "https://www.renderosity.com/freestuff/items/97612/bfd-ear-ornament-for-genesis-9",
-            },
-            shards3d: { enabled: false, url: "" },
-          },
-          gallery: {
-            author: "zamods",
-            alt_text: "",
-            url: "./assets/products/caty-sunglasses/caty-sunglasses-01.jpg",
-          },
-        },
-        "bfd-aviator-materials": {
-          featured: false,
-          freebie: true,
-          title: "BFD Aviator Materials Pack",
-          subtitle: "Extended Use License Included",
-          tag: "Materials · Textures",
-          price: "FREE",
-          img: "https://cdn.renderhub.com/zamods/materials-pack-for-bfd-aviator/materials-pack-for-bfd-aviator.jpg",
-          rating: 5.0,
-          reviews: 2,
-          stores: {
-            renderhub: {
-              enabled: true,
-              url: "https://www.renderhub.com/zamods/materials-pack-for-bfd-aviator",
-            },
-            renderosity: { enabled: false, url: "" },
-            shards3d: { enabled: false, url: "" },
-          },
-          gallery: {
-            author: "zamods",
-            alt_text: "",
-            url: "./assets/products/caty-sunglasses/caty-sunglasses-01.jpg",
-          },
-        },
-      };
-
-      // Track selected product
-      let selectedProductId = null;
-
-      function toggleSelected(el, id, isFreebie) {
-        const wasSelected = el.classList.contains("selected");
-        // Deselect all
-        document
-          .querySelectorAll(".product-card.selected, .freebie-card.selected")
-          .forEach((c) => c.classList.remove("selected"));
-        selectedProductId = null;
-        if (!wasSelected) {
-          el.classList.add("selected");
-          selectedProductId = id;
-        }
-      }
-
-      function renderPaidCard(id, p) {
-        const el = document.createElement("div");
-        el.className =
-          "product-card card-reveal relative cursor-pointer flex flex-col overflow-hidden corner-bracket border border-white/[.07] border-t-2 border-t-[rgba(192,39,45,.35)] transition-all hover:border-red/70 hover:border-t-red2 hover:shadow-[0_12px_40px_rgba(0,0,0,.55),0_0_30px_rgba(192,39,45,.12)]";
-        el.style.background = "linear-gradient(135deg,#131318 0%,#0f0f14 100%)";
-
-        const rat = `${p.rating.toFixed(1)}★ ${p.reviews} review${p.reviews !== 1 ? "s" : ""}`;
-        const badgeTxt = p.badge || rat;
-        el.innerHTML = `
-    <div class="relative aspect-square overflow-hidden bg-[#181820]">
-      <img src="${p.img}" alt="${p.title}" class="ci w-full h-full object-cover transition-transform duration-[500ms] hover:scale-105" loading="lazy"/>
-      <div class="product-badge absolute top-2.5 right-2.5 font-mono text-[14px] tracking-[.06em] uppercase px-2.5 py-1 bg-[rgba(8,8,10,.85)] border border-gold/40 text-gold backdrop-blur-sm">${badgeTxt}</div>
-    </div>
-    <div class="p-4 flex-1 flex flex-col">
-      <span class="product-tag font-mono text-[14px] tracking-[.06em] uppercase text-red2 mb-[7px] block">${p.tag}</span>
-      <h3 class="product-title font-orbitron font-bold text-[16px] text-white leading-[1.3] mb-[5px] tracking-[.02em]">${p.title}</h3>
-      <p class="product-sub text-[16px] font-medium text-dim mb-4">${p.subtitle || ""}</p>
-      <div class="product-footer flex items-center justify-between pt-3 border-t border-white/[.05] mt-auto">
-        <span class="product-price font-orbitron font-bold text-[22px] text-gold tracking-[-0.01em]">${p.price}</span>
-        <span class="product-link font-mono text-[14px] tracking-[.06em] uppercase text-gold/65 transition-colors">View Details</span>
-      </div>
-    </div>`;
-
-        el.addEventListener("click", (e) => {
-          toggleSelected(el, id, false);
-          // Navigate on second click or direct click — navigate to product page
-          window.location.href = `product.html?id=${id}`;
-        });
-
-        // Single click = select, double click = navigate
-        //let clickTimer = null;
-        el.removeEventListener("click", null);
-        el.addEventListener("click", (e) => {
-          window.location.href = `product.html?id=${id}`;
-          // if (clickTimer) {
-          //   clearTimeout(clickTimer);
-          //   clickTimer = null;
-          //   window.location.href = `product.html?id=${id}`;
-          // } else {
-          //   clickTimer = setTimeout(() => {
-          //     clickTimer = null;
-          //     toggleSelected(el, id, false);
-          //   }, 220);
-          // }
-        });
-
-        return el;
-      }
-
-      function renderFreebieCard(id, p) {
-        const el = document.createElement("div");
-        el.className =
-          "freebie-card card-reveal relative cursor-pointer flex flex-col overflow-hidden border border-green/15 border-t-2 border-t-green/35 transition-all hover:border-green/45 hover:border-t-green hover:shadow-[0_10px_30px_rgba(0,0,0,.5)]";
-        el.style.background = "rgba(62,207,114,.03)";
-
-        el.innerHTML = `
-    <div class="relative aspect-square overflow-hidden bg-[#181820]">
-      <img src="${p.img}" alt="${p.title}" class="ci w-full h-full object-cover transition-transform duration-[500ms] hover:scale-105" loading="lazy"/>
-      <span class="absolute top-2 right-2 font-mono text-[12px] tracking-[.12em] uppercase bg-green text-[#060e09] px-2 py-[3px] font-bold">Free</span>
-    </div>
-    <div class="p-3 flex-1 flex flex-col">
-      <span class="font-mono text-[12px] tracking-[.06em] uppercase text-green/75 mb-1.5 block">${p.tag}</span>
-      <h3 class="font-raj font-bold text-[15px] text-white tracking-[.06em] mb-1">${p.title}</h3>
-      <p class="text-[14px] font-medium text-dim mb-3 flex-1">${p.subtitle || ""}</p>
-      <span class="font-mono text-[14px] tracking-[.06em] uppercase text-center text-green py-2 border border-green/25 bg-green/[.07] block transition-colors hover:bg-green/14">Download Now</span>
-    </div>`;
-
-        // Single click = select, double click = navigate
-        //let clickTimer = null;
-        el.addEventListener("click", () => {
-          window.location.href = `product.html?id=${id}`;
-          // if (clickTimer) {
-          //   clearTimeout(clickTimer);
-          //   clickTimer = null;
-          //   window.location.href = `product.html?id=${id}`;
-          // } else {
-          //   clickTimer = setTimeout(() => {
-          //     clickTimer = null;
-          //     toggleSelected(el, id, true);
-          //   }, 220);
-          // }
-        });
-
-        return el;
-      }
-
-      (function init() {
-        const pg = document.getElementById("paid-grid");
-        const fg = document.getElementById("freebies-grid");
-        let tr = 0,
-          trat = 0,
-          c = 0;
-        Object.entries(PRODUCTS).forEach(([id, p]) => {
-          c++;
-          tr += p.reviews;
-          trat += p.rating;
-          if (p.freebie) fg.appendChild(renderFreebieCard(id, p));
-          else pg.appendChild(renderPaidCard(id, p));
-        });
-        document.getElementById("stat-rating").textContent =
-          (trat / c).toFixed(1) + "★";
-        document.getElementById("stat-reviews").textContent = tr;
-        document.getElementById("stat-products").textContent = c;
-      })();
-
-      function handleSubscribe(e) {
-        e.preventDefault();
-        document.getElementById("newsletter-form").style.display = "none";
-        document.getElementById("nl-success").classList.remove("hidden");
-      }
-
-      // Intersection observer for reveals
-      const io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              io.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.07 },
-      );
-
-      document
-        .querySelectorAll(".reveal, .product-card, .freebie-card")
-        .forEach((el) => io.observe(el));
-
-      // Logic for navigation
-      (function initScrollSpy() {
-        const navItems = [
-          { id: "nav-home", section: null },
-          { id: "nav-products", section: document.getElementById("products") },
-          { id: "nav-freebies", section: document.getElementById("freebies") },
-          { id: "nav-stores", section: document.getElementById("stores") },
-        ];
-
-        const ACTIVE = ["text-white", "bg-[rgba(192,39,45,.12)]"];
-        const INACTIVE = ["text-muted", "bg-transparent"];
-
-        function setActive(activeId) {
-          navItems.forEach(({ id }) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-            if (id === activeId) {
-              el.classList.remove(...INACTIVE);
-              el.classList.add(...ACTIVE);
-              el.classList.add("active"); // triggers ::after underline via CSS
-            } else {
-              el.classList.remove(...ACTIVE);
-              el.classList.add(...INACTIVE);
-              el.classList.remove("active");
-            }
-          });
-        }
-
-        function onScroll() {
-          const scrollY = window.scrollY + 80; // offset for sticky nav height
-
-          // Walk sections bottom-up to find which one we're inside
-          let current = "nav-home";
-          for (let i = 1; i < navItems.length; i++) {
-            const sec = navItems[i].section;
-            if (sec && sec.offsetTop <= scrollY) {
-              current = navItems[i].id;
-            }
-          }
-          setActive(current);
-        }
-
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll(); // run once on load
-      })();
-
-      // Selection for side items
-      (function initSidebarSpy() {
-        const sideItems = [
-          { id: "side-products", section: document.getElementById("products") },
-          { id: "side-freebies", section: document.getElementById("freebies") },
-          { id: "side-why", section: document.getElementById("why") },
-          { id: "side-stores", section: document.getElementById("stores") },
-        ];
-
-        const ACTIVE = "text-red2 bg-[rgba(192,39,45,.1)]";
-        const INACTIVE = "text-muted";
-
-        function setSideActive(activeId) {
-          sideItems.forEach(({ id }) => {
-            const el = document.getElementById(id);
-            if (!el) return;
-            ACTIVE.split(" ").forEach((c) =>
-              el.classList.toggle(c, id === activeId),
+        // Hamburger / mobile nav toggle
+        var hamburgerBtn = document.getElementById("hamburgerBtn");
+        var mobileNav = document.getElementById("mobileNav");
+        if (hamburgerBtn && mobileNav) {
+          hamburgerBtn.addEventListener("click", function () {
+            var isOpen = mobileNav.classList.toggle("open");
+            hamburgerBtn.setAttribute(
+              "aria-expanded",
+              isOpen ? "true" : "false",
             );
-            el.classList.toggle(INACTIVE, id !== activeId);
-            el.classList.toggle("active", id === activeId); // triggers ::before arrow via CSS
+          });
+          mobileNav.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              mobileNav.classList.remove("open");
+              hamburgerBtn.setAttribute("aria-expanded", "false");
+            });
           });
         }
 
-        function onScroll() {
-          const scrollY = window.scrollY + 80;
-          let current = sideItems[0].id;
-          sideItems.forEach(({ id, section }) => {
-            if (section && section.offsetTop <= scrollY) current = id;
-          });
-          setSideActive(current);
+        // Sticky CTA bar: hide once the booking form itself is in view
+        var stickyCta = document.getElementById("stickyCta");
+        var contactSection = document.getElementById("contact");
+        if (stickyCta && contactSection && "IntersectionObserver" in window) {
+          var io = new IntersectionObserver(
+            function (entries) {
+              entries.forEach(function (entry) {
+                stickyCta.style.display = entry.isIntersecting ? "none" : "";
+              });
+            },
+            { rootMargin: "0px 0px -40% 0px" },
+          );
+          io.observe(contactSection);
         }
 
-        window.addEventListener("scroll", onScroll, { passive: true });
-        onScroll();
-      })();
+        // Booking form validation + submit handling (no backend wired up; replace action in production)
+        var form = document.getElementById("bookingForm");
+        var status = document.getElementById("formStatus");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var valid = true;
+            var fields = form.querySelectorAll("[required]");
+            fields.forEach(function (field) {
+              var wrapper = field.closest(".field");
+              var isValid = field.checkValidity();
+              if (!isValid) {
+                valid = false;
+              }
+              if (wrapper) {
+                wrapper.classList.toggle("invalid", !isValid);
+              }
+            });
 
-      // Use to render feature product on side bar
-      (function initFeatured() {
-        // ── FLAG: add  featured: true  to any one product in PRODUCTS to spotlight it ──
-        const entry = Object.entries(PRODUCTS).find(([, p]) => p.featured);
-        const el = document.getElementById("sidebar-featured");
-        if (!entry || !el) return;
+            status.classList.remove("success", "error", "show");
+            if (!valid) {
+              status.textContent =
+                "Please fix the highlighted fields and try again.";
+              status.classList.add("error", "show");
+              var firstInvalid = form.querySelector(
+                ".invalid input, .invalid select",
+              );
+              if (firstInvalid) {
+                firstInvalid.focus();
+              }
+              return;
+            }
 
-        const [id, p] = entry;
-        const img = p.gallery ? p.gallery[0] : p.img;
-        const isFree = p.freebie || p.isFree;
-        const label = isFree ? "Free Download" : "Featured Asset";
-        const labelColor = isFree ? "text-green" : "text-gold";
-
-        el.innerHTML = `
-          <div>
-            <div class="font-mono text-[12px] tracking-[.20em] uppercase text-muted px-3.5 pt-2.5 pb-2 bg-[rgba(192,39,45,.12)] border-b border-white/[.05]">Featured</div>
-            <a href="product.html?id=${id}" class="block group">
-              <div class="frame-corners relative overflow-hidden border border-white/[.07] mb-2.5">
-                <img src="${img}" alt="${p.title}" loading="lazy"
-                    class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105" />
-                ${
-                  isFree
-                    ? `<span class="absolute top-1.5 right-1.5 font-mono text-[9px] tracking-[.12em] uppercase bg-green text-[#060e09] px-2 py-[2px] font-bold">Free</span>`
-                    : `<span class="absolute top-1.5 right-1.5 font-mono text-[12px] tracking-[.12em] uppercase bg-[rgba(8,8,10,.85)] border border-gold/40 text-gold px-2 py-[2px]">${p.badge || "Featured"}</span>`
-                }
-              </div>
-              <div class="pl-3.5 pr-3.5 pb-3 grid place-items-center">
-              <div class="font-raj font-bold text-[14px] text-txt leading-tight mb-1 group-hover:text-white transition-colors">${p.title}</div>
-              <div class="font-mono text-[16px] tracking-[.1em] uppercase" style="color:${isFree ? "#3ecf72" : "#c8a84a"}">${p.price}</div>
-              </div>
-            </a>
-          </div>`;
+            status.textContent =
+              "Thanks! Your booking request is in. We'll call you shortly to confirm a time.";
+            status.classList.add("success", "show");
+            form.reset();
+            form.querySelectorAll(".field.invalid").forEach(function (w) {
+              w.classList.remove("invalid");
+            });
+          });
+        }
       })();
     </script>
   </body>
