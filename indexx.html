@@ -547,7 +547,7 @@
         width: 100%;
         height: 220px;
         z-index: 0;
-        overflow: hidden;
+        overflow: visible; /* Changed so tags don't get clipped */
       }
       .card-media img {
         width: 100%;
@@ -590,10 +590,13 @@
 
       /* CARD TAGS  */
       .card-tags {
+        position: absolute;
+        top: 12px;
+        left: 12px;
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-bottom: 4px;
+        z-index: 2;
       }
 
       .card-tag {
@@ -1856,6 +1859,20 @@
                   src="https://images.unsplash.com/photo-1632823469850-1b7b1e7b7e7c?q=80&w=800&auto=format&fit=crop"
                   alt="Windshield Replacement"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag favorite"
+                    data-en="Guest Favorite"
+                    data-fr="Préféré des clients"
+                    >Guest Favorite</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Safety Critical"
+                    data-fr="Sécurité critique"
+                    >Safety Critical</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -1873,20 +1890,6 @@
                   Cameras mounted on the windshield are removed and remounted —
                   even a slight shift changes how the system reads the road
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag favorite"
-                    data-en="Guest Favorite"
-                    data-fr="Préféré des clients"
-                    >Guest Favorite</span
-                  >
-                  <span
-                    class="card-tag"
-                    data-en="Safety Critical"
-                    data-fr="Sécurité critique"
-                    >Safety Critical</span
-                  >
-                </div>
               </div>
             </div>
             <div class="trigger-card">
@@ -1895,6 +1898,20 @@
                   src="https://images.unsplash.com/photo-1597007030739-6d2e7172ee2b?q=80&w=800&auto=format&fit=crop"
                   alt="Collision Repair"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Post-Repair"
+                    data-fr="Post-réparation"
+                    >Post-Repair</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Insurance Req"
+                    data-fr="Req. assurance"
+                    >Insurance Req</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -1912,20 +1929,6 @@
                   Even a minor impact can shift sensor alignment; recalibration
                   resets everything to manufacturer specs
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag"
-                    data-en="Post-Repair"
-                    data-fr="Post-réparation"
-                    >Post-Repair</span
-                  >
-                  <span
-                    class="card-tag"
-                    data-en="Insurance Req"
-                    data-fr="Req. assurance"
-                    >Insurance Req</span
-                  >
-                </div>
               </div>
             </div>
             <div class="trigger-card">
@@ -1934,6 +1937,14 @@
                   src="https://images.unsplash.com/photo-1486754735734-325b5831fe3e?q=80&w=800&auto=format&fit=crop"
                   alt="Suspension Work"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Angle Change"
+                    data-fr="Changement d'angle"
+                    >Angle Change</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -1951,14 +1962,6 @@
                   Changes to suspension or wheel alignment alter the angle of
                   forward-facing and side sensors
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag"
-                    data-en="Angle Change"
-                    data-fr="Changement d'angle"
-                    >Angle Change</span
-                  >
-                </div>
               </div>
             </div>
             <div class="trigger-card">
@@ -1967,6 +1970,20 @@
                   src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop"
                   alt="Sensor Replacement"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag favorite"
+                    data-en="4 Point Check"
+                    data-fr="Vérif. 4 points"
+                    >4 Point Check</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Replacement"
+                    data-fr="Remplacement"
+                    >Replacement</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -1984,20 +2001,6 @@
                   Any replaced ADAS component must be recalibrated before it
                   works correctly
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag favorite"
-                    data-en="4 Point Check"
-                    data-fr="Vérif. 4 points"
-                    >4 Point Check</span
-                  >
-                  <span
-                    class="card-tag"
-                    data-en="Replacement"
-                    data-fr="Remplacement"
-                    >Replacement</span
-                  >
-                </div>
               </div>
             </div>
             <div class="trigger-card">
@@ -2006,6 +2009,14 @@
                   src="https://images.unsplash.com/photo-1632823471565-1ecdf5c5da1c?q=80&w=800&auto=format&fit=crop"
                   alt="Bumper Repair"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Radar Sensor"
+                    data-fr="Capteur radar"
+                    >Radar Sensor</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -2023,14 +2034,6 @@
                   Radar sensors in the grille and bumpers require precise
                   re-aiming after any removal or repair
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag"
-                    data-en="Radar Sensor"
-                    data-fr="Capteur radar"
-                    >Radar Sensor</span
-                  >
-                </div>
               </div>
             </div>
             <div class="trigger-card">
@@ -2039,6 +2042,14 @@
                   src="https://images.unsplash.com/photo-1503376780353-7a67d186b5b0?q=80&w=800&auto=format&fit=crop"
                   alt="Headlight Replacement"
                 />
+                <div class="card-tags">
+                  <span class="card-tag" data-en="Integrated" data-fr="Intégré"
+                    >Integrated</span
+                  >
+                  <span class="card-tag" data-en="OEM Spec" data-fr="Spéc. OEM"
+                    >OEM Spec</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -2056,14 +2067,6 @@
                   Some vehicles integrate sensors into headlight assemblies or
                   mirror housings
                 </p>
-                <div class="card-tags">
-                  <span class="card-tag" data-en="Integrated" data-fr="Intégré"
-                    >Integrated</span
-                  >
-                  <span class="card-tag" data-en="OEM Spec" data-fr="Spéc. OEM"
-                    >OEM Spec</span
-                  >
-                </div>
               </div>
             </div>
           </div>
@@ -2120,6 +2123,17 @@
                   src="https://images.unsplash.com/photo-1486008152092-91b92d3c4d3f?q=80&w=800&auto=format&fit=crop"
                   alt="Static Calibration"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Stationary"
+                    data-fr="Stationnaire"
+                    >Stationary</span
+                  >
+                  <span class="card-tag" data-en="Target-Based" data-fr="Ciblé"
+                    >Target-Based</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -2138,17 +2152,6 @@
                   while the vehicle remains stationary. Cameras and sensors
                   align to manufacturer reference points.
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag"
-                    data-en="Stationary"
-                    data-fr="Stationnaire"
-                    >Stationary</span
-                  >
-                  <span class="card-tag" data-en="Target-Based" data-fr="Ciblé"
-                    >Target-Based</span
-                  >
-                </div>
               </div>
             </div>
             <div class="glass-card">
@@ -2157,6 +2160,17 @@
                   src="https://images.unsplash.com/photo-1503376780353-7a67d186b5b0?q=80&w=800&auto=format&fit=crop"
                   alt="Dynamic Calibration"
                 />
+                <div class="card-tags">
+                  <span class="card-tag" data-en="On-Road" data-fr="Sur route"
+                    >On-Road</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Self-Calibrating"
+                    data-fr="Auto-calibration"
+                    >Self-Calibrating</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -2175,17 +2189,6 @@
                   diagnostic equipment. Sensors self-calibrate using real road
                   markings and traffic.
                 </p>
-                <div class="card-tags">
-                  <span class="card-tag" data-en="On-Road" data-fr="Sur route"
-                    >On-Road</span
-                  >
-                  <span
-                    class="card-tag"
-                    data-en="Self-Calibrating"
-                    data-fr="Auto-calibration"
-                    >Self-Calibrating</span
-                  >
-                </div>
               </div>
             </div>
             <div class="glass-card featured">
@@ -2194,6 +2197,17 @@
                   src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop"
                   alt="Dual Calibration"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag favorite"
+                    data-en="Most Popular"
+                    data-fr="Plus populaire"
+                    >Most Popular</span
+                  >
+                  <span class="card-tag" data-en="Complete" data-fr="Complet"
+                    >Complete</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -2212,17 +2226,6 @@
                   vehicles require this combination for full alignment. We
                   follow the exact OEM procedure for your make, model, and year.
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag favorite"
-                    data-en="Most Popular"
-                    data-fr="Plus populaire"
-                    >Most Popular</span
-                  >
-                  <span class="card-tag" data-en="Complete" data-fr="Complet"
-                    >Complete</span
-                  >
-                </div>
               </div>
             </div>
             <div class="glass-card">
@@ -2231,6 +2234,17 @@
                   src="https://images.unsplash.com/photo-1632823469850-1b7b1e7b7e7c?q=80&w=800&auto=format&fit=crop"
                   alt="Pre & Post Scan"
                 />
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Diagnostic"
+                    data-fr="Diagnostic"
+                    >Diagnostic</span
+                  >
+                  <span class="card-tag" data-en="Included" data-fr="Inclus"
+                    >Included</span
+                  >
+                </div>
               </div>
               <div class="card-overlay">
                 <h3
@@ -2249,17 +2263,6 @@
                   before and after work, then provide a digital report for your
                   insurer or records.
                 </p>
-                <div class="card-tags">
-                  <span
-                    class="card-tag"
-                    data-en="Diagnostic"
-                    data-fr="Diagnostic"
-                    >Diagnostic</span
-                  >
-                  <span class="card-tag" data-en="Included" data-fr="Inclus"
-                    >Included</span
-                  >
-                </div>
               </div>
             </div>
           </div>
