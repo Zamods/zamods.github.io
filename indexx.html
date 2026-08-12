@@ -119,7 +119,7 @@
       }
 
       .container {
-        max-width: 1280px;
+        max-width: 940;
         margin-left: auto;
         margin-right: auto;
         padding-left: 24px;
@@ -597,6 +597,8 @@
         flex-wrap: wrap;
         gap: 8px;
         z-index: 2;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
       }
 
       .card-tag {
@@ -606,13 +608,18 @@
         letter-spacing: 0.05em;
         padding: 4px 10px;
         border-radius: var(--radius-full);
-        background: rgba(37, 99, 235, 0.08);
-        color: var(--accent-500);
+        background: rgba(
+          30,
+          41,
+          59,
+          0.75
+        ); /* Dark grey with slight transparency for blur */
+        color: #93c5fd; /* Lighter shade of blue (blue-300) for better contrast */
       }
 
       .card-tag.favorite {
-        background: rgba(234, 179, 8, 0.1);
-        color: #b45309;
+        background: rgba(30, 41, 59, 0.75); /* Dark grey matching base tag */
+        color: #fcd34d; /* Light yellow/amber for contrast on dark */
       }
 
       .grid-3 {
@@ -629,7 +636,7 @@
       }
       .grid-4 {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 2fr);
         gap: 32px;
         margin-top: 64px;
       }
