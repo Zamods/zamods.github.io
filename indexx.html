@@ -673,18 +673,70 @@
       }
 
       .callout {
-        background: rgba(37, 99, 235, 0.05);
-        border: 1px solid var(--border-accent);
-        border-radius: var(--radius-lg);
-        padding: 24px 32px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-xl);
+        padding: 0;
         margin-top: 40px;
         display: flex;
-        align-items: center;
-        gap: 16px;
+        align-items: stretch;
+        gap: 0;
+        overflow: hidden;
+        transition:
+          border-color var(--duration-normal) ease,
+          transform var(--duration-slow) ease,
+          box-shadow var(--duration-normal) ease;
       }
-      .callout-icon {
-        font-size: 24px;
-        line-height: 1;
+
+      .callout:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+      }
+
+      .callout-image {
+        width: 140px;
+        min-width: 140px;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+      .callout-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .callout:hover .callout-image img {
+        transform: scale(1.05);
+      }
+
+      .callout-text-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 24px 32px;
+        gap: 8px;
+      }
+      .callout-heading {
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 1.3;
+        color: var(--text-heading);
+        letter-spacing: -0.025em;
+        margin: 0;
+      }
+      .callout-body {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.625;
+        margin: 0;
+      }
+      .callout-body strong {
+        color: var(--accent-500);
+        font-weight: 600;
       }
       .callout p {
         font-size: 14px;
@@ -1337,6 +1389,14 @@
         .mobile-sticky-cta {
           display: block;
         }
+        .callout {
+          flex-direction: column;
+        }
+        .callout-image {
+          width: 100%;
+          min-width: 100%;
+          aspect-ratio: 16 / 9;
+        }
       }
     </style>
   </head>
@@ -1736,17 +1796,34 @@
             misalignment can cause real problems.
           </p>
           <div class="callout reveal-on-scroll" data-delay="300">
-            <span class="callout-icon">⚠️</span>
-            <p
-              data-en="<strong>Miscalibrated ADAS doesn't always show a warning light.</strong> Your safety systems can be off and still appear to work normally. The only way to be sure is a professional calibration and scan."
-              data-fr="<strong>Un ADAS mal calibré n'affiche pas toujours un voyant d'avertissement.</strong> Vos systèmes de sécurité peuvent être défaillants tout en semblant fonctionner normalement. La seule façon d'en être certain est une calibration et un diagnostic professionnel."
-            >
-              <strong
-                >Miscalibrated ADAS doesn't always show a warning light.</strong
+            <div class="callout-image">
+              <img
+                src="https://images.pexels.com/photos/7442982/pexels-photo-7442982.jpeg"
+                alt="Warning Light"
+              />
+            </div>
+            <div class="callout-text-wrapper">
+              <h4
+                class="callout-heading"
+                data-en="Hidden Dangers"
+                data-fr="Dangers cachés"
               >
-              Your safety systems can be off and still appear to work normally.
-              The only way to be sure is a professional calibration and scan.
-            </p>
+                Hidden Dangers
+              </h4>
+              <p
+                class="callout-body"
+                data-en="<strong>Miscalibrated ADAS doesn't always show a warning light.</strong> Your safety systems can be off and still appear to work normally. The only way to be sure is a professional calibration and scan."
+                data-fr="<strong>Un ADAS mal calibré n'affiche pas toujours un voyant d'avertissement.</strong> Vos systèmes de sécurité peuvent être défaillants tout en semblant fonctionner normalement. La seule façon d'en être certain est une calibration et un diagnostic professionnel."
+              >
+                <strong
+                  >Miscalibrated ADAS doesn't always show a warning
+                  light.</strong
+                >
+                Your safety systems can be off and still appear to work
+                normally. The only way to be sure is a professional calibration
+                and scan.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1995,16 +2072,31 @@
             data-delay="400"
             style="margin-top: 32px"
           >
-            <span class="callout-icon">📞</span>
-            <p
-              data-en="<strong>Not sure if you need calibration?</strong> Book a free consultation — describe your recent repair and we'll look up your vehicle's OEM requirements and tell you exactly what's needed, at no charge."
-              data-fr="<strong>Pas sûr d'avoir besoin d'une calibration?</strong> Réservez une consultation gratuite — décrivez votre réparation et nous consulterons les exigences OEM de votre véhicule."
-            >
-              <strong>Not sure if you need calibration?</strong> Book a free
-              consultation — describe your recent repair and we'll look up your
-              vehicle's OEM requirements and tell you exactly what's needed, at
-              no charge.
-            </p>
+            <div class="callout-image">
+              <img
+                src="https://images.pexels.com/photos/7442982/pexels-photo-7442982.jpeg"
+                alt="Free Consultation"
+              />
+            </div>
+            <div class="callout-text-wrapper">
+              <h4
+                class="callout-heading"
+                data-en="Free Consultation"
+                data-fr="Consultation gratuite"
+              >
+                Free Consultation
+              </h4>
+              <p
+                class="callout-body"
+                data-en="<strong>Not sure if you need calibration?</strong> Book a free consultation — describe your recent repair and we'll look up your vehicle's OEM requirements and tell you exactly what's needed, at no charge."
+                data-fr="<strong>Pas sûr d'avoir besoin d'une calibration?</strong> Réservez une consultation gratuite — décrivez votre réparation et nous consulterons les exigences OEM de votre véhicule."
+              >
+                <strong>Not sure if you need calibration?</strong> Book a free
+                consultation — describe your recent repair and we'll look up
+                your vehicle's OEM requirements and tell you exactly what's
+                needed, at no charge.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -2652,14 +2744,29 @@
             data-delay="400"
             style="margin-top: 32px"
           >
-            <span class="callout-icon">📍</span>
-            <p
-              data-en="<strong>Outside these areas?</strong> We frequently travel to Abbotsford, Mission, and Squamish. Call us to check availability."
-              data-fr="<strong>En dehors de ces zones?</strong> Nous nous déplaçons à Abbotsford, Mission et Squamish. Appelez-nous pour vérifier la disponibilité."
-            >
-              <strong>Outside these areas?</strong> We frequently travel to
-              Abbotsford, Mission, and Squamish. Call us to check availability.
-            </p>
+            <div class="callout-image">
+              <img
+                src="https://images.pexels.com/photos/7442982/pexels-photo-7442982.jpeg"
+                alt="Free Consultation"
+              />
+            </div>
+            <div class="callout-text-wrapper">
+              <h4
+                class="callout-heading"
+                data-en="Outside these areas?"
+                data-fr="En dehors de ces zones?"
+              >
+                Outside these areas?
+              </h4>
+              <p
+                class="callout-body"
+                data-en="We frequently travel to Abbotsford, Mission, and Squamish. Call us to check availability."
+                data-fr="Nous nous déplaçons à Abbotsford, Mission et Squamish. Appelez-nous pour vérifier la disponibilité."
+              >
+                We frequently travel to Abbotsford, Mission, and Squamish. Call
+                us to check availability.
+              </p>
+            </div>
           </div>
         </div>
       </section>
