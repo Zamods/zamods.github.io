@@ -1,0 +1,3594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Vision Core Automotive — Mobile ADAS Calibration · Lower Mainland, BC
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg-base: #f8fafc;
+        --bg-container: #ffffff;
+        --bg-section-alt: #f1f5f9;
+        --bg-card: #ffffff;
+        --bg-nav: rgba(255, 255, 255, 0.8);
+
+        --accent-500: #2563eb;
+        --accent-400: #3b82f6;
+        --accent-300: #60a5fa;
+        --accent-glow: rgba(37, 99, 235, 0.15);
+        --accent-glow-subtle: rgba(37, 99, 235, 0.05);
+
+        --text-primary: #1e293b;
+        --text-secondary: #475569;
+        --text-tertiary: #64748b;
+        --text-heading: #0f172a;
+        --text-nav: #475569;
+        --text-nav-hover: #2563eb;
+
+        --border-subtle: rgba(15, 23, 42, 0.08);
+        --border-default: rgba(15, 23, 42, 0.12);
+        --border-hover: rgba(37, 99, 235, 0.4);
+        --border-accent: rgba(37, 99, 235, 0.3);
+        --border-accent-hover: rgba(37, 99, 235, 0.6);
+
+        --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+        --shadow-glow: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+
+        --gradient-text: linear-gradient(to bottom, #0f172a, #334155);
+        --gradient-cta-border: linear-gradient(
+          180deg,
+          rgba(37, 99, 235, 1) 0%,
+          rgba(37, 99, 235, 0) 100%
+        );
+        --gradient-aurora-1: conic-gradient(
+          from 0deg at 50% 50%,
+          #2563eb,
+          #3b82f6,
+          #60a5fa,
+          #2563eb
+        );
+        --gradient-aurora-2: conic-gradient(
+          from 90deg at 50% 50%,
+          #2563eb,
+          #3b82f6,
+          #60a5fa,
+          #2563eb
+        );
+        --gradient-aurora-3: conic-gradient(
+          from 180deg at 50% 50%,
+          #2563eb,
+          #3b82f6,
+          #60a5fa,
+          #2563eb
+        );
+
+        --blur-nav: 12px;
+        --blur-card: 0px;
+        --blur-aurora: 80px;
+        --radius-sm: 8px;
+        --radius-md: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 24px;
+        --radius-full: 9999px;
+        --font-primary: "Inter", sans-serif;
+        --font-display: "Inter", sans-serif;
+        --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+        --duration-reveal: 0.8s;
+        --duration-fast: 150ms;
+        --duration-normal: 300ms;
+        --duration-slow: 500ms;
+      }
+
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        font-family: var(--font-primary);
+        background-color: var(--bg-base);
+        color: var(--text-primary);
+        line-height: 1.625;
+        overflow-x: hidden;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      img {
+        display: block;
+        max-width: 100%;
+      }
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .gradient-text {
+        background: var(--gradient-text);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      @keyframes aurora-spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity var(--duration-reveal) var(--ease-reveal),
+          transform var(--duration-reveal) var(--ease-reveal);
+      }
+      .reveal-on-scroll.revealed {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .reveal-on-scroll {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+        .aurora-blob {
+          animation: none !important;
+        }
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 64px;
+        background: var(--bg-nav);
+        backdrop-filter: blur(var(--blur-nav));
+        -webkit-backdrop-filter: blur(var(--blur-nav));
+        border-bottom: 1px solid var(--border-subtle);
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .navbar-inner {
+        max-width: 1280px;
+        width: 100%;
+        padding: 0 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .navbar-logo svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--accent-500);
+      }
+      .navbar-logo-text {
+        font-family: var(--font-display);
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--text-primary);
+      }
+      .navbar-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .navbar-links a {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-nav);
+        transition: color var(--duration-fast) ease;
+      }
+      .navbar-links a:hover {
+        color: var(--text-nav-hover);
+      }
+
+      /* LANGUAGE DROPDOWN */
+      .lang-dropdown {
+        position: relative;
+      }
+      .lang-btn {
+        background: var(--bg-nav);
+        backdrop-filter: blur(var(--blur-nav));
+        -webkit-backdrop-filter: blur(var(--blur-nav));
+        border: 1px solid transparent;
+        padding: 6px 14px;
+        border-radius: var(--radius-full);
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: var(--shadow-soft);
+      }
+      .lang-btn svg {
+        width: 12px;
+        height: 12px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+      }
+      .lang-menu {
+        position: absolute;
+        top: 120%;
+        right: 0;
+        background: #fff;
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-sm);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        min-width: 100px;
+        display: none;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 10;
+      }
+      .lang-menu.open {
+        display: flex;
+      }
+      .lang-menu button {
+        background: none;
+        border: none;
+        padding: 8px 12px;
+        text-align: left;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        cursor: pointer;
+      }
+      .lang-menu button:hover {
+        background: rgba(37, 99, 235, 0.05);
+        color: var(--accent-500);
+      }
+
+      .navbar-cta {
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        background: var(--accent-500);
+        color: #ffffff;
+        padding: 8px 20px;
+        border-radius: var(--radius-full);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--shadow-soft);
+        transition: background var(--duration-fast) ease;
+      }
+      .navbar-cta:hover {
+        background: var(--accent-400);
+      }
+      .navbar-right {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .navbar-mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+      }
+      .navbar-mobile-toggle svg {
+        width: 24px;
+        height: 24px;
+        stroke: var(--text-primary);
+      }
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-subtle);
+        z-index: 49;
+        padding: 24px;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .mobile-nav.open {
+        display: flex;
+      }
+      .mobile-nav a {
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-nav);
+        padding: 8px 0;
+      }
+      .mobile-nav a:hover {
+        color: var(--text-nav-hover);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        padding-top: 128px;
+        padding-bottom: 80px;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+      }
+      .aurora-container {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .aurora-blob {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(var(--blur-aurora));
+        opacity: 0.1;
+      }
+      .aurora-blob-1 {
+        width: 50vw;
+        height: 50vw;
+        top: 10%;
+        left: 5%;
+        background: var(--gradient-aurora-1);
+        animation: aurora-spin 12s linear infinite;
+      }
+      .aurora-blob-2 {
+        width: 40vw;
+        height: 40vw;
+        top: 60%;
+        right: -5%;
+        background: var(--gradient-aurora-2);
+        animation: aurora-spin 15s linear infinite;
+      }
+      .aurora-blob-3 {
+        width: 35vw;
+        height: 35vw;
+        bottom: -10%;
+        left: 30%;
+        background: var(--gradient-aurora-3);
+        animation: aurora-spin 18s linear infinite;
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, #f8fafc, transparent, #f8fafc);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 896px;
+        margin: 0 auto;
+        padding: 64px 24px 0;
+      }
+      .hero-headline {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 72px;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+        text-align: center;
+      }
+      .hero-headline .accent-word {
+        color: var(--accent-500);
+        -webkit-text-fill-color: var(--accent-500);
+      }
+      .hero-subtitle {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 1.625;
+        color: var(--text-secondary);
+        max-width: 640px;
+        margin: 32px auto 0;
+        text-align: center;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        margin-top: 48px;
+        flex-wrap: wrap;
+      }
+
+      /* BOLD CTAS */
+      .btn-primary {
+        font-size: 14px;
+        font-weight: 700;
+        background: var(--accent-500);
+        color: #ffffff;
+        padding: 16px 32px;
+        border-radius: var(--radius-full);
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--shadow-glow);
+        transition: background var(--duration-normal) ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary:hover {
+        background: var(--accent-400);
+      }
+      .btn-secondary {
+        font-size: 14px;
+        font-weight: 700;
+        background: rgba(15, 23, 42, 0.05);
+        color: var(--text-primary);
+        padding: 16px 32px;
+        border-radius: var(--radius-full);
+        border: 1px solid var(--border-default);
+        cursor: pointer;
+        transition: background var(--duration-normal) ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-secondary:hover {
+        background: rgba(15, 23, 42, 0.1);
+      }
+      .trust-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 24px;
+        justify-content: center;
+        margin-top: 48px;
+      }
+      .trust-badge {
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .trust-badge .check {
+        color: var(--accent-500);
+        font-weight: 600;
+      }
+
+      /* SECTIONS */
+      .section {
+        padding: 96px 0;
+      }
+      .section-alt {
+        background: var(--bg-section-alt);
+      }
+      .section-container {
+        background: var(--bg-container);
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 48px;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+        text-align: center;
+      }
+      .section-subtitle {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.625;
+        color: var(--text-secondary);
+        text-align: center;
+        max-width: 640px;
+        margin: 20px auto 0;
+      }
+
+      /* GLASS / IMAGE CARDS */
+      .glass-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border-default);
+        overflow: hidden;
+        transition:
+          border-color var(--duration-normal) ease,
+          transform var(--duration-slow) ease,
+          box-shadow var(--duration-normal) ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .glass-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+      }
+      .glass-card.featured {
+        border-color: var(--border-accent);
+      }
+      .glass-card.featured:hover {
+        border-color: var(--border-accent-hover);
+      }
+
+      .card-media {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .card-media img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+      .glass-card:hover .card-media img {
+        transform: scale(1.05);
+      }
+
+      /* CARD OVERLAY (Heading bottom-left, body text has dark blurred 40% area background, no border radius, no padding on background) */
+      .card-overlay {
+        position: relative;
+        z-index: 1;
+        padding: 20px 24px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        background: #ffffff;
+        flex: 1;
+      }
+      .card-title {
+        color: var(--text-heading);
+        font-family: var(--font-display);
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 1.3;
+        letter-spacing: -0.025em;
+        margin: 0;
+        text-align: left;
+      }
+      .card-description {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.625;
+        color: var(--text-secondary);
+        margin: 0;
+      }
+
+      /* CARD TAGS  */
+      .card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+
+      .card-tag {
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 4px 10px;
+        border-radius: var(--radius-full);
+        background: rgba(37, 99, 235, 0.08);
+        color: var(--accent-500);
+      }
+
+      .card-tag.favorite {
+        background: rgba(234, 179, 8, 0.1);
+        color: #b45309;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+        margin-top: 64px;
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 32px;
+        margin-top: 64px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        margin-top: 64px;
+      }
+
+      .feature-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 32px;
+      }
+      .feature-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .feature-item .icon-wrap {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        border-radius: var(--radius-sm);
+        background: rgba(37, 99, 235, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .feature-item .icon-wrap svg {
+        width: 18px;
+        height: 18px;
+        stroke: var(--accent-500);
+        stroke-width: 1.5;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .feature-item .text strong {
+        color: var(--text-heading);
+        font-weight: 500;
+        font-size: 14px;
+        display: block;
+      }
+      .feature-item .text span {
+        color: var(--text-secondary);
+        font-size: 13px;
+      }
+
+      .callout {
+        background: rgba(37, 99, 235, 0.05);
+        border: 1px solid var(--border-accent);
+        border-radius: var(--radius-lg);
+        padding: 24px 32px;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .callout-icon {
+        font-size: 24px;
+        line-height: 1;
+      }
+      .callout p {
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.625;
+      }
+      .callout p strong {
+        color: var(--accent-500);
+        font-weight: 600;
+      }
+
+      /* TRIGGER CARDS */
+      .trigger-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .trigger-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        transition:
+          border-color var(--duration-normal) ease,
+          transform var(--duration-slow) ease,
+          box-shadow var(--duration-normal) ease;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+      }
+      .trigger-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+      }
+
+      /* PRICING CARDS */
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 64px;
+        align-items: center;
+        justify-items: center;
+      } /* Centered horizontal axis */
+      .pricing-card {
+        background: var(--bg-card);
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border-default);
+        padding: 40px 32px;
+        transition:
+          border-color var(--duration-normal) ease,
+          transform var(--duration-slow) ease;
+        position: relative;
+        width: 100%;
+      }
+      .pricing-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-glow);
+      }
+      .pricing-card.featured {
+        border-color: var(--border-accent);
+        padding-top: 48px;
+        padding-bottom: 48px;
+      }
+      .pricing-card.featured:hover {
+        border-color: var(--border-accent-hover);
+      }
+      .pricing-badge {
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        background: var(--accent-500);
+        color: #ffffff;
+        padding: 6px 16px;
+        border-radius: var(--radius-full);
+        text-align: center;
+      }
+      .pricing-best {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 8px;
+        text-align: center;
+      } /* Text aligned in middle */
+      .pricing-name {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 30px;
+        color: var(--text-heading);
+        letter-spacing: -0.025em;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .pricing-price {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 40px;
+        color: var(--text-heading);
+        letter-spacing: -0.03em;
+        text-align: center;
+      }
+      .pricing-price .currency {
+        font-size: 20px;
+        vertical-align: top;
+        color: var(--text-secondary);
+      }
+      .pricing-price .period {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        font-weight: 400;
+      }
+      .pricing-note {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        margin-top: 8px;
+        line-height: 1.5;
+        text-align: center;
+      }
+      .pricing-features {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .pricing-features li {
+        font-size: 13px;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        line-height: 1.5;
+      }
+      .pricing-features li .check {
+        color: var(--accent-500);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .pricing-cta {
+        margin-top: 32px;
+      }
+      .pricing-cta .btn-primary,
+      .pricing-cta .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .coverage-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 40px;
+      }
+      .coverage-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-lg);
+        padding: 24px;
+        transition: border-color var(--duration-normal) ease;
+      }
+      .coverage-card:hover {
+        border-color: var(--border-hover);
+      }
+      .coverage-card .emoji {
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .coverage-card h4 {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text-heading);
+        margin-bottom: 8px;
+      }
+      .coverage-card p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.625;
+      }
+
+      .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        margin-top: 64px;
+      }
+      .step-card {
+        text-align: center;
+      }
+      .step-number {
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius-full);
+        background: rgba(37, 99, 235, 0.1);
+        color: var(--accent-500);
+        font-size: 18px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+      .step-card h4 {
+        font-weight: 500;
+        font-size: 16px;
+        color: var(--text-heading);
+        margin-bottom: 12px;
+      }
+      .step-card p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.625;
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-top: 48px;
+      }
+      .trust-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .trust-item .icon-wrap {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border-radius: var(--radius-sm);
+        background: rgba(37, 99, 235, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .trust-item .icon-wrap svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--accent-500);
+        stroke-width: 1.5;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .trust-item h4 {
+        font-weight: 500;
+        font-size: 14px;
+        color: var(--text-heading);
+        margin-bottom: 4px;
+      }
+      .trust-item p {
+        font-size: 13px;
+        color: var(--text-secondary);
+        line-height: 1.5;
+      }
+
+      .faq-list {
+        max-width: 800px;
+        margin: 48px auto 0;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .faq-item {
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        transition: border-color var(--duration-normal) ease;
+      }
+      .faq-item:hover {
+        border-color: var(--border-hover);
+      }
+      .faq-item.open {
+        border-color: var(--border-accent);
+      }
+      .faq-question {
+        width: 100%;
+        background: none;
+        border: none;
+        padding: 20px 24px;
+        font-family: var(--font-primary);
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--text-heading);
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        gap: 16px;
+      }
+      .faq-question:hover {
+        color: var(--accent-400);
+      }
+      .faq-question svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--text-tertiary);
+        stroke-width: 1.5;
+        fill: none;
+        flex-shrink: 0;
+        transition: transform var(--duration-normal) ease;
+      }
+      .faq-item.open .faq-question svg {
+        transform: rotate(45deg);
+        stroke: var(--accent-500);
+      }
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+      }
+      .faq-answer-inner {
+        padding: 0 24px 20px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        line-height: 1.625;
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 48px;
+      }
+      .form-info {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .form-info-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .form-info-item .icon {
+        width: 20px;
+        height: 20px;
+        stroke: var(--accent-500);
+        stroke-width: 1.5;
+        fill: none;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .form-info-item .label {
+        font-size: 12px;
+        color: var(--text-tertiary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .form-info-item .value {
+        font-size: 15px;
+        color: var(--text-heading);
+        font-weight: 500;
+      }
+      .form-info-item .value a {
+        color: var(--accent-400);
+      }
+      .booking-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-family: var(--font-primary);
+        font-size: 14px;
+        color: var(--text-heading);
+        background: rgba(15, 23, 42, 0.04);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-sm);
+        padding: 12px 16px;
+        outline: none;
+        transition: border-color var(--duration-normal) ease;
+      }
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent-500);
+      }
+      .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
+      }
+      .form-group select {
+        cursor: pointer;
+      }
+      .form-group select option {
+        background: #ffffff;
+        color: #1e293b;
+      }
+      .form-disclaimer {
+        font-size: 11px;
+        color: var(--text-tertiary);
+        margin-top: 8px;
+        line-height: 1.5;
+      }
+
+      .cta-section {
+        padding: 128px 0 64px;
+      }
+      .cta-container {
+        max-width: 896px;
+        margin: 0 auto;
+        padding: 64px;
+        border-radius: var(--radius-xl);
+        border: 1px solid var(--border-default);
+        background: var(--bg-card);
+        text-align: center;
+      }
+      .cta-headline {
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: 48px;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+      }
+      .cta-subtitle {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.625;
+        color: var(--text-secondary);
+        max-width: 640px;
+        margin: 20px auto 0;
+      }
+      .cta-button-wrapper {
+        margin-top: 48px;
+        display: inline-flex;
+        border-radius: var(--radius-full);
+        padding: 1px;
+        background: var(--gradient-cta-border);
+      }
+      .cta-button {
+        font-size: 14px;
+        font-weight: 700;
+        background: #0f172a;
+        color: #ffffff;
+        padding: 16px 48px;
+        border-radius: var(--radius-full);
+        border: none;
+        cursor: pointer;
+        transition: background var(--duration-normal) ease;
+      }
+      .cta-button:hover {
+        background: var(--accent-500);
+      }
+
+      .footer {
+        border-top: 1px solid var(--border-subtle);
+        padding: 64px 0;
+        background: var(--bg-base);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 32px;
+      }
+      .footer-brand p {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        margin-top: 16px;
+        line-height: 1.625;
+      }
+      .footer-col-title {
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-secondary);
+        margin-bottom: 20px;
+      }
+      .footer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-links a {
+        font-size: 14px;
+        color: var(--text-tertiary);
+        transition: color var(--duration-fast) ease;
+      }
+      .footer-links a:hover {
+        color: var(--text-heading);
+      }
+      .footer-bottom {
+        border-top: 1px solid var(--border-subtle);
+        margin-top: 48px;
+        padding-top: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .footer-copyright {
+        font-size: 14px;
+        color: var(--text-tertiary);
+      }
+      .footer-socials {
+        display: flex;
+        gap: 16px;
+      }
+      .footer-socials a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-socials svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--text-tertiary);
+        fill: none;
+        stroke-width: 1.5;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition: stroke var(--duration-fast) ease;
+      }
+      .footer-socials a:hover svg {
+        stroke: var(--text-heading);
+      }
+
+      .mobile-sticky-cta {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 40;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border-subtle);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1023px) {
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr;
+        }
+        .grid-4 {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .steps-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .trigger-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 767px) {
+        .container {
+          padding-left: 16px;
+          padding-right: 16px;
+        }
+        .navbar-inner {
+          padding: 0 16px;
+        }
+        .navbar-links {
+          display: none;
+        }
+        .navbar-cta {
+          display: none;
+        }
+        .navbar-mobile-toggle {
+          display: block;
+        }
+        .hero-headline {
+          font-size: 40px;
+        }
+        .hero-subtitle {
+          font-size: 16px;
+        }
+        .section-title {
+          font-size: 32px;
+        }
+        .grid-3,
+        .grid-2,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+        .trigger-grid {
+          grid-template-columns: 1fr;
+        }
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+        .pricing-grid .pricing-card.featured {
+          order: -1;
+        }
+        .steps-grid {
+          grid-template-columns: 1fr;
+        }
+        .feature-list {
+          grid-template-columns: 1fr;
+        }
+        .coverage-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+        .cta-container {
+          padding: 32px;
+        }
+        .cta-headline {
+          font-size: 32px;
+        }
+        .aurora-blob {
+          opacity: 0.08;
+        }
+        .mobile-sticky-cta {
+          display: block;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-logo">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+            />
+          </svg>
+          <span
+            class="navbar-logo-text"
+            data-en="Vision Core"
+            data-fr="Vision Core"
+            >Vision Core</span
+          >
+        </a>
+        <ul class="navbar-links">
+          <li>
+            <a href="#services" data-en="Services" data-fr="Services"
+              >Services</a
+            >
+          </li>
+          <li>
+            <a href="#pricing" data-en="Pricing" data-fr="Tarifs">Pricing</a>
+          </li>
+          <li>
+            <a href="#coverage" data-en="Coverage" data-fr="Couverture"
+              >Coverage</a
+            >
+          </li>
+          <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
+          <li>
+            <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+          </li>
+        </ul>
+        <div class="navbar-right">
+          <!-- LANGUAGE DROPDOWN -->
+          <div class="lang-dropdown">
+            <button class="lang-btn" onclick="toggleLangDropdown()">
+              🇨🇦 <span id="lang-current">EN</span>
+            </button>
+            <div class="lang-menu" id="lang-menu">
+              <button onclick="setLang('en')">🇨🇦 English</button>
+              <button onclick="setLang('fr')">🇨🇦 Français</button>
+            </div>
+          </div>
+          <button
+            class="navbar-cta"
+            onclick="
+              document
+                .getElementById('contact')
+                .scrollIntoView({ behavior: 'smooth' })
+            "
+            data-en="Book Now"
+            data-fr="Réserver"
+          >
+            Book Now
+          </button>
+          <button
+            class="navbar-mobile-toggle"
+            onclick="toggleMobileNav()"
+            aria-label="Toggle navigation"
+          >
+            <svg
+              id="menu-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+            <svg
+              id="close-icon"
+              style="display: none"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="6" y1="6" x2="18" y2="18" />
+              <line x1="6" y1="18" x2="18" y2="6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="mobile-nav" id="mobile-nav">
+      <a
+        href="#services"
+        onclick="closeMobileNav()"
+        data-en="Services"
+        data-fr="Services"
+        >Services</a
+      >
+      <a
+        href="#pricing"
+        onclick="closeMobileNav()"
+        data-en="Pricing"
+        data-fr="Tarifs"
+        >Pricing</a
+      >
+      <a
+        href="#coverage"
+        onclick="closeMobileNav()"
+        data-en="Coverage"
+        data-fr="Couverture"
+        >Coverage</a
+      >
+      <a href="#faq" onclick="closeMobileNav()" data-en="FAQ" data-fr="FAQ"
+        >FAQ</a
+      >
+      <a
+        href="#contact"
+        onclick="closeMobileNav()"
+        data-en="Contact"
+        data-fr="Contact"
+        >Contact</a
+      >
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <div class="aurora-container">
+          <div class="aurora-blob aurora-blob-1"></div>
+          <div class="aurora-blob aurora-blob-2"></div>
+          <div class="aurora-blob aurora-blob-3"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1 class="hero-headline reveal-on-scroll" data-delay="100">
+            <span
+              class="gradient-text"
+              data-en="Your Car's Safety Systems,"
+              data-fr="Les systèmes de sécurité"
+              >Your Car's Safety Systems,</span
+            ><br />
+            <span
+              class="accent-word"
+              data-en="Calibrated at Your Door"
+              data-fr="Calibrés chez vous"
+              >Calibrated at Your Door</span
+            >
+          </h1>
+          <p
+            class="hero-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Professional mobile ADAS calibration across the Lower Mainland, BC — we come to your home, your workplace, or your shop. No dealership visit required."
+            data-fr="Service mobile de calibration ADAS professionnel dans le Lower Mainland, C.-B. — nous venons chez vous, à votre lieu de travail ou à votre atelier. Aucune visite chez le concessionnaire requise."
+          >
+            Professional mobile ADAS calibration across the Lower Mainland, BC —
+            we come to your home, your workplace, or your shop. No dealership
+            visit required.
+          </p>
+          <div class="hero-buttons reveal-on-scroll" data-delay="300">
+            <button
+              class="btn-primary"
+              onclick="
+                document
+                  .getElementById('contact')
+                  .scrollIntoView({ behavior: 'smooth' })
+              "
+              data-en="Book Online"
+              data-fr="Réserver en ligne"
+            >
+              Book Online
+            </button>
+            <a
+              href="tel:+16041234567"
+              class="btn-secondary"
+              data-en="Call Us: 604-123-4567"
+              data-fr="Appelez-nous : 604-123-4567"
+              >Call Us: 604-123-4567</a
+            >
+          </div>
+          <div class="trust-badges reveal-on-scroll" data-delay="400">
+            <span class="trust-badge"
+              ><span class="check">✓</span>
+              <span
+                data-en="OEM-Compliant Calibration"
+                data-fr="Calibration conforme OEM"
+                >OEM-Compliant Calibration</span
+              ></span
+            >
+            <span class="trust-badge"
+              ><span class="check">✓</span>
+              <span
+                data-en="Certified Technicians"
+                data-fr="Techniciens certifiés"
+                >Certified Technicians</span
+              ></span
+            >
+            <span class="trust-badge"
+              ><span class="check">✓</span>
+              <span
+                data-en="All Makes & Models"
+                data-fr="Toutes marques & modèles"
+                >All Makes & Models</span
+              ></span
+            >
+            <span class="trust-badge"
+              ><span class="check">✓</span>
+              <span data-en="Available 7 Days/Week" data-fr="Disponible 7 j/sem"
+                >Available 7 Days/Week</span
+              ></span
+            >
+            <span class="trust-badge"
+              ><span class="check">✓</span>
+              <span
+                data-en="Insurance Documentation"
+                data-fr="Documentation assurance"
+                >Insurance Documentation</span
+              ></span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: What Is ADAS? -->
+      <section class="section section-container" id="what-is-adas">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="What Is ADAS and Why Does It Matter?"
+            data-fr="Qu'est-ce que l'ADAS et pourquoi est-ce important?"
+          >
+            What Is ADAS and Why Does It Matter?
+          </h2>
+          <p
+            class="section-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Advanced Driver Assistance Systems — cameras, radar, and sensors that help prevent accidents without driver intervention. Present in over 90% of new vehicles sold in Canada."
+            data-fr="Les systèmes d'aide à la conduite — caméras, radars et capteurs qui aident à prévenir les accidents sans intervention du conducteur. Présents dans plus de 90 % des nouveaux véhicules vendus au Canada."
+          >
+            Advanced Driver Assistance Systems — cameras, radar, and sensors
+            that help prevent accidents without driver intervention. Present in
+            over 90% of new vehicles sold in Canada.
+          </p>
+          <div class="feature-list reveal-on-scroll" data-delay="300">
+            <div class="feature-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2 20h20" />
+                  <path d="M5 20V8l7-5 7 5v12" />
+                </svg>
+              </div>
+              <div class="text">
+                <strong
+                  data-en="Lane Keep Assist"
+                  data-fr="Assistance maintien de voie"
+                  >Lane Keep Assist</strong
+                ><span
+                  data-en="Keeps your car centred in its lane"
+                  data-fr="Garde le véhicule centré dans sa voie"
+                  >Keeps your car centred in its lane</span
+                >
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="M6 8h4M14 8h4M10 12h4" />
+                </svg>
+              </div>
+              <div class="text">
+                <strong
+                  data-en="Automatic Emergency Braking"
+                  data-fr="Freinage d'urgence automatique"
+                  >Automatic Emergency Braking</strong
+                ><span
+                  data-en="Brakes before you can react"
+                  data-fr="Freine avant que vous puissiez réagir"
+                  >Brakes before you can react</span
+                >
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M12 6v6l4 2" />
+                </svg>
+              </div>
+              <div class="text">
+                <strong
+                  data-en="Adaptive Cruise Control"
+                  data-fr="Régulateur de vitesse adaptatif"
+                  >Adaptive Cruise Control</strong
+                ><span
+                  data-en="Maintains a safe following distance automatically"
+                  data-fr="Maintient automatiquement une distance de sécurité"
+                  >Maintains a safe following distance automatically</span
+                >
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M12 1v4M12 19v4M1 12h4M19 12h4" />
+                </svg>
+              </div>
+              <div class="text">
+                <strong
+                  data-en="Blind Spot Monitoring"
+                  data-fr="Surveillance des angles morts"
+                  >Blind Spot Monitoring</strong
+                ><span
+                  data-en="Alerts you to vehicles you can't see"
+                  data-fr="Vous alerte sur les véhicules invisibles"
+                  >Alerts you to vehicles you can't see</span
+                >
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 2L2 7l10 5 10-5-10-5z" />
+                  <path d="M2 17l10 5 10-5" />
+                  <path d="M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <div class="text">
+                <strong
+                  data-en="Rear Cross-Traffic Alert"
+                  data-fr="Alerte trafic transversal arrière"
+                  >Rear Cross-Traffic Alert</strong
+                ><span
+                  data-en="Detects traffic when reversing"
+                  data-fr="Détecte le trafic lors d'une marche arrière"
+                  >Detects traffic when reversing</span
+                >
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <circle cx="8" cy="12" r="2" />
+                  <circle cx="16" cy="12" r="2" />
+                </svg>
+              </div>
+              <div class="text">
+                <strong data-en="Parking Assist" data-fr="Aide au stationnement"
+                  >Parking Assist</strong
+                ><span
+                  data-en="Uses sensors to guide you into tight spots"
+                  data-fr="Utilise des capteurs pour vous guider"
+                  >Uses sensors to guide you into tight spots</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: What Is ADAS Calibration? -->
+      <section class="section section-alt" id="calibration-explained">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="What Is ADAS Calibration?"
+            data-fr="Qu'est-ce que la calibration ADAS?"
+          >
+            What Is ADAS Calibration?
+          </h2>
+          <p
+            class="section-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Fine-tuning and realigning your vehicle's cameras, radar, and sensors to exact manufacturer specifications. Even a millimetre of misalignment can cause real problems."
+            data-fr="Réglage fin et réalignement des caméras, radars et capteurs de votre véhicule selon les spécifications exactes du fabricant. Même un millimètre de désalignement peut causer de sérieux problèmes."
+          >
+            Fine-tuning and realigning your vehicle's cameras, radar, and
+            sensors to exact manufacturer specifications. Even a millimetre of
+            misalignment can cause real problems.
+          </p>
+          <div class="callout reveal-on-scroll" data-delay="300">
+            <span class="callout-icon">⚠️</span>
+            <p
+              data-en="<strong>Miscalibrated ADAS doesn't always show a warning light.</strong> Your safety systems can be off and still appear to work normally. The only way to be sure is a professional calibration and scan."
+              data-fr="<strong>Un ADAS mal calibré n'affiche pas toujours un voyant d'avertissement.</strong> Vos systèmes de sécurité peuvent être défaillants tout en semblant fonctionner normalement. La seule façon d'en être certain est une calibration et un diagnostic professionnel."
+            >
+              <strong
+                >Miscalibrated ADAS doesn't always show a warning light.</strong
+              >
+              Your safety systems can be off and still appear to work normally.
+              The only way to be sure is a professional calibration and scan.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: When Do You Need It? -->
+      <section class="section section-container" id="when-needed">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="When Is ADAS Calibration Required?"
+            data-fr="Quand la calibration ADAS est-elle nécessaire?"
+          >
+            When Is ADAS Calibration Required?
+          </h2>
+          <p
+            class="section-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Your vehicle needs recalibration after more situations than most people expect."
+            data-fr="Votre véhicule a besoin d'une recalibration dans plus de situations que la plupart des gens ne le pensent."
+          >
+            Your vehicle needs recalibration after more situations than most
+            people expect.
+          </p>
+          <div class="trigger-grid reveal-on-scroll" data-delay="300">
+            <div class="trigger-card">
+              <div class="card-media">
+                <!-- Replace with your own image -->
+                <img
+                  src="https://images.unsplash.com/photo-1632823469850-1b7b1e7b7e7c?q=80&w=800&auto=format&fit=crop"
+                  alt="Windshield Replacement"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Windshield Replacement"
+                  data-fr="Remplacement du pare-brise"
+                >
+                  Windshield Replacement
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Cameras mounted on the windshield are removed and remounted — even a slight shift changes how the system reads the road"
+                  data-fr="Les caméras fixées au pare-brise sont retirées et remontées — même un léger décalage change la lecture de la route"
+                >
+                  Cameras mounted on the windshield are removed and remounted —
+                  even a slight shift changes how the system reads the road
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag favorite"
+                    data-en="Guest Favorite"
+                    data-fr="Préféré des clients"
+                    >Guest Favorite</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Safety Critical"
+                    data-fr="Sécurité critique"
+                    >Safety Critical</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="trigger-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1597007030739-6d2e7172ee2b?q=80&w=800&auto=format&fit=crop"
+                  alt="Collision Repair"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Collision or Accident Repair"
+                  data-fr="Réparation après collision"
+                >
+                  Collision or Accident Repair
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Even a minor impact can shift sensor alignment; recalibration resets everything to manufacturer specs"
+                  data-fr="Même un impact mineur peut déplacer l'alignement des capteurs"
+                >
+                  Even a minor impact can shift sensor alignment; recalibration
+                  resets everything to manufacturer specs
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Post-Repair"
+                    data-fr="Post-réparation"
+                    >Post-Repair</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Insurance Req"
+                    data-fr="Req. assurance"
+                    >Insurance Req</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="trigger-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1486754735734-325b5831fe3e?q=80&w=800&auto=format&fit=crop"
+                  alt="Suspension Work"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Suspension or Alignment Work"
+                  data-fr="Travaux de suspension ou d'alignement"
+                >
+                  Suspension or Alignment Work
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Changes to suspension or wheel alignment alter the angle of forward-facing and side sensors"
+                  data-fr="Modifie l'angle des capteurs orientés vers l'avant et sur les côtés"
+                >
+                  Changes to suspension or wheel alignment alter the angle of
+                  forward-facing and side sensors
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Angle Change"
+                    data-fr="Changement d'angle"
+                    >Angle Change</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="trigger-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop"
+                  alt="Sensor Replacement"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Sensor or Camera Replacement"
+                  data-fr="Remplacement d'un capteur ou caméra"
+                >
+                  Sensor or Camera Replacement
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Any replaced ADAS component must be recalibrated before it works correctly"
+                  data-fr="Tout composant ADAS remplacé doit être recalibré"
+                >
+                  Any replaced ADAS component must be recalibrated before it
+                  works correctly
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag favorite"
+                    data-en="4 Point Check"
+                    data-fr="Vérif. 4 points"
+                    >4 Point Check</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Replacement"
+                    data-fr="Remplacement"
+                    >Replacement</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="trigger-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1632823471565-1ecdf5c5da1c?q=80&w=800&auto=format&fit=crop"
+                  alt="Bumper Repair"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Front-End or Bumper Repair"
+                  data-fr="Réparation face avant ou pare-chocs"
+                >
+                  Front-End or Bumper Repair
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Radar sensors in the grille and bumpers require precise re-aiming after any removal or repair"
+                  data-fr="Les capteurs radar nécessitent un réglage précis après tout retrait"
+                >
+                  Radar sensors in the grille and bumpers require precise
+                  re-aiming after any removal or repair
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Radar Sensor"
+                    data-fr="Capteur radar"
+                    >Radar Sensor</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="trigger-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1503376780353-7a67d186b5b0?q=80&w=800&auto=format&fit=crop"
+                  alt="Headlight Replacement"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Headlight or Mirror Replacement"
+                  data-fr="Remplacement d'un phare ou rétroviseur"
+                >
+                  Headlight or Mirror Replacement
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Some vehicles integrate sensors into headlight assemblies or mirror housings"
+                  data-fr="Certains véhicules intègrent des capteurs dans les phares ou rétroviseurs"
+                >
+                  Some vehicles integrate sensors into headlight assemblies or
+                  mirror housings
+                </p>
+                <div class="card-tags">
+                  <span class="card-tag" data-en="Integrated" data-fr="Intégré"
+                    >Integrated</span
+                  >
+                  <span class="card-tag" data-en="OEM Spec" data-fr="Spéc. OEM"
+                    >OEM Spec</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="callout reveal-on-scroll"
+            data-delay="400"
+            style="margin-top: 32px"
+          >
+            <span class="callout-icon">📞</span>
+            <p
+              data-en="<strong>Not sure if you need calibration?</strong> Book a free consultation — describe your recent repair and we'll look up your vehicle's OEM requirements and tell you exactly what's needed, at no charge."
+              data-fr="<strong>Pas sûr d'avoir besoin d'une calibration?</strong> Réservez une consultation gratuite — décrivez votre réparation et nous consulterons les exigences OEM de votre véhicule."
+            >
+              <strong>Not sure if you need calibration?</strong> Book a free
+              consultation — describe your recent repair and we'll look up your
+              vehicle's OEM requirements and tell you exactly what's needed, at
+              no charge.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4: Our Services -->
+      <section class="section section-alt" id="services">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Our Calibration Services"
+            data-fr="Nos services de calibration"
+          >
+            Our Calibration Services
+          </h2>
+          <div class="grid-4 reveal-on-scroll" data-delay="200">
+            <div class="glass-card">
+              <div class="card-media">
+                <!-- Replace with your own image -->
+                <img
+                  src="https://images.unsplash.com/photo-1486008152092-91b92d3c4d3f?q=80&w=800&auto=format&fit=crop"
+                  alt="Static Calibration"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Static Calibration"
+                  data-fr="Calibration statique"
+                >
+                  Static Calibration
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Specialized target boards positioned at precise distances while the vehicle remains stationary. Cameras and sensors align to manufacturer reference points."
+                  data-fr="Panneaux cibles spécialisés positionnés à des distances précises pendant que le véhicule reste immobile."
+                >
+                  Specialized target boards positioned at precise distances
+                  while the vehicle remains stationary. Cameras and sensors
+                  align to manufacturer reference points.
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Stationary"
+                    data-fr="Stationnaire"
+                    >Stationary</span
+                  >
+                  <span class="card-tag" data-en="Target-Based" data-fr="Ciblé"
+                    >Target-Based</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="glass-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1503376780353-7a67d186b5b0?q=80&w=800&auto=format&fit=crop"
+                  alt="Dynamic Calibration"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Dynamic Calibration"
+                  data-fr="Calibration dynamique"
+                >
+                  Dynamic Calibration
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Vehicle driven on a straight road while connected to diagnostic equipment. Sensors self-calibrate using real road markings and traffic."
+                  data-fr="Le véhicule est conduit sur une route droite tout en étant connecté à un équipement de diagnostic."
+                >
+                  Vehicle driven on a straight road while connected to
+                  diagnostic equipment. Sensors self-calibrate using real road
+                  markings and traffic.
+                </p>
+                <div class="card-tags">
+                  <span class="card-tag" data-en="On-Road" data-fr="Sur route"
+                    >On-Road</span
+                  >
+                  <span
+                    class="card-tag"
+                    data-en="Self-Calibrating"
+                    data-fr="Auto-calibration"
+                    >Self-Calibrating</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="glass-card featured">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98?q=80&w=800&auto=format&fit=crop"
+                  alt="Dual Calibration"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Dual Calibration"
+                  data-fr="Calibration double"
+                >
+                  Dual Calibration
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Both static and dynamic methods in sequence. Many newer vehicles require this combination for full alignment. We follow the exact OEM procedure for your make, model, and year."
+                  data-fr="Les deux méthodes en séquence. De nombreux véhicules récents nécessitent cette combinaison."
+                >
+                  Both static and dynamic methods in sequence. Many newer
+                  vehicles require this combination for full alignment. We
+                  follow the exact OEM procedure for your make, model, and year.
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag favorite"
+                    data-en="Most Popular"
+                    data-fr="Plus populaire"
+                    >Most Popular</span
+                  >
+                  <span class="card-tag" data-en="Complete" data-fr="Complet"
+                    >Complete</span
+                  >
+                </div>
+              </div>
+            </div>
+            <div class="glass-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1632823469850-1b7b1e7b7e7c?q=80&w=800&auto=format&fit=crop"
+                  alt="Pre & Post Scan"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Pre & Post Scan"
+                  data-fr="Diagnostic pré & post"
+                >
+                  Pre & Post Scan
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Included with every calibration. We scan all ADAS modules before and after work, then provide a digital report for your insurer or records."
+                  data-fr="Inclus avec chaque calibration. Analyse de tous les modules ADAS avant et après, avec rapport numérique."
+                >
+                  Included with every calibration. We scan all ADAS modules
+                  before and after work, then provide a digital report for your
+                  insurer or records.
+                </p>
+                <div class="card-tags">
+                  <span
+                    class="card-tag"
+                    data-en="Diagnostic"
+                    data-fr="Diagnostic"
+                    >Diagnostic</span
+                  >
+                  <span class="card-tag" data-en="Included" data-fr="Inclus"
+                    >Included</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: Why Mobile? -->
+      <section class="section section-container" id="why-mobile">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Why Choose Mobile Calibration?"
+            data-fr="Pourquoi choisir la calibration mobile?"
+          >
+            Why Choose Mobile Calibration?
+          </h2>
+          <div class="grid-3 reveal-on-scroll" data-delay="200">
+            <div class="glass-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=800&auto=format&fit=crop"
+                  alt="We Come to You"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="We Come to You"
+                  data-fr="Nous venons à vous"
+                >
+                  We Come to You
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Home, workplace, or shop bay — we bring everything. No towing, no drop-offs, no waiting rooms."
+                  data-fr="Domicile, lieu de travail ou atelier — nous apportons tout le nécessaire. Aucun remorquage, aucun dépôt."
+                >
+                  Home, workplace, or shop bay — we bring everything. No towing,
+                  no drop-offs, no waiting rooms.
+                </p>
+              </div>
+            </div>
+            <div class="glass-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=800&auto=format&fit=crop"
+                  alt="Lower Cost"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Lower Cost Than Dealership"
+                  data-fr="Moins cher qu'un concessionnaire"
+                >
+                  Lower Cost Than Dealership
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="Lower overhead means savings passed directly to you. OEM-level accuracy without the dealership price."
+                  data-fr="Des frais généraux moins élevés signifient des économies pour vous. Précision de niveau OEM sans le prix du concessionnaire."
+                >
+                  Lower overhead means savings passed directly to you. OEM-level
+                  accuracy without the dealership price.
+                </p>
+              </div>
+            </div>
+            <div class="glass-card">
+              <div class="card-media">
+                <img
+                  src="https://images.unsplash.com/photo-1571068316344-75bc76f77890?q=80&w=800&auto=format&fit=crop"
+                  alt="Shops & Fleets"
+                />
+              </div>
+              <div class="card-overlay">
+                <h3
+                  class="card-title"
+                  data-en="Built for Shops & Fleets"
+                  data-fr="Conçu pour les ateliers"
+                >
+                  Built for Shops & Fleets
+                </h3>
+                <p
+                  class="card-description"
+                  data-en="We integrate into your workflow. Call or book us in — we arrive, calibrate, and leave. No need to invest in your own equipment."
+                  data-fr="Nous nous intégrons à votre flux de travail. Appelez-nous, nous arrivons, calibrons et partons."
+                >
+                  We integrate into your workflow. Call or book us in — we
+                  arrive, calibrate, and leave. No need to invest in your own
+                  equipment.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6: Pricing -->
+      <section class="section section-alt" id="pricing">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Simple, Transparent Pricing"
+            data-fr="Des tarifs simples et transparents"
+          >
+            Simple, Transparent Pricing
+          </h2>
+          <p
+            class="section-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Whether you're a vehicle owner or a shop partner, there's a package built for you. No hidden fees — ever."
+            data-fr="Que vous soyez propriétaire d'un véhicule ou un partenaire atelier, nous avons une formule adaptée. Aucuns frais cachés."
+          >
+            Whether you're a vehicle owner or a shop partner, there's a package
+            built for you. No hidden fees — ever.
+          </p>
+          <div class="pricing-grid reveal-on-scroll" data-delay="300">
+            <!-- Essential -->
+            <div class="pricing-card">
+              <p
+                class="pricing-best"
+                data-en="Best for: Individual owners"
+                data-fr="Idéal pour : Propriétaires individuels"
+              >
+                Best for: Individual owners
+              </p>
+              <h3 class="pricing-name" data-en="Essential" data-fr="Essentiel">
+                Essential
+              </h3>
+              <p class="pricing-price">
+                <span class="currency">$</span>299
+                <span
+                  class="period"
+                  data-en="CAD starting"
+                  data-fr="CAD à partir de"
+                  >CAD starting</span
+                >
+              </p>
+              <p
+                class="pricing-note"
+                data-en="Final price depends on vehicle make, model, and calibration type required."
+                data-fr="Le prix final dépend de la marque, du modèle et du type de calibration requis."
+              >
+                Final price depends on vehicle make, model, and calibration type
+                required.
+              </p>
+              <ul class="pricing-features">
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Single system calibration (1 camera or sensor)"
+                    data-fr="Calibration d'un système (1 caméra ou capteur)"
+                    >Single system calibration (1 camera or sensor)</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Pre & post-scan with digital report"
+                    data-fr="Diagnostic pré & post avec rapport numérique"
+                    >Pre & post-scan with digital report</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Mobile service to your home or office"
+                    data-fr="Service mobile à domicile ou au bureau"
+                    >Mobile service to your home or office</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="OEM-compliant procedures"
+                    data-fr="Procédures conformes OEM"
+                    >OEM-compliant procedures</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="60-day recalibration warranty"
+                    data-fr="Garantie de recalibration de 60 jours"
+                    >60-day recalibration warranty</span
+                  >
+                </li>
+              </ul>
+              <div class="pricing-cta">
+                <button
+                  class="btn-secondary"
+                  onclick="
+                    document
+                      .getElementById('contact')
+                      .scrollIntoView({ behavior: 'smooth' })
+                  "
+                  data-en="Book Essential"
+                  data-fr="Réserver Essentiel"
+                >
+                  Book Essential
+                </button>
+              </div>
+            </div>
+
+            <!-- Complete (Featured) -->
+            <div class="pricing-card featured">
+              <div
+                class="pricing-badge"
+                data-en="Most Popular"
+                data-fr="Le plus populaire"
+              >
+                Most Popular
+              </div>
+              <p
+                class="pricing-best"
+                data-en="Best for: Most vehicles"
+                data-fr="Idéal pour : La plupart des véhicules"
+              >
+                Best for: Most vehicles
+              </p>
+              <h3 class="pricing-name" data-en="Complete" data-fr="Complet">
+                Complete
+              </h3>
+              <p class="pricing-price">
+                <span class="currency">$</span>499
+                <span
+                  class="period"
+                  data-en="CAD starting"
+                  data-fr="CAD à partir de"
+                  >CAD starting</span
+                >
+              </p>
+              <p
+                class="pricing-note"
+                data-en="Final price depends on vehicle make, model, and calibration type required."
+                data-fr="Le prix final dépend de la marque, du modèle et du type de calibration requis."
+              >
+                Final price depends on vehicle make, model, and calibration type
+                required.
+              </p>
+              <ul class="pricing-features">
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Multi-system calibration (cameras + radar)"
+                    data-fr="Calibration multi-systèmes (caméras + radar)"
+                    >Multi-system calibration (cameras + radar)</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Static and/or dynamic calibration"
+                    data-fr="Calibration statique et/ou dynamique"
+                    >Static and/or dynamic calibration</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Pre & post-scan with digital report"
+                    data-fr="Diagnostic pré & post avec rapport numérique"
+                    >Pre & post-scan with digital report</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Mobile service to your home or office"
+                    data-fr="Service mobile à domicile ou au bureau"
+                    >Mobile service to your home or office</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="OEM-compliant procedures"
+                    data-fr="Procédures conformes OEM"
+                    >OEM-compliant procedures</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="90-day recalibration warranty"
+                    data-fr="Garantie de recalibration de 90 jours"
+                    >90-day recalibration warranty</span
+                  >
+                </li>
+              </ul>
+              <div class="pricing-cta">
+                <button
+                  class="btn-primary"
+                  onclick="
+                    document
+                      .getElementById('contact')
+                      .scrollIntoView({ behavior: 'smooth' })
+                  "
+                  data-en="Book Complete"
+                  data-fr="Réserver Complet"
+                >
+                  Book Complete
+                </button>
+              </div>
+            </div>
+
+            <!-- Fleet/Shop -->
+            <div class="pricing-card">
+              <p
+                class="pricing-best"
+                data-en="Best for: Body shops & fleets"
+                data-fr="Idéal pour : Ateliers & flottes"
+              >
+                Best for: Body shops & fleets
+              </p>
+              <h3
+                class="pricing-name"
+                data-en="Fleet & Shop"
+                data-fr="Atelier & Flotte"
+              >
+                Fleet & Shop
+              </h3>
+              <p class="pricing-price">
+                <span class="currency">$</span
+                ><span data-en="Custom" data-fr="Sur mesure">Custom</span>
+              </p>
+              <p
+                class="pricing-note"
+                data-en="Volume pricing and monthly billing for partners."
+                data-fr="Tarifs de volume et facturation mensuelle pour les partenaires."
+              >
+                Volume pricing and monthly billing for partners.
+              </p>
+              <ul class="pricing-features">
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Any calibration type, any vehicle"
+                    data-fr="Tout type de calibration, tout véhicule"
+                    >Any calibration type, any vehicle</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Priority same-day/next-day booking"
+                    data-fr="Réservation prioritaire le jour même/lendemain"
+                    >Priority same-day/next-day booking</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Dedicated technician availability"
+                    data-fr="Disponibilité d'un technicien dédié"
+                    >Dedicated technician availability</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="Monthly invoicing & reporting portal"
+                    data-fr="Facturation mensuelle & portail de rapports"
+                    >Monthly invoicing & reporting portal</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span data-en="Volume discounts" data-fr="Remises de volume"
+                    >Volume discounts</span
+                  >
+                </li>
+                <li>
+                  <span class="check">✓</span>
+                  <span
+                    data-en="6-month recalibration warranty"
+                    data-fr="Garantie de recalibration de 6 mois"
+                    >6-month recalibration warranty</span
+                  >
+                </li>
+              </ul>
+              <div class="pricing-cta">
+                <button
+                  class="btn-secondary"
+                  onclick="
+                    document
+                      .getElementById('contact')
+                      .scrollIntoView({ behavior: 'smooth' })
+                  "
+                  data-en="Contact for Partner Pricing"
+                  data-fr="Contactez-nous pour les tarifs partenaires"
+                >
+                  Contact for Partner Pricing
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7: Coverage -->
+      <section class="section section-container" id="coverage">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Areas We Serve"
+            data-fr="Zones desservies"
+          >
+            Areas We Serve
+          </h2>
+          <p
+            class="section-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Based in the Lower Mainland, we provide mobile ADAS calibration across the region."
+            data-fr="Basés dans le Lower Mainland, nous offrons la calibration ADAS mobile dans toute la région."
+          >
+            Based in the Lower Mainland, we provide mobile ADAS calibration
+            across the region.
+          </p>
+          <div class="coverage-grid reveal-on-scroll" data-delay="300">
+            <div class="coverage-card">
+              <div class="emoji">🏙️</div>
+              <h4
+                data-en="Vancouver & North Shore"
+                data-fr="Vancouver & North Shore"
+              >
+                Vancouver & North Shore
+              </h4>
+              <p
+                data-en="Vancouver, Burnaby, New Westminster, North Vancouver, West Vancouver"
+                data-fr="Vancouver, Burnaby, New Westminster, North Vancouver, West Vancouver"
+              >
+                Vancouver, Burnaby, New Westminster, North Vancouver, West
+                Vancouver
+              </p>
+            </div>
+            <div class="coverage-card">
+              <div class="emoji">🌐</div>
+              <h4
+                data-en="Tri-Cities & Maple Ridge"
+                data-fr="Tri-Cities & Maple Ridge"
+              >
+                Tri-Cities & Maple Ridge
+              </h4>
+              <p
+                data-en="Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows"
+                data-fr="Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows"
+              >
+                Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows
+              </p>
+            </div>
+            <div class="coverage-card">
+              <div class="emoji">✈️</div>
+              <h4 data-en="Surrey & Langley" data-fr="Surrey & Langley">
+                Surrey & Langley
+              </h4>
+              <p
+                data-en="Surrey, White Rock, Langley City, Langley Township, Cloverdale"
+                data-fr="Surrey, White Rock, Langley City, Langley Township, Cloverdale"
+              >
+                Surrey, White Rock, Langley City, Langley Township, Cloverdale
+              </p>
+            </div>
+            <div class="coverage-card">
+              <div class="emoji">🌊</div>
+              <h4 data-en="Delta & Richmond" data-fr="Delta & Richmond">
+                Delta & Richmond
+              </h4>
+              <p
+                data-en="Richmond, Delta, Ladner, Tsawwassen, YVR Airport Area"
+                data-fr="Richmond, Delta, Ladner, Tsawwassen, Zone de l'aéroport YVR"
+              >
+                Richmond, Delta, Ladner, Tsawwassen, YVR Airport Area
+              </p>
+            </div>
+          </div>
+          <div
+            class="callout reveal-on-scroll"
+            data-delay="400"
+            style="margin-top: 32px"
+          >
+            <span class="callout-icon">📍</span>
+            <p
+              data-en="<strong>Outside these areas?</strong> We frequently travel to Abbotsford, Mission, and Squamish. Call us to check availability."
+              data-fr="<strong>En dehors de ces zones?</strong> Nous nous déplaçons à Abbotsford, Mission et Squamish. Appelez-nous pour vérifier la disponibilité."
+            >
+              <strong>Outside these areas?</strong> We frequently travel to
+              Abbotsford, Mission, and Squamish. Call us to check availability.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8: How It Works -->
+      <section class="section section-alt" id="how-it-works">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="How It Works"
+            data-fr="Comment ça marche"
+          >
+            How It Works
+          </h2>
+          <div class="steps-grid reveal-on-scroll" data-delay="200">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h4 data-en="Book Online" data-fr="Réservez en ligne">
+                Book Online
+              </h4>
+              <p
+                data-en="Select your vehicle, issue, and preferred time. Takes 2 minutes."
+                data-fr="Sélectionnez votre véhicule, le problème et l'heure souhaitée. Prend 2 minutes."
+              >
+                Select your vehicle, issue, and preferred time. Takes 2 minutes.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h4 data-en="We Come to You" data-fr="Nous venons à vous">
+                We Come to You
+              </h4>
+              <p
+                data-en="Our mobile unit arrives at your chosen location with all equipment."
+                data-fr="Notre unité mobile arrive à l'emplacement choisi avec tout l'équipement."
+              >
+                Our mobile unit arrives at your chosen location with all
+                equipment.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h4 data-en="Calibrate & Scan" data-fr="Calibration & Diagnostic">
+                Calibrate & Scan
+              </h4>
+              <p
+                data-en="We perform static/dynamic calibration and pre/post scans."
+                data-fr="Nous effectuons la calibration statique/dynamique et les diagnostics."
+              >
+                We perform static/dynamic calibration and pre/post scans.
+              </p>
+            </div>
+            <div class="step-card">
+              <div class="step-number">4</div>
+              <h4 data-en="Drive Safe" data-fr="Conduisez en toute sécurité">
+                Drive Safe
+              </h4>
+              <p
+                data-en="Receive digital documentation and get back on the road safely."
+                data-fr="Recevez la documentation numérique et reprenez la route en toute sécurité."
+              >
+                Receive digital documentation and get back on the road safely.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 9: Why Trust Us -->
+      <section class="section section-container" id="trust">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Why Trust Vision Core"
+            data-fr="Pourquoi nous faire confiance"
+          >
+            Why Trust Vision Core
+          </h2>
+          <div class="trust-grid reveal-on-scroll" data-delay="200">
+            <div class="trust-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div>
+                <h4
+                  data-en="OEM-Compliant Procedures"
+                  data-fr="Procédures conformes OEM"
+                >
+                  OEM-Compliant Procedures
+                </h4>
+                <p
+                  data-en="We follow exact manufacturer specs for every vehicle, every time."
+                  data-fr="Nous suivons les spécifications exactes du fabricant pour chaque véhicule."
+                >
+                  We follow exact manufacturer specs for every vehicle, every
+                  time.
+                </p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                  <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
+              </div>
+              <div>
+                <h4
+                  data-en="Certified Technicians"
+                  data-fr="Techniciens certifiés"
+                >
+                  Certified Technicians
+                </h4>
+                <p
+                  data-en="Fully trained and insured ADAS specialists."
+                  data-fr="Spécialistes ADAS entièrement formés et assurés."
+                >
+                  Fully trained and insured ADAS specialists.
+                </p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M2 12h20M12 2v20" />
+                  <circle cx="12" cy="12" r="10" />
+                </svg>
+              </div>
+              <div>
+                <h4
+                  data-en="All Makes & Models"
+                  data-fr="Toutes marques & modèles"
+                >
+                  All Makes & Models
+                </h4>
+                <p
+                  data-en="From domestic to imports, we service them all."
+                  data-fr="Des véhicules nationaux aux importations, nous les entretenons tous."
+                >
+                  From domestic to imports, we service them all.
+                </p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                  <polyline points="10 9 9 9 8 9" />
+                </svg>
+              </div>
+              <div>
+                <h4
+                  data-en="Insurance Documentation"
+                  data-fr="Documentation assurance"
+                >
+                  Insurance Documentation
+                </h4>
+                <p
+                  data-en="Digital reports provided for claims and records."
+                  data-fr="Rapports numériques fournis pour les sinistres et les dossiers."
+                >
+                  Digital reports provided for claims and records.
+                </p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              <div>
+                <h4
+                  data-en="Available 7 Days/Week"
+                  data-fr="Disponible 7 j/sem"
+                >
+                  Available 7 Days/Week
+                </h4>
+                <p
+                  data-en="Flexible scheduling including weekends."
+                  data-fr="Horaires flexibles, y compris les week-ends."
+                >
+                  Flexible scheduling including weekends.
+                </p>
+              </div>
+            </div>
+            <div class="trust-item">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24">
+                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3" />
+                </svg>
+              </div>
+              <div>
+                <h4 data-en="Mobile Convenience" data-fr="Commodité mobile">
+                  Mobile Convenience
+                </h4>
+                <p
+                  data-en="No dealership wait, we come to your home or shop."
+                  data-fr="Pas d'attente chez le concessionnaire, nous venons à vous."
+                >
+                  No dealership wait, we come to your home or shop.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 10: FAQ -->
+      <section class="section section-alt" id="faq">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Frequently Asked Questions"
+            data-fr="Questions fréquemment posées"
+          >
+            Frequently Asked Questions
+          </h2>
+          <div class="faq-list reveal-on-scroll" data-delay="200">
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span
+                  data-en="How long does calibration take?"
+                  data-fr="Combien de temps prend la calibration?"
+                  >How long does calibration take?</span
+                >
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </button>
+              <div class="faq-answer">
+                <div
+                  class="faq-answer-inner"
+                  data-en="Most calibrations take between 1 to 2 hours, depending on the vehicle make, model, and the type of calibration required (static, dynamic, or both)."
+                  data-fr="La plupart des calibrations prennent entre 1 et 2 heures, selon la marque, le modèle et du type de calibration requis."
+                >
+                  Most calibrations take between 1 to 2 hours, depending on the
+                  vehicle make, model, and the type of calibration required
+                  (static, dynamic, or both).
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span
+                  data-en="Do I need calibration after a windshield replacement?"
+                  data-fr="Dois-je faire une calibration après un remplacement de pare-brise?"
+                  >Do I need calibration after a windshield replacement?</span
+                >
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </button>
+              <div class="faq-answer">
+                <div
+                  class="faq-answer-inner"
+                  data-en="Yes. If your vehicle has a camera mounted to the windshield (which most modern vehicles do), it must be recalibrated after the glass is replaced to ensure the camera reads the road correctly."
+                  data-fr="Oui. Si votre véhicule est équipé d'une caméra fixée au pare-brise (ce qui est le cas de la plupart des véhicules modernes), elle doit être recalibrée après le remplacement du verre."
+                >
+                  Yes. If your vehicle has a camera mounted to the windshield
+                  (which most modern vehicles do), it must be recalibrated after
+                  the glass is replaced to ensure the camera reads the road
+                  correctly.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span
+                  data-en="Will my insurance cover this?"
+                  data-fr="Mon assurance couvrira-t-elle cela?"
+                  >Will my insurance cover this?</span
+                >
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </button>
+              <div class="faq-answer">
+                <div
+                  class="faq-answer-inner"
+                  data-en="If the calibration is required due to a claimable incident (accident, glass replacement), it is often covered. We provide all necessary documentation for you to submit to your insurer."
+                  data-fr="Si la calibration est requise suite à un incident couvert (accident, remplacement de verre), elle est souvent prise en charge. Nous fournissons toute la documentation nécessaire."
+                >
+                  If the calibration is required due to a claimable incident
+                  (accident, glass replacement), it is often covered. We provide
+                  all necessary documentation for you to submit to your insurer.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" onclick="toggleFaq(this)">
+                <span
+                  data-en="What happens if I don't calibrate?"
+                  data-fr="Que se passe-t-il si je ne fais pas calibrer?"
+                  >What happens if I don't calibrate?</span
+                >
+                <svg viewBox="0 0 24 24">
+                  <line x1="12" y1="5" x2="12" y2="19" />
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                </svg>
+              </button>
+              <div class="faq-answer">
+                <div
+                  class="faq-answer-inner"
+                  data-en="Failing to calibrate can cause safety systems to fail when you need them most, or trigger false alerts. It creates a serious safety risk for you and others on the road."
+                  data-fr="Ne pas calibrer peut entraîner la défaillance des systèmes de sécurité ou de fausses alertes. Cela crée un risque de sécurité sérieux."
+                >
+                  Failing to calibrate can cause safety systems to fail when you
+                  need them most, or trigger false alerts. It creates a serious
+                  safety risk for you and others on the road.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 11: Contact & Booking -->
+      <section class="section section-container" id="contact">
+        <div class="container">
+          <h2
+            class="section-title gradient-text reveal-on-scroll"
+            data-delay="100"
+            data-en="Book Your Calibration"
+            data-fr="Réservez votre calibration"
+          >
+            Book Your Calibration
+          </h2>
+          <p
+            class="section-subtitle reveal-on-scroll"
+            data-delay="200"
+            data-en="Fill out the form and we'll confirm your appointment within 2 hours."
+            data-fr="Remplissez le formulaire et nous confirmerons votre rendez-vous sous 2 heures."
+          >
+            Fill out the form and we'll confirm your appointment within 2 hours.
+          </p>
+          <div class="form-grid reveal-on-scroll" data-delay="300">
+            <div class="form-info">
+              <div
+                class="glass-card"
+                style="height: 100%; background: var(--bg-card)"
+              >
+                <div
+                  class="card-body"
+                  style="
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 24px;
+                  "
+                >
+                  <div class="form-info-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                      />
+                    </svg>
+                    <div>
+                      <span
+                        class="label"
+                        data-en="Call Us"
+                        data-fr="Appelez-nous"
+                        >Call Us</span
+                      >
+                      <div class="value">
+                        <a href="tel:+16041234567">604-123-4567</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-info-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                      />
+                      <polyline points="22,6 12,13 2,6" />
+                    </svg>
+                    <div>
+                      <span
+                        class="label"
+                        data-en="Email Us"
+                        data-fr="Écrivez-nous"
+                        >Email Us</span
+                      >
+                      <div class="value">
+                        <a href="mailto:info@visioncoreauto.ca"
+                          >info@visioncoreauto.ca</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-info-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    <div>
+                      <span
+                        class="label"
+                        data-en="Service Area"
+                        data-fr="Zone de service"
+                        >Service Area</span
+                      >
+                      <div
+                        class="value"
+                        data-en="Lower Mainland, BC"
+                        data-fr="Lower Mainland, C.-B."
+                      >
+                        Lower Mainland, BC
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-info-item">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="10" />
+                      <polyline points="12 6 12 12 16 14" />
+                    </svg>
+                    <div>
+                      <span class="label" data-en="Hours" data-fr="Heures"
+                        >Hours</span
+                      >
+                      <div
+                        class="value"
+                        data-en="Mon-Sun: 8am - 6pm"
+                        data-fr="Lun-Dim : 8h - 18h"
+                      >
+                        Mon-Sun: 8am - 6pm
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form class="booking-form" onsubmit="handleBooking(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" data-en="Full Name" data-fr="Nom complet"
+                    >Full Name</label
+                  >
+                  <input type="text" id="name" required />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="phone"
+                    data-en="Phone Number"
+                    data-fr="Numéro de téléphone"
+                    >Phone Number</label
+                  >
+                  <input type="tel" id="phone" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label
+                  for="email"
+                  data-en="Email Address"
+                  data-fr="Adresse e-mail"
+                  >Email Address</label
+                >
+                <input type="email" id="email" required />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label
+                    for="year"
+                    data-en="Vehicle Year"
+                    data-fr="Année du véhicule"
+                    >Vehicle Year</label
+                  >
+                  <input
+                    type="number"
+                    id="year"
+                    min="1990"
+                    max="2025"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="make"
+                    data-en="Vehicle Make"
+                    data-fr="Marque du véhicule"
+                    >Vehicle Make</label
+                  >
+                  <input type="text" id="make" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label
+                    for="model"
+                    data-en="Vehicle Model"
+                    data-fr="Modèle du véhicule"
+                    >Vehicle Model</label
+                  >
+                  <input type="text" id="model" required />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="booking-type"
+                    data-en="Booking As"
+                    data-fr="Type de réservation"
+                    >Booking As</label
+                  >
+                  <select id="booking-type">
+                    <option data-en="Individual" data-fr="Individuel">
+                      Individual
+                    </option>
+                    <option
+                      data-en="Body Shop"
+                      data-fr="Atelier de carrosserie"
+                    >
+                      Body Shop
+                    </option>
+                    <option data-en="Glass Shop" data-fr="Atelier de vitrage">
+                      Glass Shop
+                    </option>
+                    <option data-en="Other" data-fr="Autre">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label
+                  for="reason"
+                  data-en="Reason for Calibration"
+                  data-fr="Raison de la calibration"
+                  >Reason for Calibration</label
+                >
+                <select id="reason">
+                  <option
+                    data-en="Windshield Replacement"
+                    data-fr="Remplacement de pare-brise"
+                  >
+                    Windshield Replacement
+                  </option>
+                  <option
+                    data-en="Collision Repair"
+                    data-fr="Réparation après collision"
+                  >
+                    Collision Repair
+                  </option>
+                  <option
+                    data-en="Suspension/Alignment"
+                    data-fr="Suspension/Alignement"
+                  >
+                    Suspension/Alignment
+                  </option>
+                  <option
+                    data-en="Sensor Replacement"
+                    data-fr="Remplacement de capteur"
+                  >
+                    Sensor Replacement
+                  </option>
+                  <option
+                    data-en="Bumper Repair"
+                    data-fr="Réparation de pare-chocs"
+                  >
+                    Bumper Repair
+                  </option>
+                  <option data-en="Other/Not Sure" data-fr="Autre/Pas sûr">
+                    Other/Not Sure
+                  </option>
+                </select>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label
+                    for="date"
+                    data-en="Preferred Date"
+                    data-fr="Date préférée"
+                    >Preferred Date</label
+                  >
+                  <input type="date" id="date" required />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="time"
+                    data-en="Preferred Time"
+                    data-fr="Heure préférée"
+                    >Preferred Time</label
+                  >
+                  <select id="time">
+                    <option data-en="Morning" data-fr="Matin">Morning</option>
+                    <option data-en="Afternoon" data-fr="Après-midi">
+                      Afternoon
+                    </option>
+                    <option data-en="Evening" data-fr="Soir">Evening</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label
+                  for="location"
+                  data-en="Service Location"
+                  data-fr="Lieu de service"
+                  >Service Location</label
+                >
+                <input type="text" id="location" required />
+              </div>
+              <div class="form-group">
+                <label
+                  for="notes"
+                  data-en="Additional Notes"
+                  data-fr="Notes supplémentaires"
+                  >Additional Notes</label
+                >
+                <textarea id="notes"></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn-primary"
+                style="width: 100%; justify-content: center"
+                data-en="Submit Booking"
+                data-fr="Envoyer la demande"
+              >
+                Submit Booking
+              </button>
+              <p
+                class="form-disclaimer"
+                data-en="By submitting, you agree to be contacted by Vision Core Automotive regarding your request."
+                data-fr="En soumettant, vous acceptez d'être contacté par Vision Core Automotive."
+              >
+                By submitting, you agree to be contacted by Vision Core
+                Automotive regarding your request.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA SECTION -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-container reveal-on-scroll">
+            <h2
+              class="cta-headline gradient-text"
+              data-en="Ready to Get Back on the Road Safely?"
+              data-fr="Prêt à reprendre la route en toute sécurité?"
+            >
+              Ready to Get Back on the Road Safely?
+            </h2>
+            <p
+              class="cta-subtitle"
+              data-en="Book your mobile ADAS calibration today. Fast, professional, and OEM-compliant."
+              data-fr="Réservez votre calibration ADAS mobile dès aujourd'hui. Rapide, professionnelle et conforme OEM."
+            >
+              Book your mobile ADAS calibration today. Fast, professional, and
+              OEM-compliant.
+            </p>
+            <div class="cta-button-wrapper">
+              <button
+                class="cta-button"
+                onclick="
+                  document
+                    .getElementById('contact')
+                    .scrollIntoView({ behavior: 'smooth' })
+                "
+                data-en="Book Online Now"
+                data-fr="Réserver en ligne"
+              >
+                Book Online Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="#" class="navbar-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                />
+              </svg>
+              <span class="navbar-logo-text">Vision Core</span>
+            </a>
+            <p
+              data-en="Mobile ADAS calibration services in the Lower Mainland, BC. OEM-compliant procedures, certified technicians."
+              data-fr="Services de calibration ADAS mobile dans le Lower Mainland, C.-B."
+            >
+              Mobile ADAS calibration services in the Lower Mainland, BC.
+              OEM-compliant procedures, certified technicians.
+            </p>
+          </div>
+          <div>
+            <h4 class="footer-col-title" data-en="Services" data-fr="Services">
+              Services
+            </h4>
+            <ul class="footer-links">
+              <li><a href="#services">Static Calibration</a></li>
+              <li><a href="#services">Dynamic Calibration</a></li>
+              <li><a href="#services">Pre & Post Scan</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-title" data-en="Company" data-fr="Entreprise">
+              Company
+            </h4>
+            <ul class="footer-links">
+              <li><a href="#why-mobile">Why Mobile</a></li>
+              <li><a href="#trust">About Us</a></li>
+              <li><a href="#coverage">Coverage</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="footer-col-title" data-en="Contact" data-fr="Contact">
+              Contact
+            </h4>
+            <ul class="footer-links">
+              <li><a href="tel:+16041234567">604-123-4567</a></li>
+              <li>
+                <a href="mailto:info@visioncoreauto.ca"
+                  >info@visioncoreauto.ca</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span class="footer-copyright"
+            >© <span id="year"></span> Vision Core Automotive</span
+          >
+          <div class="footer-socials">
+            <a href="#" aria-label="Facebook"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                /></svg
+            ></a>
+            <a href="#" aria-label="Instagram"
+              ><svg viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" /></svg
+            ></a>
+            <a href="#" aria-label="LinkedIn"
+              ><svg viewBox="0 0 24 24">
+                <path
+                  d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" /></svg
+            ></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MOBILE STICKY CTA -->
+    <div class="mobile-sticky-cta">
+      <div style="display: flex; gap: 8px">
+        <a
+          href="tel:+16041234567"
+          class="btn-secondary"
+          style="flex: 1; justify-content: center; padding: 12px 16px"
+          data-en="Call"
+          data-fr="Appeler"
+          >Call</a
+        >
+        <button
+          class="btn-primary"
+          onclick="
+            document
+              .getElementById('contact')
+              .scrollIntoView({ behavior: 'smooth' })
+          "
+          style="flex: 1; justify-content: center; padding: 12px 16px"
+          data-en="Book Now"
+          data-fr="Réserver"
+        >
+          Book Now
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // Scroll Reveal
+      const revealElements = document.querySelectorAll(".reveal-on-scroll");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const delay = entry.target.getAttribute("data-delay") || 0;
+              setTimeout(() => {
+                entry.target.classList.add("revealed");
+              }, delay);
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+      revealElements.forEach((el) => observer.observe(el));
+
+      // Navbar Mobile Toggle
+      function toggleMobileNav() {
+        const mobileNav = document.getElementById("mobile-nav");
+        const menuIcon = document.getElementById("menu-icon");
+        const closeIcon = document.getElementById("close-icon");
+        mobileNav.classList.toggle("open");
+        menuIcon.style.display = mobileNav.classList.contains("open")
+          ? "none"
+          : "block";
+        closeIcon.style.display = mobileNav.classList.contains("open")
+          ? "block"
+          : "none";
+      }
+      function closeMobileNav() {
+        document.getElementById("mobile-nav").classList.remove("open");
+        document.getElementById("menu-icon").style.display = "block";
+        document.getElementById("close-icon").style.display = "none";
+      }
+
+      // FAQ Accordion
+      function toggleFaq(btn) {
+        const item = btn.parentElement;
+        const answer = item.querySelector(".faq-answer");
+        const isOpen = item.classList.contains("open");
+
+        document.querySelectorAll(".faq-item").forEach((i) => {
+          i.classList.remove("open");
+          i.querySelector(".faq-answer").style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+          answer.style.maxHeight = answer.scrollHeight + "px";
+        }
+      }
+
+      // Language Dropdown Logic
+      let currentLang = "en";
+      function toggleLangDropdown() {
+        document.getElementById("lang-menu").classList.toggle("open");
+      }
+      function setLang(lang) {
+        currentLang = lang;
+        document.getElementById("lang-current").textContent =
+          lang.toUpperCase();
+        document.getElementById("lang-menu").classList.remove("open");
+        applyLang();
+      }
+      function applyLang() {
+        document.documentElement.lang = currentLang;
+        document.querySelectorAll("[data-en]").forEach((el) => {
+          const text = el.getAttribute(`data-${currentLang}`);
+          if (text) {
+            // This checks if the translation contains HTML tags (like <strong>)
+            if (text.includes("<")) {
+              el.innerHTML = text;
+            } else {
+              // Otherwise, use textContent which is safer and works perfectly for tag spans
+              el.textContent = text;
+            }
+          }
+        });
+        //   document.documentElement.lang = currentLang;
+        //   document.querySelectorAll('[data-en]').forEach(el => {
+        //     const text = el.getAttribute(`data-${currentLang}`);
+        //     if (text) {
+        //       if (text.includes('<strong>')) {
+        //         el.innerHTML = text;
+        //       } else {
+        //         el.textContent = text;
+        //       }
+        //     }
+        //   });
+      }
+      // Auto-detect language on load
+      if (navigator.language.startsWith("fr")) {
+        setLang("fr");
+      }
+
+      // Close dropdown if clicked outside
+      window.onclick = function (event) {
+        if (
+          !event.target.matches(".lang-btn") &&
+          !event.target.closest(".lang-btn")
+        ) {
+          const dropdown = document.getElementById("lang-menu");
+          if (dropdown.classList.contains("open")) {
+            dropdown.classList.remove("open");
+          }
+        }
+      };
+
+      // Form Submit
+      function handleBooking(event) {
+        event.preventDefault();
+        const btn = event.target.querySelector('button[type="submit"]');
+        const originalText = btn.textContent;
+        btn.textContent =
+          currentLang === "fr" ? "Demande envoyée !" : "Request Sent!";
+        btn.style.background = "#10B981";
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.style.background = "";
+          event.target.reset();
+        }, 3000);
+      }
+
+      // Set current year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
