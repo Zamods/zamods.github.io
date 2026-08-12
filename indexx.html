@@ -103,7 +103,7 @@
         font-family: var(--font-primary);
         background-color: var(--bg-base);
         color: var(--text-primary);
-        line-height: 1.625;
+        line-height: 1.5;
         overflow-x: hidden;
       }
       a {
@@ -417,8 +417,8 @@
       }
       .hero-subtitle {
         font-weight: 300;
-        font-size: 18px;
-        line-height: 1.625;
+        font-size: 24px;
+        line-height: 1.5;
         color: var(--text-secondary);
         max-width: 640px;
         margin: 32px auto 0;
@@ -434,7 +434,7 @@
 
       /* BOLD CTAS */
       .btn-primary {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         background: var(--accent-500);
         color: #ffffff;
@@ -452,7 +452,7 @@
         background: var(--accent-400);
       }
       .btn-secondary {
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 700;
         background: rgba(15, 23, 42, 0.05);
         color: var(--text-primary);
@@ -476,8 +476,8 @@
         margin-top: 48px;
       }
       .trust-badge {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 16px;
+        font-weight: 500;
         color: var(--text-secondary);
         display: flex;
         align-items: center;
@@ -508,12 +508,16 @@
       }
       .section-subtitle {
         font-weight: 400;
-        font-size: 14px;
-        line-height: 1.425;
+        font-size: 22px;
+        line-height: 1.5;
         color: var(--text-secondary);
         text-align: center;
         max-width: 640px;
         margin: 20px auto 0;
+      }
+      
+      .section-subtitle strong{
+        color: var(--accent-500);
       }
 
       /* GLASS / IMAGE CARDS */
@@ -583,7 +587,7 @@
       .card-description {
         font-weight: 400;
         font-size: 16px;
-        line-height: 1.625;
+        line-height: 1.5;
         color: var(--text-secondary);
         margin: 0;
       }
@@ -741,7 +745,7 @@
       .callout-body {
         font-size: 16px;
         color: var(--text-secondary);
-        line-height: 1.625;
+        line-height: 1.5;
         margin: 0;
       }
       .callout-body strong {
@@ -749,9 +753,8 @@
         font-weight: 600;
       }
       .callout p {
-        font-size: 14px;
         color: var(--text-secondary);
-        line-height: 1.625;
+        line-height: 1.5;
       }
       .callout p strong {
         color: var(--accent-500);
@@ -932,7 +935,7 @@
       .coverage-card p {
         font-size: 13px;
         color: var(--text-secondary);
-        line-height: 1.625;
+        line-height: 1.5;
       }
 
       .steps-grid {
@@ -966,7 +969,7 @@
       .step-card p {
         font-size: 16px;
         color: var(--text-secondary);
-        line-height: 1.625;
+        line-height: 1.5;
       }
 
       .trust-grid {
@@ -1036,7 +1039,7 @@
         border: none;
         padding: 20px 24px;
         font-family: var(--font-primary);
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 500;
         color: var(--text-heading);
         cursor: pointer;
@@ -1050,8 +1053,8 @@
         color: var(--accent-400);
       }
       .faq-question svg {
-        width: 20px;
-        height: 20px;
+        width: 36px;
+        height: 36px;
         stroke: var(--text-tertiary);
         stroke-width: 1.5;
         fill: none;
@@ -1069,9 +1072,9 @@
       }
       .faq-answer-inner {
         padding: 0 24px 20px;
-        font-size: 14px;
+        font-size: 16px;
         color: var(--text-secondary);
-        line-height: 1.625;
+        line-height: 1.5;
       }
 
       .form-grid {
@@ -1116,7 +1119,7 @@
       .booking-form {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 32px;
       }
       .form-row {
         display: grid;
@@ -1129,7 +1132,7 @@
         gap: 6px;
       }
       .form-group label {
-        font-size: 12px;
+        font-size: 14px;
         font-weight: 500;
         color: var(--text-secondary);
         text-transform: uppercase;
@@ -1139,7 +1142,7 @@
       .form-group select,
       .form-group textarea {
         font-family: var(--font-primary);
-        font-size: 14px;
+        font-size: 16px;
         color: var(--text-heading);
         background: rgba(15, 23, 42, 0.04);
         border: 1px solid var(--border-default);
@@ -1161,14 +1164,15 @@
         cursor: pointer;
       }
       .form-group select option {
-        background: #ffffff;
         color: #1e293b;
       }
       .form-disclaimer {
-        font-size: 11px;
+        font-size: 16px;
         color: var(--text-tertiary);
         margin-top: 8px;
         line-height: 1.5;
+        font-weight: 400;
+        text-align: center;
       }
 
       .cta-section {
@@ -1192,8 +1196,8 @@
       }
       .cta-subtitle {
         font-weight: 400;
-        font-size: 14px;
-        line-height: 1.625;
+        font-size: 22px;
+        line-height: 1.5;
         color: var(--text-secondary);
         max-width: 640px;
         margin: 20px auto 0;
@@ -1206,7 +1210,7 @@
         background: var(--gradient-cta-border);
       }
       .cta-button {
-        font-size: 14px;
+        font-size: 18px;
         font-weight: 700;
         background: #0f172a;
         color: #ffffff;
@@ -1234,7 +1238,7 @@
         font-size: 14px;
         color: var(--text-tertiary);
         margin-top: 16px;
-        line-height: 1.625;
+        line-height: 1.5;
       }
       .footer-col-title {
         font-size: 10px;
@@ -1346,6 +1350,9 @@
         }
         .section-title {
           font-size: 32px;
+        }
+        .section-title strong {
+          color: var(--accent-500);
         }
         .grid-3,
         .grid-2,
@@ -1650,10 +1657,10 @@
           <h2
             class="section-title gradient-text reveal-on-scroll"
             data-delay="100"
-            data-en="What Is ADAS and Why Does It Matter?"
-            data-fr="Qu'est-ce que l'ADAS et pourquoi est-ce important?"
+            data-en="What Is <strong>ADAS</strong> and Why Does It <strong>Matter</strong>?"
+            data-fr="Qu'est-ce que <strong>l'ADAS</strong> et pourquoi est-ce <strong>important</strong>?"
           >
-            What Is ADAS and Why Does It Matter?
+            What Is <strong>ADAS</strong> and Why Does It <strong>Matter</strong>?
           </h2>
           <p
             class="section-subtitle reveal-on-scroll"
