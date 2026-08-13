@@ -363,9 +363,9 @@
         inset: 0;
         /* Creates a soft white glow in the middle, fading to a light gray at edges */
         background: radial-gradient(
-          ellipse at center, 
-          rgba(255, 255, 255, 0.9) 0%, 
-          rgba(255, 255, 255, 0.7) 40%, 
+          ellipse at center,
+          rgba(255, 255, 255, 0.9) 0%,
+          rgba(255, 255, 255, 0.7) 40%,
           rgba(241, 245, 249, 0.95) 100%
         );
         z-index: 1;
@@ -492,10 +492,10 @@
         margin: 20px auto 0;
       }
 
-      .section-title strong{
+      .section-title strong {
         color: var(--accent-500);
       }
-      .section-subtitle strong{
+      .section-subtitle strong {
         color: var(--accent-500);
       }
 
@@ -626,45 +626,45 @@
 
       .feature-list {
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         margin-top: 32px;
       }
 
       .feature-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  background: var(--bg-section-alt);
-  border-radius: 20px;
-  padding: 20px;
-}
-.feature-item .icon-wrap {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  border-radius: var(--radius-sm);
-  background: rgba(37, 99, 235, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent-500);
-}
-.feature-item .text strong {
-  color: var(--text-heading);
-  font-weight: 500;
-  font-size: 14px;
-  display: block;
-  margin-bottom: 8px;
-}
-.feature-item .text span {
-  color: var(--text-secondary);
-  font-size: 14px;
-  line-height: 1.5;
-  display: block;
-}
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background: var(--bg-section-alt);
+        border-radius: 20px;
+        padding: 20px;
+      }
+      .feature-item .icon-wrap {
+        width: 32px;
+        height: 32px;
+        min-width: 32px;
+        border-radius: var(--radius-sm);
+        background: rgba(37, 99, 235, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--accent-500);
+      }
+      .feature-item .text strong {
+        color: var(--text-heading);
+        font-weight: 500;
+        font-size: 14px;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .feature-item .text span {
+        color: var(--text-secondary);
+        font-size: 14px;
+        line-height: 1.5;
+        display: block;
+      }
 
       .callout {
         background: var(--bg-card);
@@ -1543,12 +1543,20 @@
       <section class="hero" id="hero">
         <div class="aurora-container">
           <picture>
-            <source 
-              type="image/webp" 
-              srcset="assets/img/800w/hero-bg-800w.webp 800w, assets/img/1200w/hero-bg-1200w.webp 1200w, assets/img/2000w/hero-bg-2000w.webp 2000w" 
+            <source
+              type="image/webp"
+              srcset="
+                assets/img/800w/hero-bg-800w.webp    800w,
+                assets/img/1200w/hero-bg-1200w.webp 1200w,
+                assets/img/2000w/hero-bg-2000w.webp 2000w
+              "
               sizes="100vw"
-            >
-            <img src="assets/img/1200w/hero-bg-1200w.jpg" alt="" class="hero-bg-img" />
+            />
+            <img
+              src="assets/img/1200w/hero-bg-1200w.jpg"
+              alt=""
+              class="hero-bg-img"
+            />
           </picture>
         </div>
         <div class="hero-overlay"></div>
@@ -1650,214 +1658,470 @@
             data-en="What Is <strong>ADAS</strong> and <strong>Why Does It Matter</strong>?"
             data-fr="Qu'est-ce que <strong>l'ADAS</strong> et <strong>pourquoi est-ce important</strong>?"
           >
-            What Is <strong>ADAS</strong> and <strong>Why Does It Matter</strong>?
+            What Is <strong>ADAS</strong> and
+            <strong>Why Does It Matter</strong>?
           </h2>
           <p
             class="section-subtitle reveal-on-scroll"
             data-delay="200"
-            data-en="Advanced Driver Assistance Systems — cameras, radar, and sensors that help prevent accidents without driver intervention. Present in over 90% of new vehicles sold in Canada."
-            data-fr="Les systèmes d'aide à la conduite — caméras, radars et capteurs qui aident à prévenir les accidents sans intervention du conducteur. Présents dans plus de 90 % des nouveaux véhicules vendus au Canada."
+            data-en="Advanced Driver Assistance Systems (ADAS) watch the road around you, using sensors and cameras to help prevent accidents before you even have time to react. With over 90% of new vehicles in Canada now including this technology, safer driving is becoming the standard."
+            data-fr="Les systèmes d'aide à la conduite (ADAS) surveillent la route autour de vous en utilisant des capteurs et des caméras pour aider à prévenir les accidents avant même que vous n'ayez le temps de réagir. Avec plus de 90 % des véhicules neufs vendus au Canada qui intègrent désormais cette technologie, une conduite plus sécuritaire est en voie de devenir la norme."
           >
-            Advanced Driver Assistance Systems like cameras, radar, and sensors
-            that help prevent accidents without driver intervention. Present in
-            over 90% of new vehicles sold in Canada.
+            Advanced Driver Assistance Systems (ADAS) watch the road around you,
+            using sensors and cameras to help prevent accidents before you even
+            have time to react. With over 90% of new vehicles in Canada now
+            including this technology, safer driving is becoming the standard.
           </p>
           <div class="feature-list reveal-on-scroll" data-delay="300">
- <div class="feature-item">   
-  <div class="text">
-    <strong data-en="Adaptive Cruise Control (ACC)" data-fr="Régulateur de vitesse adaptatif (RVA)">Adaptive Cruise Control (ACC)</strong>
-    <span data-en="Automatically adjusts vehicle speed to maintain a safe, preset distance from the car ahead." data-fr="Ajuste automatiquement la vitesse du véhicule pour maintenir une distance sécuritaire et prédéterminée avec le véhicule précédent.">Automatically adjusts vehicle speed to maintain a safe, preset distance from the car ahead.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Adaptive Cruise Control (ACC)"
+                  data-fr="Régulateur de vitesse adaptatif (RVA)"
+                  >Adaptive Cruise Control (ACC)</strong
+                >
+                <span
+                  data-en="Automatically adjusts vehicle speed to maintain a safe, preset distance from the car ahead."
+                  data-fr="Ajuste automatiquement la vitesse du véhicule pour maintenir une distance sécuritaire et prédéterminée avec le véhicule précédent."
+                  >Automatically adjusts vehicle speed to maintain a safe,
+                  preset distance from the car ahead.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Automatic Emergency Braking (AEB)" data-fr="Freinage d'urgence automatique (FUA)">Automatic Emergency Braking (AEB)</strong>
-    <span data-en="Applies the brakes automatically if an imminent collision is detected and the driver does not react." data-fr="Applique automatiquement les freins si une collision imminente est détectée et que le conducteur ne réagit pas.">Applies the brakes automatically if an imminent collision is detected and the driver does not react.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Automatic Emergency Braking (AEB)"
+                  data-fr="Freinage d'urgence automatique (FUA)"
+                  >Automatic Emergency Braking (AEB)</strong
+                >
+                <span
+                  data-en="Applies the brakes automatically if an imminent collision is detected and the driver does not react."
+                  data-fr="Applique automatiquement les freins si une collision imminente est détectée et que le conducteur ne réagit pas."
+                  >Applies the brakes automatically if an imminent collision is
+                  detected and the driver does not react.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Forward Collision Warning (FCW)" data-fr="Avertissement de collision frontale (ACF)">Forward Collision Warning (FCW)</strong>
-    <span data-en="Alerts the driver visually and audibly of an impending front-end collision to prompt immediate braking." data-fr="Avertit le conducteur visuellement et sonorement d'une collision frontale imminente pour inciter un freinage immédiat.">Alerts the driver visually and audibly of an impending front-end collision to prompt immediate braking.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Forward Collision Warning (FCW)"
+                  data-fr="Avertissement de collision frontale (ACF)"
+                  >Forward Collision Warning (FCW)</strong
+                >
+                <span
+                  data-en="Alerts the driver visually and audibly of an impending front-end collision to prompt immediate braking."
+                  data-fr="Avertit le conducteur visuellement et sonorement d'une collision frontale imminente pour inciter un freinage immédiat."
+                  >Alerts the driver visually and audibly of an impending
+                  front-end collision to prompt immediate braking.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Blind Spot Monitoring (BSM)" data-fr="Surveillance des angles morts (SAM)">Blind Spot Monitoring (BSM)</strong>
-    <span data-en="Detects vehicles in the driver's blind spots and alerts the driver via illuminated lights on the side mirrors." data-fr="Détecte les véhicules dans les angles morts du conducteur et l'avertit par des voyants lumineux sur les rétroviseurs latéraux.">Detects vehicles in the driver's blind spots and alerts the driver via illuminated lights on the side mirrors.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Blind Spot Monitoring (BSM)"
+                  data-fr="Surveillance des angles morts (SAM)"
+                  >Blind Spot Monitoring (BSM)</strong
+                >
+                <span
+                  data-en="Detects vehicles in the driver's blind spots and alerts the driver via illuminated lights on the side mirrors."
+                  data-fr="Détecte les véhicules dans les angles morts du conducteur et l'avertit par des voyants lumineux sur les rétroviseurs latéraux."
+                  >Detects vehicles in the driver's blind spots and alerts the
+                  driver via illuminated lights on the side mirrors.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Lane Departure Warning (LDW)" data-fr="Avertissement de sortie de voie (ASV)">Lane Departure Warning (LDW)</strong>
-    <span data-en="Notifies the driver if the vehicle begins to drift out of its lane without a turn signal activated." data-fr="Avertit le conducteur si le véhicule commence à dériver de sa voie sans que le clignotant soit activé.">Notifies the driver if the vehicle begins to drift out of its lane without a turn signal activated.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Lane Departure Warning (LDW)"
+                  data-fr="Avertissement de sortie de voie (ASV)"
+                  >Lane Departure Warning (LDW)</strong
+                >
+                <span
+                  data-en="Notifies the driver if the vehicle begins to drift out of its lane without a turn signal activated."
+                  data-fr="Avertit le conducteur si le véhicule commence à dériver de sa voie sans que le clignotant soit activé."
+                  >Notifies the driver if the vehicle begins to drift out of its
+                  lane without a turn signal activated.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Lane Keeping Assist (LKA)" data-fr="Aide au maintien de voie (AMV)">Lane Keeping Assist (LKA)</strong>
-    <span data-en="Actively applies gentle steering torque to keep the vehicle within its lane if it begins to drift unintentionally." data-fr="Applique activement un léger couple de direction pour garder le véhicule dans sa voie s'il commence à dériver involontairement.">Actively applies gentle steering torque to keep the vehicle within its lane if it begins to drift unintentionally.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Lane Keeping Assist (LKA)"
+                  data-fr="Aide au maintien de voie (AMV)"
+                  >Lane Keeping Assist (LKA)</strong
+                >
+                <span
+                  data-en="Actively applies gentle steering torque to keep the vehicle within its lane if it begins to drift unintentionally."
+                  data-fr="Applique activement un léger couple de direction pour garder le véhicule dans sa voie s'il commence à dériver involontairement."
+                  >Actively applies gentle steering torque to keep the vehicle
+                  within its lane if it begins to drift unintentionally.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Lane Centering Assist (LCA)" data-fr="Maintien actif dans la voie (MAV)">Lane Centering Assist (LCA)</strong>
-    <span data-en="Continuously applies steering inputs to keep the vehicle positioned in the exact center of the lane." data-fr="Applique continuellement des corrections de direction pour maintenir le véhicule exactement au centre de la voie.">Continuously applies steering inputs to keep the vehicle positioned in the exact center of the lane.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Lane Centering Assist (LCA)"
+                  data-fr="Maintien actif dans la voie (MAV)"
+                  >Lane Centering Assist (LCA)</strong
+                >
+                <span
+                  data-en="Continuously applies steering inputs to keep the vehicle positioned in the exact center of the lane."
+                  data-fr="Applique continuellement des corrections de direction pour maintenir le véhicule exactement au centre de la voie."
+                  >Continuously applies steering inputs to keep the vehicle
+                  positioned in the exact center of the lane.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Rear Cross-Traffic Collision Warning (RCCW)" data-fr="Avertissement de circulation transversale arrière (ACTA)">Rear Cross-Traffic Collision Warning (RCCW)</strong>
-    <span data-en="Warns the driver of approaching vehicles crossing behind the car while reversing out of a space." data-fr="Avertit le conducteur des véhicules s'approchant par l'arrière lors d'une marche arrière hors d'une stationnement.">Warns the driver of approaching vehicles crossing behind the car while reversing out of a space.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Rear Cross-Traffic Collision Warning (RCCW)"
+                  data-fr="Avertissement de circulation transversale arrière (ACTA)"
+                  >Rear Cross-Traffic Collision Warning (RCCW)</strong
+                >
+                <span
+                  data-en="Warns the driver of approaching vehicles crossing behind the car while reversing out of a space."
+                  data-fr="Avertit le conducteur des véhicules s'approchant par l'arrière lors d'une marche arrière hors d'une stationnement."
+                  >Warns the driver of approaching vehicles crossing behind the
+                  car while reversing out of a space.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Rear Cross-Traffic Collision-Avoidance Assist (RCCA)" data-fr="Aide à l'évitement de circulation transversale arrière (AECTA)">Rear Cross-Traffic Collision-Avoidance Assist (RCCA)</strong>
-    <span data-en="Automatically applies the brakes if a crossing vehicle or pedestrian is detected while backing up." data-fr="Freine automatiquement si un véhicule ou un piéton traversant est détecté pendant une marche arrière.">Automatically applies the brakes if a crossing vehicle or pedestrian is detected while backing up.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Rear Cross-Traffic Collision-Avoidance Assist (RCCA)"
+                  data-fr="Aide à l'évitement de circulation transversale arrière (AECTA)"
+                  >Rear Cross-Traffic Collision-Avoidance Assist (RCCA)</strong
+                >
+                <span
+                  data-en="Automatically applies the brakes if a crossing vehicle or pedestrian is detected while backing up."
+                  data-fr="Freine automatiquement si un véhicule ou un piéton traversant est détecté pendant une marche arrière."
+                  >Automatically applies the brakes if a crossing vehicle or
+                  pedestrian is detected while backing up.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Front Cross-Traffic Alert (FCTA)" data-fr="Alerte de circulation transversale avant (ACTA)">Front Cross-Traffic Alert (FCTA)</strong>
-    <span data-en="Detects vehicles approaching from the sides at blind intersections and alerts the driver when moving forward." data-fr="Détecte les véhicules approchant des côtés aux intersections aveugles et avertit le conducteur lors de l'avancement.">Detects vehicles approaching from the sides at blind intersections and alerts the driver when moving forward.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Front Cross-Traffic Alert (FCTA)"
+                  data-fr="Alerte de circulation transversale avant (ACTA)"
+                  >Front Cross-Traffic Alert (FCTA)</strong
+                >
+                <span
+                  data-en="Detects vehicles approaching from the sides at blind intersections and alerts the driver when moving forward."
+                  data-fr="Détecte les véhicules approchant des côtés aux intersections aveugles et avertit le conducteur lors de l'avancement."
+                  >Detects vehicles approaching from the sides at blind
+                  intersections and alerts the driver when moving forward.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Parking Collision-Avoidance Assist (PCA)" data-fr="Aide à l'évitement de collision lors du stationnement (AECSP)">Parking Collision-Avoidance Assist (PCA)</strong>
-    <span data-en="Detects obstacles while parking and automatically applies the brakes to prevent low-speed collisions." data-fr="Détecte les obstacles lors du stationnement et freine automatiquement pour éviter les collisions à basse vitesse.">Detects obstacles while parking and automatically applies the brakes to prevent low-speed collisions.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Parking Collision-Avoidance Assist (PCA)"
+                  data-fr="Aide à l'évitement de collision lors du stationnement (AECSP)"
+                  >Parking Collision-Avoidance Assist (PCA)</strong
+                >
+                <span
+                  data-en="Detects obstacles while parking and automatically applies the brakes to prevent low-speed collisions."
+                  data-fr="Détecte les obstacles lors du stationnement et freine automatiquement pour éviter les collisions à basse vitesse."
+                  >Detects obstacles while parking and automatically applies the
+                  brakes to prevent low-speed collisions.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Surround View Monitor (SVM)" data-fr="Moniteur de vision panoramique (MVP)">Surround View Monitor (SVM)</strong>
-    <span data-en="Uses multiple cameras to create a 360-degree, bird's-eye view of the vehicle's immediate surroundings." data-fr="Utilise plusieurs caméras pour créer une vue à 360 degrés de dessus des environs immédiats du véhicule.">Uses multiple cameras to create a 360-degree, bird's-eye view of the vehicle's immediate surroundings.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Surround View Monitor (SVM)"
+                  data-fr="Moniteur de vision panoramique (MVP)"
+                  >Surround View Monitor (SVM)</strong
+                >
+                <span
+                  data-en="Uses multiple cameras to create a 360-degree, bird's-eye view of the vehicle's immediate surroundings."
+                  data-fr="Utilise plusieurs caméras pour créer une vue à 360 degrés de dessus des environs immédiats du véhicule."
+                  >Uses multiple cameras to create a 360-degree, bird's-eye view
+                  of the vehicle's immediate surroundings.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Rear View Camera (Backup Camera)" data-fr="Caméra de recul">Rear View Camera (Backup Camera)</strong>
-    <span data-en="Displays a live video feed of the area directly behind the vehicle to assist with reversing safely." data-fr="Affiche un flux vidéo en direct de la zone directement derrière le véhicule pour faciliter une marche arrière sécuritaire.">Displays a live video feed of the area directly behind the vehicle to assist with reversing safely.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Rear View Camera (Backup Camera)"
+                  data-fr="Caméra de recul"
+                  >Rear View Camera (Backup Camera)</strong
+                >
+                <span
+                  data-en="Displays a live video feed of the area directly behind the vehicle to assist with reversing safely."
+                  data-fr="Affiche un flux vidéo en direct de la zone directement derrière le véhicule pour faciliter une marche arrière sécuritaire."
+                  >Displays a live video feed of the area directly behind the
+                  vehicle to assist with reversing safely.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Driver Attention Monitoring (DAM)" data-fr="Surveillance de l'attention du conducteur (SAC)">Driver Attention Monitoring (DAM)</strong>
-    <span data-en="Monitors driver inputs and eye movement to detect fatigue or distraction, issuing an alert to take a break." data-fr="Surveille les entrées du conducteur et ses mouvements oculaires pour détecter la fatigue ou la distraction, et lance une alerte pour faire une pause.">Monitors driver inputs and eye movement to detect fatigue or distraction, issuing an alert to take a break.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Driver Attention Monitoring (DAM)"
+                  data-fr="Surveillance de l'attention du conducteur (SAC)"
+                  >Driver Attention Monitoring (DAM)</strong
+                >
+                <span
+                  data-en="Monitors driver inputs and eye movement to detect fatigue or distraction, issuing an alert to take a break."
+                  data-fr="Surveille les entrées du conducteur et ses mouvements oculaires pour détecter la fatigue ou la distraction, et lance une alerte pour faire une pause."
+                  >Monitors driver inputs and eye movement to detect fatigue or
+                  distraction, issuing an alert to take a break.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Traffic Sign Recognition (TSR)" data-fr="Reconnaissance des panneaux routiers (RPR)">Traffic Sign Recognition (TSR)</strong>
-    <span data-en="Detects speed limit and traffic signs using cameras and displays the information on the instrument panel." data-fr="Détecte les limites de vitesse et les panneaux de signalisation à l'aide de caméras et affiche l'information sur le tableau de bord.">Detects speed limit and traffic signs using cameras and displays the information on the instrument panel.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Traffic Sign Recognition (TSR)"
+                  data-fr="Reconnaissance des panneaux routiers (RPR)"
+                  >Traffic Sign Recognition (TSR)</strong
+                >
+                <span
+                  data-en="Detects speed limit and traffic signs using cameras and displays the information on the instrument panel."
+                  data-fr="Détecte les limites de vitesse et les panneaux de signalisation à l'aide de caméras et affiche l'information sur le tableau de bord."
+                  >Detects speed limit and traffic signs using cameras and
+                  displays the information on the instrument panel.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Intelligent Speed Adaptation (ISA)" data-fr="Adaptation intelligente de la vitesse (AIV)">Intelligent Speed Adaptation (ISA)</strong>
-    <span data-en="Automatically adjusts the vehicle's speed to match the detected speed limit, preventing unintentional speeding." data-fr="Ajuste automatiquement la vitesse du véhicule pour correspondre à la limite de vitesse détectée, évitant ainsi les excès de vitesse involontaires.">Automatically adjusts the vehicle's speed to match the detected speed limit, preventing unintentional speeding.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Intelligent Speed Adaptation (ISA)"
+                  data-fr="Adaptation intelligente de la vitesse (AIV)"
+                  >Intelligent Speed Adaptation (ISA)</strong
+                >
+                <span
+                  data-en="Automatically adjusts the vehicle's speed to match the detected speed limit, preventing unintentional speeding."
+                  data-fr="Ajuste automatiquement la vitesse du véhicule pour correspondre à la limite de vitesse détectée, évitant ainsi les excès de vitesse involontaires."
+                  >Automatically adjusts the vehicle's speed to match the
+                  detected speed limit, preventing unintentional speeding.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="High Beam Assist (HBA)" data-fr="Aide aux feux de route (AFC)">High Beam Assist (HBA)</strong>
-    <span data-en="Automatically switches between high and low beam headlights depending on surrounding light and traffic." data-fr="Bascule automatiquement entre les feux de route et les feux de croisement selon l'éclairage ambiant et la circulation.">Automatically switches between high and low beam headlights depending on surrounding light and traffic.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="High Beam Assist (HBA)"
+                  data-fr="Aide aux feux de route (AFC)"
+                  >High Beam Assist (HBA)</strong
+                >
+                <span
+                  data-en="Automatically switches between high and low beam headlights depending on surrounding light and traffic."
+                  data-fr="Bascule automatiquement entre les feux de route et les feux de croisement selon l'éclairage ambiant et la circulation."
+                  >Automatically switches between high and low beam headlights
+                  depending on surrounding light and traffic.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Adaptive Headlights (Curve Lighting)" data-fr="Phares adaptatifs (Éclairage en virage)">Adaptive Headlights (Curve Lighting)</strong>
-    <span data-en="Pivots the headlights in the direction the steering wheel is turned to illuminate the road ahead around corners." data-fr="Oriente les phares dans la direction du volant pour éclairer la route à l'avant dans les virages.">Pivots the headlights in the direction the steering wheel is turned to illuminate the road ahead around corners.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Adaptive Headlights (Curve Lighting)"
+                  data-fr="Phares adaptatifs (Éclairage en virage)"
+                  >Adaptive Headlights (Curve Lighting)</strong
+                >
+                <span
+                  data-en="Pivots the headlights in the direction the steering wheel is turned to illuminate the road ahead around corners."
+                  data-fr="Oriente les phares dans la direction du volant pour éclairer la route à l'avant dans les virages."
+                  >Pivots the headlights in the direction the steering wheel is
+                  turned to illuminate the road ahead around corners.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Lane Change Assist (LCA)" data-fr="Aide au changement de voie (ACV)">Lane Change Assist (LCA)</strong>
-    <span data-en="Evaluates the speed and distance of approaching vehicles in adjacent lanes to warn if a lane change is unsafe." data-fr="Évalue la vitesse et la distance des véhicules approchant dans les voies adjacentes pour avertir si un changement de voie est risqué.">Evaluates the speed and distance of approaching vehicles in adjacent lanes to warn if a lane change is unsafe.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Lane Change Assist (LCA)"
+                  data-fr="Aide au changement de voie (ACV)"
+                  >Lane Change Assist (LCA)</strong
+                >
+                <span
+                  data-en="Evaluates the speed and distance of approaching vehicles in adjacent lanes to warn if a lane change is unsafe."
+                  data-fr="Évalue la vitesse et la distance des véhicules approchant dans les voies adjacentes pour avertir si un changement de voie est risqué."
+                  >Evaluates the speed and distance of approaching vehicles in
+                  adjacent lanes to warn if a lane change is unsafe.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Blind-Spot View Monitor (BVM)" data-fr="Moniteur d'angle mort (MAM)">Blind-Spot View Monitor (BVM)</strong>
-    <span data-en="Displays a live camera feed of the vehicle's blind spot on the dashboard when the turn signal is activated." data-fr="Affiche un flux vidéo en direct de l'angle mort du véhicule sur le tableau de bord lorsque le clignotant est activé.">Displays a live camera feed of the vehicle's blind spot on the dashboard when the turn signal is activated.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Blind-Spot View Monitor (BVM)"
+                  data-fr="Moniteur d'angle mort (MAM)"
+                  >Blind-Spot View Monitor (BVM)</strong
+                >
+                <span
+                  data-en="Displays a live camera feed of the vehicle's blind spot on the dashboard when the turn signal is activated."
+                  data-fr="Affiche un flux vidéo en direct de l'angle mort du véhicule sur le tableau de bord lorsque le clignotant est activé."
+                  >Displays a live camera feed of the vehicle's blind spot on
+                  the dashboard when the turn signal is activated.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Front and Rear Parking Sensors" data-fr="Capteurs de stationnement avant et arrière">Front and Rear Parking Sensors</strong>
-    <span data-en="Uses ultrasonic sensors in the bumpers to audibly and visually alert the driver to objects while parking." data-fr="Utilise des capteurs ultrasoniques dans les pare-chocs pour avertir le conducteur de la présence d'objets lors du stationnement.">Uses ultrasonic sensors in the bumpers to audibly and visually alert the driver to objects while parking.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Front and Rear Parking Sensors"
+                  data-fr="Capteurs de stationnement avant et arrière"
+                  >Front and Rear Parking Sensors</strong
+                >
+                <span
+                  data-en="Uses ultrasonic sensors in the bumpers to audibly and visually alert the driver to objects while parking."
+                  data-fr="Utilise des capteurs ultrasoniques dans les pare-chocs pour avertir le conducteur de la présence d'objets lors du stationnement."
+                  >Uses ultrasonic sensors in the bumpers to audibly and
+                  visually alert the driver to objects while parking.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Remote Smart Parking Assist (RSPA)" data-fr="Aide au stationnement intelligent à distance (ASID)">Remote Smart Parking Assist (RSPA)</strong>
-    <span data-en="Allows the driver to exit the vehicle and use a key fob or smartphone to remotely park or unpark the car." data-fr="Permet au conducteur de sortir du véhicule et d'utiliser la clé ou un smartphone pour garer ou dégager la voiture à distance.">Allows the driver to exit the vehicle and use a key fob or smartphone to remotely park or unpark the car.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Remote Smart Parking Assist (RSPA)"
+                  data-fr="Aide au stationnement intelligent à distance (ASID)"
+                  >Remote Smart Parking Assist (RSPA)</strong
+                >
+                <span
+                  data-en="Allows the driver to exit the vehicle and use a key fob or smartphone to remotely park or unpark the car."
+                  data-fr="Permet au conducteur de sortir du véhicule et d'utiliser la clé ou un smartphone pour garer ou dégager la voiture à distance."
+                  >Allows the driver to exit the vehicle and use a key fob or
+                  smartphone to remotely park or unpark the car.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Exit Warning System" data-fr="Système d'avertissement à l'ouverture des portes">Exit Warning System</strong>
-    <span data-en="Temporarily disables rear doors from opening and warns passengers if a vehicle or cyclist is approaching from behind." data-fr="Désactive temporairement l'ouverture des portes arrière et avertit les passagers si un véhicule ou un cycliste approche par l'arrière.">Temporarily disables rear doors from opening and warns passengers if a vehicle or cyclist is approaching from behind.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Exit Warning System"
+                  data-fr="Système d'avertissement à l'ouverture des portes"
+                  >Exit Warning System</strong
+                >
+                <span
+                  data-en="Temporarily disables rear doors from opening and warns passengers if a vehicle or cyclist is approaching from behind."
+                  data-fr="Désactive temporairement l'ouverture des portes arrière et avertit les passagers si un véhicule ou un cycliste approche par l'arrière."
+                  >Temporarily disables rear doors from opening and warns
+                  passengers if a vehicle or cyclist is approaching from
+                  behind.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Night Vision System" data-fr="Système de vision nocturne">Night Vision System</strong>
-    <span data-en="Uses infrared cameras to detect pedestrians or animals beyond the range of the headlights at night." data-fr="Utilise des caméras infrarouges pour détecter les piétons ou les animaux au-delà de la portée des phares la nuit.">Uses infrared cameras to detect pedestrians or animals beyond the range of the headlights at night.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Night Vision System"
+                  data-fr="Système de vision nocturne"
+                  >Night Vision System</strong
+                >
+                <span
+                  data-en="Uses infrared cameras to detect pedestrians or animals beyond the range of the headlights at night."
+                  data-fr="Utilise des caméras infrarouges pour détecter les piétons ou les animaux au-delà de la portée des phares la nuit."
+                  >Uses infrared cameras to detect pedestrians or animals beyond
+                  the range of the headlights at night.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Evasive Steering Assist (ESA)" data-fr="Aide à la direction évasive (ADE)">Evasive Steering Assist (ESA)</strong>
-    <span data-en="Provides steering support to help the driver steer around an obstacle when braking alone cannot prevent a collision." data-fr="Fournit une assistance à la direction pour aider le conducteur à contourner un obstacle lorsque le freinage seul ne suffit pas.">Provides steering support to help the driver steer around an obstacle when braking alone cannot prevent a collision.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Evasive Steering Assist (ESA)"
+                  data-fr="Aide à la direction évasive (ADE)"
+                  >Evasive Steering Assist (ESA)</strong
+                >
+                <span
+                  data-en="Provides steering support to help the driver steer around an obstacle when braking alone cannot prevent a collision."
+                  data-fr="Fournit une assistance à la direction pour aider le conducteur à contourner un obstacle lorsque le freinage seul ne suffit pas."
+                  >Provides steering support to help the driver steer around an
+                  obstacle when braking alone cannot prevent a collision.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Reverse Automatic Braking (RAB)" data-fr="Freinage automatique en marche arrière (FAR)">Reverse Automatic Braking (RAB)</strong>
-    <span data-en="Automatically applies the brakes if an obstacle is detected directly behind the vehicle while reversing." data-fr="Applique automatiquement les freins si un obstacle est détecté directement derrière le véhicule lors d'une marche arrière.">Automatically applies the brakes if an obstacle is detected directly behind the vehicle while reversing.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Reverse Automatic Braking (RAB)"
+                  data-fr="Freinage automatique en marche arrière (FAR)"
+                  >Reverse Automatic Braking (RAB)</strong
+                >
+                <span
+                  data-en="Automatically applies the brakes if an obstacle is detected directly behind the vehicle while reversing."
+                  data-fr="Applique automatiquement les freins si un obstacle est détecté directement derrière le véhicule lors d'une marche arrière."
+                  >Automatically applies the brakes if an obstacle is detected
+                  directly behind the vehicle while reversing.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Traffic Jam Assist (TJA)" data-fr="Aide dans les embouteillages (AE)">Traffic Jam Assist (TJA)</strong>
-    <span data-en="Combines adaptive cruise control and lane centering at low speeds to reduce driver fatigue in heavy traffic." data-fr="Combine le régulateur de vitesse adaptatif et le centrage de voie à basse vitesse pour réduire la fatigue dans les bouchons.">Combines adaptive cruise control and lane centering at low speeds to reduce driver fatigue in heavy traffic.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Traffic Jam Assist (TJA)"
+                  data-fr="Aide dans les embouteillages (AE)"
+                  >Traffic Jam Assist (TJA)</strong
+                >
+                <span
+                  data-en="Combines adaptive cruise control and lane centering at low speeds to reduce driver fatigue in heavy traffic."
+                  data-fr="Combine le régulateur de vitesse adaptatif et le centrage de voie à basse vitesse pour réduire la fatigue dans les bouchons."
+                  >Combines adaptive cruise control and lane centering at low
+                  speeds to reduce driver fatigue in heavy traffic.</span
+                >
+              </div>
+            </div>
 
-<div class="feature-item">
-  <div class="text">
-    <strong data-en="Highway Driving Assist (HDA)" data-fr="Aide à la conduite sur autoroute (ACA)">Highway Driving Assist (HDA)</strong>
-    <span data-en="Semi-autonomous system for freeways that maintains speed, distance, and lane position while allowing hands-on overtaking." data-fr="Système semi-autonome pour les autoroutes qui maintient la vitesse, la distance et la position dans la voie tout en permettant les dépassements mains sur le volant.">Semi-autonomous system for freeways that maintains speed, distance, and lane position while allowing hands-on overtaking.</span>
-  </div>
-</div>
+            <div class="feature-item">
+              <div class="text">
+                <strong
+                  data-en="Highway Driving Assist (HDA)"
+                  data-fr="Aide à la conduite sur autoroute (ACA)"
+                  >Highway Driving Assist (HDA)</strong
+                >
+                <span
+                  data-en="Semi-autonomous system for freeways that maintains speed, distance, and lane position while allowing hands-on overtaking."
+                  data-fr="Système semi-autonome pour les autoroutes qui maintient la vitesse, la distance et la position dans la voie tout en permettant les dépassements mains sur le volant."
+                  >Semi-autonomous system for freeways that maintains speed,
+                  distance, and lane position while allowing hands-on
+                  overtaking.</span
+                >
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1942,19 +2206,27 @@
             <div class="trigger-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/1-1-400w.webp 400w, assets/img/768w/1-1-768w.webp 768w, assets/img/1024w/1-1-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/1-1-400w.webp    400w,
+                      assets/img/768w/1-1-768w.webp    768w,
+                      assets/img/1024w/1-1-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/1-1-768w.jpg" 
-                    srcset="assets/img/400w/1-1-400w.jpg 400w, assets/img/768w/1-1-768w.jpg 768w, assets/img/1024w/1-1-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/1-1-768w.jpg"
+                    srcset="
+                      assets/img/400w/1-1-400w.jpg    400w,
+                      assets/img/768w/1-1-768w.jpg    768w,
+                      assets/img/1024w/1-1-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Windshield Replacement"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -1992,19 +2264,27 @@
             <div class="trigger-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/1-2-400w.webp 400w, assets/img/768w/1-2-768w.webp 768w, assets/img/1024w/1-2-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/1-2-400w.webp    400w,
+                      assets/img/768w/1-2-768w.webp    768w,
+                      assets/img/1024w/1-2-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/1-2-768w.jpg" 
-                    srcset="assets/img/400w/1-2-400w.jpg 400w, assets/img/768w/1-2-768w.jpg 768w, assets/img/1024w/1-2-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/1-2-768w.jpg"
+                    srcset="
+                      assets/img/400w/1-2-400w.jpg    400w,
+                      assets/img/768w/1-2-768w.jpg    768w,
+                      assets/img/1024w/1-2-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Collision Repair"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2042,19 +2322,27 @@
             <div class="trigger-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/1-3-400w.webp 400w, assets/img/768w/1-3-768w.webp 768w, assets/img/1024w/1-3-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/1-3-400w.webp    400w,
+                      assets/img/768w/1-3-768w.webp    768w,
+                      assets/img/1024w/1-3-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/1-3-768w.jpg" 
-                    srcset="assets/img/400w/1-3-400w.jpg 400w, assets/img/768w/1-3-768w.jpg 768w, assets/img/1024w/1-3-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/1-3-768w.jpg"
+                    srcset="
+                      assets/img/400w/1-3-400w.jpg    400w,
+                      assets/img/768w/1-3-768w.jpg    768w,
+                      assets/img/1024w/1-3-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Suspension Work"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2086,19 +2374,27 @@
             <div class="trigger-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/1-4-400w.webp 400w, assets/img/768w/1-4-768w.webp 768w, assets/img/1024w/1-4-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/1-4-400w.webp    400w,
+                      assets/img/768w/1-4-768w.webp    768w,
+                      assets/img/1024w/1-4-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/1-4-768w.jpg" 
-                    srcset="assets/img/400w/1-4-400w.jpg 400w, assets/img/768w/1-4-768w.jpg 768w, assets/img/1024w/1-4-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/1-4-768w.jpg"
+                    srcset="
+                      assets/img/400w/1-4-400w.jpg    400w,
+                      assets/img/768w/1-4-768w.jpg    768w,
+                      assets/img/1024w/1-4-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Sensor Replacement"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2136,19 +2432,27 @@
             <div class="trigger-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/1-5-400w.webp 400w, assets/img/768w/1-5-768w.webp 768w, assets/img/1024w/1-5-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/1-5-400w.webp    400w,
+                      assets/img/768w/1-5-768w.webp    768w,
+                      assets/img/1024w/1-5-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/1-5-768w.jpg" 
-                    srcset="assets/img/400w/1-5-400w.jpg 400w, assets/img/768w/1-5-768w.jpg 768w, assets/img/1024w/1-5-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/1-5-768w.jpg"
+                    srcset="
+                      assets/img/400w/1-5-400w.jpg    400w,
+                      assets/img/768w/1-5-768w.jpg    768w,
+                      assets/img/1024w/1-5-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Bumper Repair"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2180,19 +2484,27 @@
             <div class="trigger-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/1-6-400w.webp 400w, assets/img/768w/1-6-768w.webp 768w, assets/img/1024w/1-6-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/1-6-400w.webp    400w,
+                      assets/img/768w/1-6-768w.webp    768w,
+                      assets/img/1024w/1-6-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/1-6-768w.jpg" 
-                    srcset="assets/img/400w/1-6-400w.jpg 400w, assets/img/768w/1-6-768w.jpg 768w, assets/img/1024w/1-6-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/1-6-768w.jpg"
+                    srcset="
+                      assets/img/400w/1-6-400w.jpg    400w,
+                      assets/img/768w/1-6-768w.jpg    768w,
+                      assets/img/1024w/1-6-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Headlight Replacement"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span class="card-tag" data-en="Integrated" data-fr="Intégré"
@@ -2271,19 +2583,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/2-1-400w.webp 400w, assets/img/768w/2-1-768w.webp 768w, assets/img/1024w/2-1-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/2-1-400w.webp    400w,
+                      assets/img/768w/2-1-768w.webp    768w,
+                      assets/img/1024w/2-1-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/2-1-768w.jpg" 
-                    srcset="assets/img/400w/2-1-400w.jpg 400w, assets/img/768w/2-1-768w.jpg 768w, assets/img/1024w/2-1-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/2-1-768w.jpg"
+                    srcset="
+                      assets/img/400w/2-1-400w.jpg    400w,
+                      assets/img/768w/2-1-768w.jpg    768w,
+                      assets/img/1024w/2-1-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Static Calibration"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2319,19 +2639,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/2-2-400w.webp 400w, assets/img/768w/2-2-768w.webp 768w, assets/img/1024w/2-2-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/2-2-400w.webp    400w,
+                      assets/img/768w/2-2-768w.webp    768w,
+                      assets/img/1024w/2-2-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/2-2-768w.jpg" 
-                    srcset="assets/img/400w/2-2-400w.jpg 400w, assets/img/768w/2-2-768w.jpg 768w, assets/img/1024w/2-2-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/2-2-768w.jpg"
+                    srcset="
+                      assets/img/400w/2-2-400w.jpg    400w,
+                      assets/img/768w/2-2-768w.jpg    768w,
+                      assets/img/1024w/2-2-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Dynamic Calibration"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span class="card-tag" data-en="On-Road" data-fr="Sur route"
@@ -2367,19 +2695,27 @@
             <div class="glass-card featured">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/2-3-400w.webp 400w, assets/img/768w/2-3-768w.webp 768w, assets/img/1024w/2-3-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/2-3-400w.webp    400w,
+                      assets/img/768w/2-3-768w.webp    768w,
+                      assets/img/1024w/2-3-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/2-3-768w.jpg" 
-                    srcset="assets/img/400w/2-3-400w.jpg 400w, assets/img/768w/2-3-768w.jpg 768w, assets/img/1024w/2-3-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/2-3-768w.jpg"
+                    srcset="
+                      assets/img/400w/2-3-400w.jpg    400w,
+                      assets/img/768w/2-3-768w.jpg    768w,
+                      assets/img/1024w/2-3-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Dual Calibration"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2415,19 +2751,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/2-4-400w.webp 400w, assets/img/768w/2-4-768w.webp 768w, assets/img/1024w/2-4-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/2-4-400w.webp    400w,
+                      assets/img/768w/2-4-768w.webp    768w,
+                      assets/img/1024w/2-4-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/2-4-768w.jpg" 
-                    srcset="assets/img/400w/2-4-400w.jpg 400w, assets/img/768w/2-4-768w.jpg 768w, assets/img/1024w/2-4-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/2-4-768w.jpg"
+                    srcset="
+                      assets/img/400w/2-4-400w.jpg    400w,
+                      assets/img/768w/2-4-768w.jpg    768w,
+                      assets/img/1024w/2-4-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Pre & Post Scan"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
                 <div class="card-tags">
                   <span
@@ -2479,19 +2823,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/3-1-400w.webp 400w, assets/img/768w/3-1-768w.webp 768w, assets/img/1024w/3-1-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/3-1-400w.webp    400w,
+                      assets/img/768w/3-1-768w.webp    768w,
+                      assets/img/1024w/3-1-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/3-1-768w.jpg" 
-                    srcset="assets/img/400w/3-1-400w.jpg 400w, assets/img/768w/3-1-768w.jpg 768w, assets/img/1024w/3-1-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/3-1-768w.jpg"
+                    srcset="
+                      assets/img/400w/3-1-400w.jpg    400w,
+                      assets/img/768w/3-1-768w.jpg    768w,
+                      assets/img/1024w/3-1-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="We Come to You"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -2515,19 +2867,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/3-2-400w.webp 400w, assets/img/768w/3-2-768w.webp 768w, assets/img/1024w/3-2-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/3-2-400w.webp    400w,
+                      assets/img/768w/3-2-768w.webp    768w,
+                      assets/img/1024w/3-2-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/3-2-768w.jpg" 
-                    srcset="assets/img/400w/3-2-400w.jpg 400w, assets/img/768w/3-2-768w.jpg 768w, assets/img/1024w/3-2-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/3-2-768w.jpg"
+                    srcset="
+                      assets/img/400w/3-2-400w.jpg    400w,
+                      assets/img/768w/3-2-768w.jpg    768w,
+                      assets/img/1024w/3-2-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Lower Cost"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -2551,19 +2911,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/3-3-400w.webp 400w, assets/img/768w/3-3-768w.webp 768w, assets/img/1024w/3-3-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/3-3-400w.webp    400w,
+                      assets/img/768w/3-3-768w.webp    768w,
+                      assets/img/1024w/3-3-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/3-3-768w.jpg" 
-                    srcset="assets/img/400w/3-3-400w.jpg 400w, assets/img/768w/3-3-768w.jpg 768w, assets/img/1024w/3-3-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/3-3-768w.jpg"
+                    srcset="
+                      assets/img/400w/3-3-400w.jpg    400w,
+                      assets/img/768w/3-3-768w.jpg    768w,
+                      assets/img/1024w/3-3-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Shops & Fleets"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -2911,19 +3279,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/4-1-400w.webp 400w, assets/img/768w/4-1-768w.webp 768w, assets/img/1024w/4-1-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/4-1-400w.webp    400w,
+                      assets/img/768w/4-1-768w.webp    768w,
+                      assets/img/1024w/4-1-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/4-1-768w.jpg" 
-                    srcset="assets/img/400w/4-1-400w.jpg 400w, assets/img/768w/4-1-768w.jpg 768w, assets/img/1024w/4-1-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/4-1-768w.jpg"
+                    srcset="
+                      assets/img/400w/4-1-400w.jpg    400w,
+                      assets/img/768w/4-1-768w.jpg    768w,
+                      assets/img/1024w/4-1-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Vancouver & North Shore"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -2942,26 +3318,34 @@
                 Vancouver"
                 >
                   Vancouver, Burnaby, New Westminster, North Vancouver, West
-                Vancouver
+                  Vancouver
                 </p>
               </div>
             </div>
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/4-2-400w.webp 400w, assets/img/768w/4-2-768w.webp 768w, assets/img/1024w/4-2-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/4-2-400w.webp    400w,
+                      assets/img/768w/4-2-768w.webp    768w,
+                      assets/img/1024w/4-2-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/4-2-768w.jpg" 
-                    srcset="assets/img/400w/4-2-400w.jpg 400w, assets/img/768w/4-2-768w.jpg 768w, assets/img/1024w/4-2-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/4-2-768w.jpg"
+                    srcset="
+                      assets/img/400w/4-2-400w.jpg    400w,
+                      assets/img/768w/4-2-768w.jpg    768w,
+                      assets/img/1024w/4-2-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Tri-Cities & Maple Ridge"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -2977,26 +3361,35 @@
                   data-en="Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows"
                   data-fr="Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows"
                 >
-                  Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt Meadows
+                  Coquitlam, Port Coquitlam, Port Moody, Maple Ridge, Pitt
+                  Meadows
                 </p>
               </div>
             </div>
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/4-3-400w.webp 400w, assets/img/768w/4-3-768w.webp 768w, assets/img/1024w/4-3-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/4-3-400w.webp    400w,
+                      assets/img/768w/4-3-768w.webp    768w,
+                      assets/img/1024w/4-3-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/4-3-768w.jpg" 
-                    srcset="assets/img/400w/4-3-400w.jpg 400w, assets/img/768w/4-3-768w.jpg 768w, assets/img/1024w/4-3-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/4-3-768w.jpg"
+                    srcset="
+                      assets/img/400w/4-3-400w.jpg    400w,
+                      assets/img/768w/4-3-768w.jpg    768w,
+                      assets/img/1024w/4-3-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Surrey & Langley"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -3019,19 +3412,27 @@
             <div class="glass-card">
               <div class="card-media">
                 <picture>
-                  <source 
-                    type="image/webp" 
-                    srcset="assets/img/400w/4-4-400w.webp 400w, assets/img/768w/4-4-768w.webp 768w, assets/img/1024w/4-4-1024w.webp 1024w" 
+                  <source
+                    type="image/webp"
+                    srcset="
+                      assets/img/400w/4-4-400w.webp    400w,
+                      assets/img/768w/4-4-768w.webp    768w,
+                      assets/img/1024w/4-4-1024w.webp 1024w
+                    "
                     sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                  >
-                  <img 
-                    src="assets/img/768w/4-4-768w.jpg" 
-                    srcset="assets/img/400w/4-4-400w.jpg 400w, assets/img/768w/4-4-768w.jpg 768w, assets/img/1024w/4-4-1024w.jpg 1024w" 
-                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                  />
+                  <img
+                    src="assets/img/768w/4-4-768w.jpg"
+                    srcset="
+                      assets/img/400w/4-4-400w.jpg    400w,
+                      assets/img/768w/4-4-768w.jpg    768w,
+                      assets/img/1024w/4-4-1024w.jpg 1024w
+                    "
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                     alt="Delta & Richmond"
                     loading="lazy"
                     decoding="async"
-                  >
+                  />
                 </picture>
               </div>
               <div class="card-overlay">
@@ -3076,8 +3477,8 @@
                 data-en="We frequently travel to Abbotsford, Mission, and Squamish. <strong>Call us to check availability.</strong>"
                 data-fr="Nous nous déplaçons à Abbotsford, Mission et Squamish. <strong>Appelez-nous pour vérifier la disponibilité.</strong>"
               >
-                We frequently travel to Abbotsford, Mission, and Squamish. <strong>Call
-                us to check availability.</strong>
+                We frequently travel to Abbotsford, Mission, and Squamish.
+                <strong>Call us to check availability.</strong>
               </p>
             </div>
           </div>
@@ -3428,7 +3829,8 @@
             data-en="Fill out the form and we'll confirm your appointment within <strong>2 hours</strong>."
             data-fr="Remplissez le formulaire et nous confirmerons votre rendez-vous sous <strong>2 heures</strong>."
           >
-            Fill out the form and we'll confirm your appointment within <strong>2 hours</strong>.
+            Fill out the form and we'll confirm your appointment within
+            <strong>2 hours</strong>.
           </p>
           <div class="form-grid reveal-on-scroll" data-delay="300">
             <div class="form-info">
