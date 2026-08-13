@@ -132,15 +132,6 @@
         -webkit-text-fill-color: transparent;
       }
 
-      @keyframes aurora-spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
       .reveal-on-scroll {
         opacity: 0;
         transform: translateY(30px);
@@ -359,41 +350,25 @@
         inset: 0;
         z-index: 0;
         pointer-events: none;
+        overflow: hidden; /* Ensures image doesn't spill out */
       }
-      .aurora-blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(var(--blur-aurora));
-        opacity: 0.1;
-      }
-      .aurora-blob-1 {
-        width: 50vw;
-        height: 50vw;
-        top: 10%;
-        left: 5%;
-        background: var(--gradient-aurora-1);
-        animation: aurora-spin 12s linear infinite;
-      }
-      .aurora-blob-2 {
-        width: 40vw;
-        height: 40vw;
-        top: 60%;
-        right: -5%;
-        background: var(--gradient-aurora-2);
-        animation: aurora-spin 15s linear infinite;
-      }
-      .aurora-blob-3 {
-        width: 35vw;
-        height: 35vw;
-        bottom: -10%;
-        left: 30%;
-        background: var(--gradient-aurora-3);
-        animation: aurora-spin 18s linear infinite;
+      .hero-bg-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Acts like background-size: cover */
+        object-position: center;
       }
       .hero-overlay {
         position: absolute;
         inset: 0;
-        background: linear-gradient(to top, #f8fafc, transparent, #f8fafc);
+        /* Added a subtle dark gradient to ensure text readability over the photo */
+        background: linear-gradient(
+          to top, 
+          rgba(248, 250, 252, 0.9) 0%, 
+          rgba(248, 250, 252, 0.4) 30%, 
+          rgba(248, 250, 252, 0.4) 70%, 
+          rgba(248, 250, 252, 0.9) 100%
+        );
         z-index: 1;
       }
       .hero-content {
@@ -1560,9 +1535,14 @@
       <!-- HERO -->
       <section class="hero" id="hero">
         <div class="aurora-container">
-          <div class="aurora-blob aurora-blob-1"></div>
-          <div class="aurora-blob aurora-blob-2"></div>
-          <div class="aurora-blob aurora-blob-3"></div>
+          <picture>
+            <source 
+              type="image/webp" 
+              srcset="assets/img/800w/hero-bg-800w.webp 800w, assets/img/1200w/hero-bg-1200w.webp 1200w, assets/img/2000w/hero-bg-2000w.webp 2000w" 
+              sizes="100vw"
+            >
+            <img src="assets/img/1200w/hero-bg-1200w.jpg" alt="" class="hero-bg-img" />
+          </picture>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
@@ -1871,11 +1851,19 @@
           <div class="trigger-grid reveal-on-scroll" data-delay="300">
             <div class="trigger-card">
               <div class="card-media">
-                <!-- Replace with your own image -->
-                <img
-                  src="assets/img/11.jpg"
-                  alt="Windshield Replacement"
-                />
+                <picture>
+                  <source 
+                    type="image/webp" 
+                    srcset="assets/img/400w/1-1-400w.webp 400w, assets/img/400w/1-1-768w.webp 768w, assets/img/400w/1-1-1024w.webp 1024w" 
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                  >
+                  <img 
+                    src="assets/img/768w/1-1-768w.jpg" 
+                    srcset="assets/img/400w/1-1-400w.jpg 400w, assets/img/768w/1-1-768w.jpg 768w, assets/img/1024w/1-1-1024w.jpg 1024w" 
+                    sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw" 
+                    alt="Windshield Replacement"
+                  >
+                </picture>
                 <div class="card-tags">
                   <span
                     class="card-tag favorite"
