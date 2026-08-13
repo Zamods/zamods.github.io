@@ -361,13 +361,12 @@
       .hero-overlay {
         position: absolute;
         inset: 0;
-        /* Added a subtle dark gradient to ensure text readability over the photo */
-        background: linear-gradient(
-          to top, 
-          rgba(248, 250, 252, 0.9) 0%, 
-          rgba(248, 250, 252, 0.4) 30%, 
-          rgba(248, 250, 252, 0.4) 70%, 
-          rgba(248, 250, 252, 0.9) 100%
+        /* Creates a soft white glow in the middle, fading to a light gray at edges */
+        background: radial-gradient(
+          ellipse at center, 
+          rgba(255, 255, 255, 0.9) 0%, 
+          rgba(255, 255, 255, 0.7) 40%, 
+          rgba(241, 245, 249, 0.95) 100%
         );
         z-index: 1;
       }
