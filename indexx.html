@@ -408,6 +408,7 @@
 
       /* BOLD CTAS */
       .btn-primary {
+        font-family: var(--font-primary);
         font-size: 16px;
         font-weight: 700;
         background: var(--accent-500);
@@ -426,6 +427,7 @@
         background: var(--accent-400);
       }
       .btn-secondary {
+        font-family: var(--font-primary);
         font-size: 16px;
         font-weight: 700;
         background: rgba(15, 23, 42, 0.05);
@@ -799,31 +801,34 @@
       }
       .pricing-badge {
         position: absolute;
-        top: -12px;
+        top: -14px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 10px;
+        font-size: 12px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.1em;
         background: var(--accent-500);
         color: #ffffff;
-        padding: 6px 16px;
+        padding: 6px 14px;
         border-radius: var(--radius-full);
         text-align: center;
+        font-family: var(--font-display);
       }
       .pricing-best {
-        font-size: 12px;
+        font-size: 15px;
         color: var(--text-tertiary);
         text-transform: uppercase;
         letter-spacing: 0.05em;
         margin-bottom: 8px;
         text-align: center;
+        font-weight: 600;
+        font-family: var(--font-display);
       } /* Text aligned in middle */
       .pricing-name {
         font-family: var(--font-display);
         font-weight: 300;
-        font-size: 30px;
+        font-size: 36px;
         color: var(--text-heading);
         letter-spacing: -0.025em;
         margin-bottom: 16px;
@@ -848,11 +853,12 @@
         font-weight: 400;
       }
       .pricing-note {
-        font-size: 12px;
+        font-size: 16px;
         color: var(--text-tertiary);
         margin-top: 8px;
         line-height: 1.5;
         text-align: center;
+        font-family: var(--font-primary);
       }
       .pricing-features {
         margin-top: 24px;
@@ -861,7 +867,7 @@
         gap: 12px;
       }
       .pricing-features li {
-        font-size: 13px;
+        font-size: 16px;
         color: var(--text-secondary);
         display: flex;
         align-items: flex-start;
@@ -2525,31 +2531,14 @@
             <div class="pricing-card">
               <p
                 class="pricing-best"
-                data-en="Best for: Individual owners"
-                data-fr="Idéal pour : Propriétaires individuels"
+                data-en="Individual owners"
+                data-fr="Propriétaires individuels"
               >
-                Best for: Individual owners
+                Individual owners
               </p>
               <h3 class="pricing-name" data-en="Essential" data-fr="Essentiel">
                 Essential
               </h3>
-              <p class="pricing-price">
-                <span class="currency">$</span>299
-                <span
-                  class="period"
-                  data-en="CAD starting"
-                  data-fr="CAD à partir de"
-                  >CAD starting</span
-                >
-              </p>
-              <p
-                class="pricing-note"
-                data-en="Final price depends on vehicle make, model, and calibration type required."
-                data-fr="Le prix final dépend de la marque, du modèle et du type de calibration requis."
-              >
-                Final price depends on vehicle make, model, and calibration type
-                required.
-              </p>
               <ul class="pricing-features">
                 <li>
                   <span class="check">✓</span>
@@ -2606,6 +2595,14 @@
                   Book Essential
                 </button>
               </div>
+              <p
+                class="pricing-note"
+                data-en="Final price depends on vehicle make, model, and calibration type required."
+                data-fr="Le prix final dépend de la marque, du modèle et du type de calibration requis."
+              >
+                Final price depends on vehicle make, model, and calibration type
+                required.
+              </p>
             </div>
 
             <!-- Complete (Featured) -->
@@ -2619,31 +2616,14 @@
               </div>
               <p
                 class="pricing-best"
-                data-en="Best for: Most vehicles"
-                data-fr="Idéal pour : La plupart des véhicules"
+                data-en="Most vehicles"
+                data-fr="La plupart des véhicules"
               >
-                Best for: Most vehicles
+                Most vehicles
               </p>
               <h3 class="pricing-name" data-en="Complete" data-fr="Complet">
                 Complete
               </h3>
-              <p class="pricing-price">
-                <span class="currency">$</span>499
-                <span
-                  class="period"
-                  data-en="CAD starting"
-                  data-fr="CAD à partir de"
-                  >CAD starting</span
-                >
-              </p>
-              <p
-                class="pricing-note"
-                data-en="Final price depends on vehicle make, model, and calibration type required."
-                data-fr="Le prix final dépend de la marque, du modèle et du type de calibration requis."
-              >
-                Final price depends on vehicle make, model, and calibration type
-                required.
-              </p>
               <ul class="pricing-features">
                 <li>
                   <span class="check">✓</span>
@@ -2708,16 +2688,24 @@
                   Book Complete
                 </button>
               </div>
+              <p
+                class="pricing-note"
+                data-en="Final price depends on vehicle make, model, and calibration type required."
+                data-fr="Le prix final dépend de la marque, du modèle et du type de calibration requis."
+              >
+                Final price depends on vehicle make, model, and calibration type
+                required.
+              </p>
             </div>
 
             <!-- Fleet/Shop -->
             <div class="pricing-card">
               <p
                 class="pricing-best"
-                data-en="Best for: Body shops & fleets"
-                data-fr="Idéal pour : Ateliers & flottes"
+                data-en="Body shops & fleets"
+                data-fr="Ateliers & flottes"
               >
-                Best for: Body shops & fleets
+                Body shops & fleets
               </p>
               <h3
                 class="pricing-name"
@@ -2726,17 +2714,6 @@
               >
                 Fleet & Shop
               </h3>
-              <p class="pricing-price">
-                <span class="currency">$</span
-                ><span data-en="Custom" data-fr="Sur mesure">Custom</span>
-              </p>
-              <p
-                class="pricing-note"
-                data-en="Volume pricing and monthly billing for partners."
-                data-fr="Tarifs de volume et facturation mensuelle pour les partenaires."
-              >
-                Volume pricing and monthly billing for partners.
-              </p>
               <ul class="pricing-features">
                 <li>
                   <span class="check">✓</span>
@@ -2799,6 +2776,13 @@
                   Contact for Partner Pricing
                 </button>
               </div>
+              <p
+                class="pricing-note"
+                data-en="Volume pricing and monthly billing for partners."
+                data-fr="Tarifs de volume et facturation mensuelle pour les partenaires."
+              >
+                Volume pricing and monthly billing for partners.
+              </p>
             </div>
           </div>
         </div>
