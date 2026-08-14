@@ -205,7 +205,7 @@
       .navbar-links {
         display: flex;
         align-items: center;
-        gap: 32px;
+        gap: 26px;
       }
       .navbar-links a {
         font-size: 14px;
@@ -1359,6 +1359,16 @@
         }
         .trigger-grid {
           grid-template-columns: repeat(2, 1fr);
+        }
+        .navbar-logo picture,
+        .navbar-logo img {
+          display: block;
+          height: 26px; /* Adjust based on your navbar height */
+          width: auto;
+          max-width: 100%;
+        }
+        .navbar-links {
+          gap: 20px;
         }
       }
       @media (max-width: 767px) {
