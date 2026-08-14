@@ -221,9 +221,9 @@
   backdrop-filter: blur(var(--blur-nav));
   -webkit-backdrop-filter: blur(var(--blur-nav));
   border: 1px solid transparent;
-  padding: 6px 14px;
+  padding: 6px 12px;
   border-radius: var(--radius-full);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
@@ -233,22 +233,20 @@
   box-shadow: var(--shadow-soft);
 }
 .lang-btn svg {
-  width: 12px;
-  height: 12px;
+  width: 22px;
+  height: 14px;
   stroke: currentColor;
   fill: none;
   stroke-width: 2;
 }
 
-/* ADDED: Override icon-wrap for the main toggle button */
 .lang-btn .icon-wrap {
-  width: auto;
-  height: auto;
+  width: 22px;
+  height: 14px;
   min-width: 0;
   background: transparent;
   display: flex;
   align-items: center;
-  border-radius: 2px;
   overflow: hidden;
 }
 
@@ -286,16 +284,15 @@
   transition: background 0.2s ease, color 0.2s ease; /* ADDED: smooth hover */
 }
 .lang-menu button:hover {
-  background: rgba(37, 99, 235, 0.05);
+  background: var(--accent-300);
   color: var(--accent-500);
 }
 
 .lang-menu .icon-wrap {
-  width: 20px;
-  height: 20px;
-  min-width: 20px;
+  width: 22px;
+  height: 14;
+  min-width: 22px;
   background: transparent;
-  border-radius: 3px;
   overflow: hidden;
   display: flex;
   align-items: center;
