@@ -636,8 +636,8 @@
         align-items: flex-start;
         gap: 12px;
         background: var(--bg-section-alt);
-        border-radius: 20px;
-        padding: 20px;
+        border-radius: var(--radius-lg);
+        padding: 16px;
       }
       .feature-item .icon-wrap {
         width: 32px;
@@ -966,7 +966,11 @@
       .trust-item {
         display: flex;
         align-items: flex-start;
-        gap: 16px;
+        gap: 12px;
+        background: var(--bg-section-alt);
+        border-radius: var(--radius-lg);
+        padding: 16px;
+        min-height: 90px;
       }
       .trust-item .icon-wrap {
         width: 40px;
@@ -994,7 +998,7 @@
         margin-bottom: 4px;
       }
       .trust-item p {
-        font-size: 13px;
+        font-size: 14px;
         color: var(--text-secondary);
         line-height: 1.5;
       }
@@ -3119,141 +3123,81 @@
           >
             Why <strong>Trust</strong> Vision Core Automotive
           </h2>
-          <div class="trust-grid reveal-on-scroll" data-delay="200">
-            <div class="trust-item">
-              <div class="icon-wrap">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </div>
-              <div>
-                <h4
-                  data-en="OEM-Compliant Procedures"
-                  data-fr="Procédures conformes OEM"
-                >
-                  OEM-Compliant Procedures
-                </h4>
-                <p
-                  data-en="We follow exact manufacturer specs for every vehicle, every time."
-                  data-fr="Nous suivons les spécifications exactes du fabricant pour chaque véhicule."
-                >
-                  We follow exact manufacturer specs for every vehicle, every
-                  time.
-                </p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="icon-wrap">
-                <svg viewBox="0 0 24 24">
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-              </div>
-              <div>
-                <h4
-                  data-en="Certified Technicians"
-                  data-fr="Techniciens certifiés"
-                >
-                  Certified Technicians
-                </h4>
-                <p
-                  data-en="Fully trained and insured ADAS specialists."
-                  data-fr="Spécialistes ADAS entièrement formés et assurés."
-                >
-                  Fully trained and insured ADAS specialists.
-                </p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="icon-wrap">
-                <svg viewBox="0 0 24 24">
-                  <path d="M2 12h20M12 2v20" />
-                  <circle cx="12" cy="12" r="10" />
-                </svg>
-              </div>
-              <div>
-                <h4
-                  data-en="All Makes & Models"
-                  data-fr="Toutes marques & modèles"
-                >
-                  All Makes & Models
-                </h4>
-                <p
-                  data-en="From domestic to imports, we service them all."
-                  data-fr="Des véhicules nationaux aux importations, nous les entretenons tous."
-                >
-                  From domestic to imports, we service them all.
-                </p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="icon-wrap">
-                <svg viewBox="0 0 24 24">
-                  <path
-                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                  />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <polyline points="10 9 9 9 8 9" />
-                </svg>
-              </div>
-              <div>
-                <h4
-                  data-en="Insurance Documentation"
-                  data-fr="Documentation assurance"
-                >
-                  Insurance Documentation
-                </h4>
-                <p
-                  data-en="Digital reports provided for claims and records."
-                  data-fr="Rapports numériques fournis pour les sinistres et les dossiers."
-                >
-                  Digital reports provided for claims and records.
-                </p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="icon-wrap">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" />
-                  <polyline points="12 6 12 12 16 14" />
-                </svg>
-              </div>
-              <div>
-                <h4
-                  data-en="Available 7 Days/Week"
-                  data-fr="Disponible 7 j/sem"
-                >
-                  Available 7 Days/Week
-                </h4>
-                <p
-                  data-en="Flexible scheduling including weekends."
-                  data-fr="Horaires flexibles, y compris les week-ends."
-                >
-                  Flexible scheduling including weekends.
-                </p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <div class="icon-wrap">
-                <svg viewBox="0 0 24 24">
-                  <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3" />
-                </svg>
-              </div>
-              <div>
-                <h4 data-en="Mobile Convenience" data-fr="Commodité mobile">
-                  Mobile Convenience
-                </h4>
-                <p
-                  data-en="No dealership wait, we come to your home or shop."
-                  data-fr="Pas d'attente chez le concessionnaire, nous venons à vous."
-                >
-                  No dealership wait, we come to your home or shop.
-                </p>
-              </div>
-            </div>
-          </div>
+          <div class="trust-grid reveal-on-scroll revealed" data-delay="200">
+  <div class="trust-item">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+    </div>
+    <div>
+      <h4 data-en="OEM-Compliant Procedures" data-fr="Procédures conformes OEM">OEM-Compliant Procedures</h4>
+      <p data-en="We stick to exact manufacturer specs for every car, ensuring your safety systems work just right." data-fr="Nous respectons les spécifications exactes du fabricant pour chaque voiture, garantissant le bon fonctionnement de vos systèmes.">We stick to exact manufacturer specs for every car, ensuring your safety systems work just right.</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+        <polyline points="22 4 12 14.01 9 11.01"></polyline>
+      </svg>
+    </div>
+    <div>
+      <h4 data-en="Certified Technicians" data-fr="Techniciens certifiés">Certified Technicians</h4>
+      <p data-en="Our fully trained and insured specialists know your vehicle's tech inside and out." data-fr="Nos spécialistes entièrement formés et assurés connaissent la technologie de votre véhicule sur le bout des doigts.">Our fully trained and insured specialists know your vehicle's tech inside and out.</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M2 12h20M12 2v20"></path>
+        <circle cx="12" cy="12" r="10"></circle>
+      </svg>
+    </div>
+    <div>
+      <h4 data-en="All Makes &amp; Models" data-fr="Toutes marques &amp; modèles">All Makes &amp; Models</h4>
+      <p data-en="From everyday domestic cars to imported SUVs, we have the tools to service them all." data-fr="Des voitures nationaux aux VUS importés, nous avons les outils pour tous les entretenir.">From everyday domestic cars to imported SUVs, we have the tools to service them all.</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+        <polyline points="14 2 14 8 20 8"></polyline>
+        <line x1="16" y1="13" x2="8" y2="13"></line>
+        <line x1="16" y1="17" x2="8" y2="17"></line>
+        <polyline points="10 9 9 9 8 9"></polyline>
+      </svg>
+    </div>
+    <div>
+      <h4 data-en="Insurance Documentation" data-fr="Documentation assurance">Insurance Documentation</h4>
+      <p data-en="We provide clear digital reports to make your insurance claims and records hassle-free." data-fr="Nous fournissons des rapports numériques clairs pour simplifier vos réclamations et dossiers d'assurance.">We provide clear digital reports to make your insurance claims and records hassle-free.</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+    </div>
+    <div>
+      <h4 data-en="Available 7 Days/Week" data-fr="Disponible 7 j/sem">Available 7 Days/Week</h4>
+      <p data-en="We offer flexible scheduling, including weekends, to easily fit your busy life." data-fr="Nous offrons une planification flexible, y compris les week-ends, pour s'adapter à votre vie bien remplie.">We offer flexible scheduling, including weekends, to easily fit your busy life.</p>
+    </div>
+  </div>
+  <div class="trust-item">
+    <div class="icon-wrap">
+      <svg viewBox="0 0 24 24">
+        <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3"></path>
+      </svg>
+    </div>
+    <div>
+      <h4 data-en="Mobile Convenience" data-fr="Commodité mobile">Mobile Convenience</h4>
+      <p data-en="Skip the dealership wait—we bring our expert service straight to your home or shop." data-fr="Oubliez l'attente chez le concessionnaire : nous apportons notre service directement à vous.">Skip the dealership wait—we bring our expert service straight to your home or shop.</p>
+    </div>
+  </div>
+</div>
         </div>
       </section>
 
