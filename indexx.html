@@ -213,63 +213,99 @@
       }
 
       /* LANGUAGE DROPDOWN */
-      .lang-dropdown {
-        position: relative;
-      }
-      .lang-btn {
-        background: var(--bg-nav);
-        backdrop-filter: blur(var(--blur-nav));
-        -webkit-backdrop-filter: blur(var(--blur-nav));
-        border: 1px solid transparent;
-        padding: 6px 14px;
-        border-radius: var(--radius-full);
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--text-secondary);
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: var(--shadow-soft);
-      }
-      .lang-btn svg {
-        width: 12px;
-        height: 12px;
-        stroke: currentColor;
-        fill: none;
-        stroke-width: 2;
-      }
-      .lang-menu {
-        position: absolute;
-        top: 120%;
-        right: 0;
-        background: #fff;
-        border: 1px solid var(--border-default);
-        border-radius: var(--radius-sm);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        min-width: 100px;
-        display: none;
-        flex-direction: column;
-        overflow: hidden;
-        z-index: 10;
-      }
-      .lang-menu.open {
-        display: flex;
-      }
-      .lang-menu button {
-        background: none;
-        border: none;
-        padding: 8px 12px;
-        text-align: left;
-        font-size: 12px;
-        font-weight: 500;
-        color: var(--text-secondary);
-        cursor: pointer;
-      }
-      .lang-menu button:hover {
-        background: rgba(37, 99, 235, 0.05);
-        color: var(--accent-500);
-      }
+.lang-dropdown {
+  position: relative;
+}
+.lang-btn {
+  background: var(--bg-nav);
+  backdrop-filter: blur(var(--blur-nav));
+  -webkit-backdrop-filter: blur(var(--blur-nav));
+  border: 1px solid transparent;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-soft);
+}
+.lang-btn svg {
+  width: 12px;
+  height: 12px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+}
+
+/* ADDED: Override icon-wrap for the main toggle button */
+.lang-btn .icon-wrap {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.lang-menu {
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  min-width: 140px; /* CHANGED: slightly wider so "Français" fits nicely with the flag */
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 10;
+  padding: 4px; /* ADDED: gives breathing room inside the dropdown */
+}
+.lang-menu.open {
+  display: flex;
+}
+.lang-menu button {
+  background: none;
+  border: none;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px; /* ADDED: matches the radius of the dropdown padding */
+  display: flex; /* ADDED: aligns the flag and text */
+  align-items: center; /* ADDED: vertically centers the flag */
+  gap: 8px; /* ADDED: space between flag and text */
+  transition: background 0.2s ease, color 0.2s ease; /* ADDED: smooth hover */
+}
+.lang-menu button:hover {
+  background: rgba(37, 99, 235, 0.05);
+  color: var(--accent-500);
+}
+
+.lang-menu .icon-wrap {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  background: transparent;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lang-menu .icon-wrap svg {
+  width: 100%;
+  height: 100%;
+  stroke: none; /* Ensures the SVG flag isn't overwritten by your global button svg rules */
+}
 
       .navbar-cta {
         font-size: 12px;
@@ -931,7 +967,11 @@
       }
       .step-card {
         text-align: center;
+        background: var(--bg-base);
+        border-radius: var(--radius-lg);
+        padding: 24px 16px;
       }
+ 
       .step-number {
         width: 60px;
         height: 60px;
@@ -1201,7 +1241,7 @@
       .cta-button {
         font-size: 18px;
         font-weight: 700;
-        background: #0f172a;
+        background: var(--accent-400);
         color: #ffffff;
         padding: 16px 48px;
         border-radius: var(--radius-full);
@@ -1316,8 +1356,8 @@
       }
       @media (max-width: 767px) {
         .container {
-          padding-left: 16px;
-          padding-right: 16px;
+          padding-left: 24px;
+          padding-right: 24px;
         }
         .navbar-inner {
           padding: 0 16px;
@@ -1333,9 +1373,10 @@
         }
         .hero-headline {
           font-size: 40px;
+          margin-top: -40px;
         }
         .hero-subtitle {
-          font-size: 16px;
+          font-size: 18px;
         }
         .section-title {
           font-size: 32px;
@@ -1444,8 +1485,8 @@
               >Coverage</a
             >
           </li>
-          <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
           <li><a href="#trust" data-en="About Us" data-fr="À propos">About Us</a></li>
+          <li><a href="#faq" data-en="FAQ" data-fr="FAQ">FAQ</a></li>
           <li>
             <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
           </li>
@@ -1457,8 +1498,14 @@
               🇨🇦 <span id="lang-current">EN</span>
             </button>
             <div class="lang-menu" id="lang-menu">
-              <button onclick="setLang('en')">🇨🇦 English</button>
-              <button onclick="setLang('fr')">🇨🇦 Français</button>
+              <button onclick="setLang('en')" class="lang-btn active">
+      <span class="icon-wrap"/>
+      <span>English</span>
+    </button>
+    <button onclick="setLang('fr')" class="lang-btn">
+      <span class="icon-wrap"/>
+      <span>Français</span>
+    </button>
             </div>
           </div>
           <button
@@ -3635,10 +3682,10 @@
           <div class="cta-container reveal-on-scroll">
             <h2
               class="cta-headline gradient-text"
-              data-en="Ready to Get Back on the Road Safely?"
-              data-fr="Prêt à reprendre la route en toute sécurité?"
+              data-en="Ready to Get Back on the Road <strong>Safely</strong>?"
+              data-fr="Prêt à reprendre la route en toute <strong>sécurité</strong>?"
             >
-              Ready to Get Back on the Road Safely?
+              Ready to Get Back on the Road <strong>Safely</strong>?
             </h2>
             <p
               class="cta-subtitle"
