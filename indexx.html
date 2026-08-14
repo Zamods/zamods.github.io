@@ -250,6 +250,7 @@
   overflow: hidden;
 }
 
+
 .lang-menu {
   position: absolute;
   top: 120%;
@@ -284,13 +285,13 @@
   transition: background 0.2s ease, color 0.2s ease; /* ADDED: smooth hover */
 }
 .lang-menu button:hover {
-  background: var(--accent-300);
+  background: var(--accent-glow);
   color: var(--accent-500);
 }
 
 .lang-menu .icon-wrap {
   width: 22px;
-  height: 14;
+  height: auto;
   min-width: 22px;
   background: transparent;
   overflow: hidden;
@@ -1238,7 +1239,7 @@
       .cta-button {
         font-size: 18px;
         font-weight: 700;
-        background: var(--accent-400);
+        background: var(--accent-500);
         color: #ffffff;
         padding: 16px 48px;
         border-radius: var(--radius-full);
@@ -1247,7 +1248,7 @@
         transition: background var(--duration-normal) ease;
       }
       .cta-button:hover {
-        background: var(--accent-500);
+        background: var(--accent-400);
       }
 
       .footer {
