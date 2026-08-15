@@ -1116,7 +1116,7 @@
       .form-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 32px;
+        gap: 48px;
         margin-top: 48px;
       }
       .form-info {
@@ -3598,6 +3598,198 @@
             <strong>2 hours</strong>.
           </p>
           <div class="form-grid reveal-on-scroll" data-delay="300">
+            <form class="booking-form" onsubmit="handleBooking(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name" data-en="Full Name" data-fr="Nom complet"
+                    >Full Name</label
+                  >
+                  <input type="text" id="name" required />
+                </div>
+                <div class="form-group">
+                <label
+                  for="email"
+                  data-en="Email Address"
+                  data-fr="Adresse e-mail"
+                  >Email Address</label
+                >
+                <input type="email" id="email" required />
+              </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label
+                    for="phone"
+                    data-en="Phone Number"
+                    data-fr="Numéro de téléphone"
+                    >Phone Number</label
+                  >
+                  <input type="tel" id="phone" required />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="year"
+                    data-en="Vehicle Year"
+                    data-fr="Année du véhicule"
+                    >Vehicle Year</label
+                  >
+                  <input
+                    type="number"
+                    id="year"
+                    min="1990"
+                    max="2025"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="make"
+                    data-en="Vehicle Make"
+                    data-fr="Marque du véhicule"
+                    >Vehicle Make</label
+                  >
+                  <input type="text" id="make" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label
+                    for="model"
+                    data-en="Vehicle Model"
+                    data-fr="Modèle du véhicule"
+                    >Vehicle Model</label
+                  >
+                  <input type="text" id="model" required />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="booking-type"
+                    data-en="Booking As"
+                    data-fr="Type de réservation"
+                    >Booking As</label
+                  >
+                  <select id="booking-type">
+                    <option data-en="Individual" data-fr="Individuel">
+                      Individual
+                    </option>
+                    <option
+                      data-en="Body Shop"
+                      data-fr="Atelier de carrosserie"
+                    >
+                      Body Shop
+                    </option>
+                    <option data-en="Glass Shop" data-fr="Atelier de vitrage">
+                      Glass Shop
+                    </option>
+                    <option data-en="Other" data-fr="Autre">Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                <label
+                  for="reason"
+                  data-en="Reason for Calibration"
+                  data-fr="Raison de la calibration"
+                  >Reason for Calibration</label
+                >
+                <select id="reason">
+                  <option
+                    data-en="Windshield Replacement"
+                    data-fr="Remplacement de pare-brise"
+                  >
+                    Windshield Replacement
+                  </option>
+                  <option
+                    data-en="Collision Repair"
+                    data-fr="Réparation après collision"
+                  >
+                    Collision Repair
+                  </option>
+                  <option
+                    data-en="Suspension/Alignment"
+                    data-fr="Suspension/Alignement"
+                  >
+                    Suspension/Alignment
+                  </option>
+                  <option
+                    data-en="Sensor Replacement"
+                    data-fr="Remplacement de capteur"
+                  >
+                    Sensor Replacement
+                  </option>
+                  <option
+                    data-en="Bumper Repair"
+                    data-fr="Réparation de pare-chocs"
+                  >
+                    Bumper Repair
+                  </option>
+                  <option data-en="Other/Not Sure" data-fr="Autre/Pas sûr">
+                    Other/Not Sure
+                  </option>
+                </select>
+              </div>
+                <div class="form-group">
+                  <label
+                    for="date"
+                    data-en="Preferred Date"
+                    data-fr="Date préférée"
+                    >Preferred Date</label
+                  >
+                  <input type="date" id="date" required />
+                </div>
+                <div class="form-group">
+                  <label
+                    for="time"
+                    data-en="Preferred Time"
+                    data-fr="Heure préférée"
+                    >Preferred Time</label
+                  >
+                  <select id="time">
+                    <option data-en="Morning" data-fr="Matin">Morning</option>
+                    <option data-en="Afternoon" data-fr="Après-midi">
+                      Afternoon
+                    </option>
+                    <option data-en="Evening" data-fr="Soir">Evening</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label
+                  for="location"
+                  data-en="Service Location"
+                  data-fr="Lieu de service"
+                  >Service Location</label
+                >
+                <input type="text" id="location" required />
+              </div>
+              <div class="form-group">
+                <label
+                  for="notes"
+                  data-en="Additional Notes"
+                  data-fr="Notes supplémentaires"
+                  >Additional Notes</label
+                >
+                <textarea id="notes"></textarea>
+              </div>
+              <button
+                type="submit"
+                class="btn-primary"
+                style="margin: 0 auto; justify-content: center"
+                data-en="Submit Booking"
+                data-fr="Envoyer la demande"
+              >
+                Submit Booking
+              </button>
+              <p
+                class="form-disclaimer"
+                data-en="By submitting, you agree to be contacted by Vision Core Automotive regarding your request."
+                data-fr="En soumettant, vous acceptez d'être contacté par Vision Core Automotive."
+              >
+                By submitting, you agree to be contacted by Vision Core
+                Automotive regarding your request.
+              </p>
+            </form>
             <div class="form-info">
               <div class="form-info-item">
                     <div class="icon-wrap">
@@ -3688,198 +3880,6 @@
                     </div>
                   </div>
             </div>
-            <form class="booking-form" onsubmit="handleBooking(event)">
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="name" data-en="Full Name" data-fr="Nom complet"
-                    >Full Name</label
-                  >
-                  <input type="text" id="name" required />
-                </div>
-                <div class="form-group">
-                <label
-                  for="email"
-                  data-en="Email Address"
-                  data-fr="Adresse e-mail"
-                  >Email Address</label
-                >
-                <input type="email" id="email" required />
-              </div>
-                <div class="form-group">
-                  <label
-                    for="phone"
-                    data-en="Phone Number"
-                    data-fr="Numéro de téléphone"
-                    >Phone Number</label
-                  >
-                  <input type="tel" id="phone" required />
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label
-                    for="year"
-                    data-en="Vehicle Year"
-                    data-fr="Année du véhicule"
-                    >Vehicle Year</label
-                  >
-                  <input
-                    type="number"
-                    id="year"
-                    min="1990"
-                    max="2025"
-                    required
-                  />
-                </div>
-                <div class="form-group">
-                  <label
-                    for="make"
-                    data-en="Vehicle Make"
-                    data-fr="Marque du véhicule"
-                    >Vehicle Make</label
-                  >
-                  <input type="text" id="make" required />
-                </div>
-                <div class="form-group">
-                  <label
-                    for="model"
-                    data-en="Vehicle Model"
-                    data-fr="Modèle du véhicule"
-                    >Vehicle Model</label
-                  >
-                  <input type="text" id="model" required />
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label
-                    for="booking-type"
-                    data-en="Booking As"
-                    data-fr="Type de réservation"
-                    >Booking As</label
-                  >
-                  <select id="booking-type">
-                    <option data-en="Individual" data-fr="Individuel">
-                      Individual
-                    </option>
-                    <option
-                      data-en="Body Shop"
-                      data-fr="Atelier de carrosserie"
-                    >
-                      Body Shop
-                    </option>
-                    <option data-en="Glass Shop" data-fr="Atelier de vitrage">
-                      Glass Shop
-                    </option>
-                    <option data-en="Other" data-fr="Autre">Other</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                <label
-                  for="reason"
-                  data-en="Reason for Calibration"
-                  data-fr="Raison de la calibration"
-                  >Reason for Calibration</label
-                >
-                <select id="reason">
-                  <option
-                    data-en="Windshield Replacement"
-                    data-fr="Remplacement de pare-brise"
-                  >
-                    Windshield Replacement
-                  </option>
-                  <option
-                    data-en="Collision Repair"
-                    data-fr="Réparation après collision"
-                  >
-                    Collision Repair
-                  </option>
-                  <option
-                    data-en="Suspension/Alignment"
-                    data-fr="Suspension/Alignement"
-                  >
-                    Suspension/Alignment
-                  </option>
-                  <option
-                    data-en="Sensor Replacement"
-                    data-fr="Remplacement de capteur"
-                  >
-                    Sensor Replacement
-                  </option>
-                  <option
-                    data-en="Bumper Repair"
-                    data-fr="Réparation de pare-chocs"
-                  >
-                    Bumper Repair
-                  </option>
-                  <option data-en="Other/Not Sure" data-fr="Autre/Pas sûr">
-                    Other/Not Sure
-                  </option>
-                </select>
-              </div>
-              </div>
-              <div class="form-row">
-                <div class="form-group">
-                  <label
-                    for="date"
-                    data-en="Preferred Date"
-                    data-fr="Date préférée"
-                    >Preferred Date</label
-                  >
-                  <input type="date" id="date" required />
-                </div>
-                <div class="form-group">
-                  <label
-                    for="time"
-                    data-en="Preferred Time"
-                    data-fr="Heure préférée"
-                    >Preferred Time</label
-                  >
-                  <select id="time">
-                    <option data-en="Morning" data-fr="Matin">Morning</option>
-                    <option data-en="Afternoon" data-fr="Après-midi">
-                      Afternoon
-                    </option>
-                    <option data-en="Evening" data-fr="Soir">Evening</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <label
-                  for="location"
-                  data-en="Service Location"
-                  data-fr="Lieu de service"
-                  >Service Location</label
-                >
-                <input type="text" id="location" required />
-              </div>
-              <div class="form-group">
-                <label
-                  for="notes"
-                  data-en="Additional Notes"
-                  data-fr="Notes supplémentaires"
-                  >Additional Notes</label
-                >
-                <textarea id="notes"></textarea>
-              </div>
-              <button
-                type="submit"
-                class="btn-primary"
-                style="margin: 0 auto; justify-content: center"
-                data-en="Submit Booking"
-                data-fr="Envoyer la demande"
-              >
-                Submit Booking
-              </button>
-              <p
-                class="form-disclaimer"
-                data-en="By submitting, you agree to be contacted by Vision Core Automotive regarding your request."
-                data-fr="En soumettant, vous acceptez d'être contacté par Vision Core Automotive."
-              >
-                By submitting, you agree to be contacted by Vision Core
-                Automotive regarding your request.
-              </p>
-            </form>
           </div>
         </div>
       </section>
