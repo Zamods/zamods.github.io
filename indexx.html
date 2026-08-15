@@ -1115,21 +1115,20 @@
 
       .form-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         gap: 32px;
         margin-top: 48px;
       }
       .form-info {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
         gap: 24px;
       }
       .form-info-item {
         display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 18px 12px;
-        margin: 0px 12px;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 16px;
         border-radius: var(--radius-lg);
         background: var(--bg-section-alt);
       }
@@ -1159,14 +1158,17 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
         font-weight: 500;
+        font-family: var(--font-primary);
       }
       .form-info-item .value {
         font-size: 16px;
         color: var(--text-heading);
-        font-weight: 600;
+        font-weight: 500;
+        font-family: var(--font-primary);
       }
       .form-info-item .value a {
         color: var(--accent-400);
+        font-family: var(--font-primary);
       }
       .booking-form {
         display: flex;
@@ -1175,7 +1177,7 @@
       }
       .form-row {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3 ,1fr);
         gap: 16px;
       }
       .form-group {
@@ -1458,6 +1460,9 @@
           grid-template-columns: 1fr;
         }
         .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .form-info {
           grid-template-columns: 1fr;
         }
         .form-row {
@@ -3594,20 +3599,7 @@
           </p>
           <div class="form-grid reveal-on-scroll" data-delay="300">
             <div class="form-info">
-              <div
-                class="glass-card"
-                style="height: 100%; background: var(--bg-card)"
-              >
-                <div
-                  class="card-body"
-                  style="
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    gap: 18px;
-                  "
-                >
-                  <div class="form-info-item">
+              <div class="form-info-item">
                     <div class="icon-wrap">
                       <svg viewBox="0 0 24 24">
                       <path
@@ -3695,8 +3687,6 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
             </div>
             <form class="booking-form" onsubmit="handleBooking(event)">
               <div class="form-row">
@@ -3707,6 +3697,15 @@
                   <input type="text" id="name" required />
                 </div>
                 <div class="form-group">
+                <label
+                  for="email"
+                  data-en="Email Address"
+                  data-fr="Adresse e-mail"
+                  >Email Address</label
+                >
+                <input type="email" id="email" required />
+              </div>
+                <div class="form-group">
                   <label
                     for="phone"
                     data-en="Phone Number"
@@ -3715,15 +3714,6 @@
                   >
                   <input type="tel" id="phone" required />
                 </div>
-              </div>
-              <div class="form-group">
-                <label
-                  for="email"
-                  data-en="Email Address"
-                  data-fr="Adresse e-mail"
-                  >Email Address</label
-                >
-                <input type="email" id="email" required />
               </div>
               <div class="form-row">
                 <div class="form-group">
@@ -3750,8 +3740,6 @@
                   >
                   <input type="text" id="make" required />
                 </div>
-              </div>
-              <div class="form-row">
                 <div class="form-group">
                   <label
                     for="model"
@@ -3761,6 +3749,8 @@
                   >
                   <input type="text" id="model" required />
                 </div>
+              </div>
+              <div class="form-row">
                 <div class="form-group">
                   <label
                     for="booking-type"
@@ -3784,8 +3774,7 @@
                     <option data-en="Other" data-fr="Autre">Other</option>
                   </select>
                 </div>
-              </div>
-              <div class="form-group">
+                <div class="form-group">
                 <label
                   for="reason"
                   data-en="Reason for Calibration"
@@ -3827,6 +3816,7 @@
                     Other/Not Sure
                   </option>
                 </select>
+              </div>
               </div>
               <div class="form-row">
                 <div class="form-group">
@@ -3875,7 +3865,7 @@
               <button
                 type="submit"
                 class="btn-primary"
-                style="width: 100%; justify-content: center"
+                style="margin: 0 auto; justify-content: center"
                 data-en="Submit Booking"
                 data-fr="Envoyer la demande"
               >
