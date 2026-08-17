@@ -1445,6 +1445,12 @@
         .navbar-cta {
           display: none;
         }
+        .navbar-logo img {
+          display: block;
+          height: 26px; /* Adjust based on your navbar height */
+          width: auto;
+          max-width: 100%;
+        }
         .navbar-mobile-toggle {
           display: block;
         }
@@ -4119,7 +4125,7 @@
         </div>
         <div class="footer-bottom">
           <span class="footer-copyright"
-            >© <span id="year"></span>2026 Vision Core Automotive</span
+            >© <span id="footer-year"></span>Vision Core Automotive</span
           >
           <div class="footer-socials">
             <a href="#" aria-label="Facebook"
@@ -4301,7 +4307,7 @@
       }
 
       // Set current year
-      document.getElementById("year").textContent = new Date().getFullYear();
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>
