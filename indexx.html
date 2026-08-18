@@ -18,11 +18,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Vision Core Automotive provides professional mobile ADAS calibration services across the Lower Mainland, Bristish Colombia (BC), Canada. We come to your home, work, or repair shop. Book your calibration today."
+      content="Vision Core Automotive provides professional mobile ADAS calibration services across the Lower Mainland, British Columbia (BC), Canada. We come to your home, work, or repair shop. Book your calibration today."
     />
     <meta name="apple-mobile-web-app-title" content="ADAS" />
     <title>
-      Vision Core Automotive — Mobile ADAS Calibration · Lower Mainland, BC
+      Vision Core Automotive — Professional Mobile ADAS Calibration Service ·
+      Lower Mainland, British Columbia (BC), Canada.
     </title>
     <link
       rel="icon"
@@ -47,8 +48,6 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
-      media="print"
-      onload="this.media = 'all'"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
   </head>
@@ -108,7 +107,7 @@
         <div class="navbar-right">
           <!-- LANGUAGE DROPDOWN -->
           <div class="lang-dropdown">
-            <button class="lang-btn" onclick="toggleLangDropdown()">
+            <button class="lang-btn" id="lang-toggle-btn">
               <span class="icon-wrap flag-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -125,7 +124,7 @@
               <span id="lang-current">EN</span>
             </button>
             <div class="lang-menu" id="lang-menu">
-              <button onclick="setLang('en')" class="lang-btn active">
+              <button data-lang="en" class="lang-btn active">
                 <span class="icon-wrap flag-icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +140,7 @@
                 </span>
                 <span>English</span>
               </button>
-              <button onclick="setLang('fr')" class="lang-btn">
+              <button data-lang="fr" class="lang-btn">
                 <span class="icon-wrap flag-icon">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -161,11 +160,7 @@
           </div>
           <button
             class="navbar-cta"
-            onclick="
-              document
-                .getElementById('contact')
-                .scrollIntoView({ behavior: 'smooth' })
-            "
+            data-book-now
             data-en="Book Now"
             data-fr="Réserver"
           >
@@ -173,7 +168,7 @@
           </button>
           <button
             class="navbar-mobile-toggle"
-            onclick="toggleMobileNav()"
+            id="mobile-nav-toggle"
             aria-label="Toggle navigation"
           >
             <svg
@@ -210,31 +205,37 @@
     <div class="mobile-nav" id="mobile-nav">
       <a
         href="#services"
-        onclick="closeMobileNav()"
+        class="mobile-nav-link"
         data-en="Services"
         data-fr="Services"
         >Services</a
       >
       <a
         href="#pricing"
-        onclick="closeMobileNav()"
+        class="mobile-nav-link"
         data-en="Pricing"
         data-fr="Tarifs"
         >Pricing</a
       >
       <a
         href="#coverage"
-        onclick="closeMobileNav()"
+        class="mobile-nav-link"
         data-en="Coverage"
         data-fr="Couverture"
         >Coverage</a
       >
-      <a href="#faq" onclick="closeMobileNav()" data-en="FAQ" data-fr="FAQ"
-        >FAQ</a
+      <a
+        href="#trust"
+        class="mobile-nav-link"
+        data-en="About Us"
+        data-fr="À propos"
       >
+        About Us</a
+      >
+      <a href="#faq" class="mobile-nav-link" data-en="FAQ" data-fr="FAQ">FAQ</a>
       <a
         href="#contact"
-        onclick="closeMobileNav()"
+        class="mobile-nav-link"
         data-en="Contact"
         data-fr="Contact"
         >Contact</a
@@ -292,11 +293,7 @@
           <div class="hero-buttons">
             <button
               class="btn-primary"
-              onclick="
-                document
-                  .getElementById('contact')
-                  .scrollIntoView({ behavior: 'smooth' })
-              "
+              data-book-now
               data-en="Book Online"
               data-fr="Réserver en ligne"
             >
@@ -1297,11 +1294,7 @@
               <div class="pricing-cta">
                 <button
                   class="btn-secondary"
-                  onclick="
-                    document
-                      .getElementById('contact')
-                      .scrollIntoView({ behavior: 'smooth' })
-                  "
+                  data-book-now
                   data-en="Book Essential"
                   data-fr="Réserver Essentiel"
                 >
@@ -1390,11 +1383,7 @@
               <div class="pricing-cta">
                 <button
                   class="btn-primary"
-                  onclick="
-                    document
-                      .getElementById('contact')
-                      .scrollIntoView({ behavior: 'smooth' })
-                  "
+                  data-book-now
                   data-en="Book Complete"
                   data-fr="Réserver Complet"
                 >
@@ -1478,11 +1467,7 @@
               <div class="pricing-cta">
                 <button
                   class="btn-secondary"
-                  onclick="
-                    document
-                      .getElementById('contact')
-                      .scrollIntoView({ behavior: 'smooth' })
-                  "
+                  data-book-now
                   data-en="Contact for Partner Pricing"
                   data-fr="Contactez-nous pour les tarifs partenaires"
                 >
@@ -1970,7 +1955,7 @@
           </h2>
           <div class="faq-list reveal-on-scroll" data-delay="200">
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
+              <button class="faq-question" class="faq-toggle">
                 <span
                   data-en="How long does calibration take?"
                   data-fr="Combien de temps prend la calibration?"
@@ -1994,7 +1979,7 @@
               </div>
             </div>
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
+              <button class="faq-question" class="faq-toggle">
                 <span
                   data-en="Do I need calibration after a windshield replacement?"
                   data-fr="Dois-je faire une calibration après un remplacement de pare-brise?"
@@ -2019,7 +2004,7 @@
               </div>
             </div>
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
+              <button class="faq-question" class="faq-toggle">
                 <span
                   data-en="Will my insurance cover this?"
                   data-fr="Mon assurance couvrira-t-elle cela?"
@@ -2043,7 +2028,7 @@
               </div>
             </div>
             <div class="faq-item">
-              <button class="faq-question" onclick="toggleFaq(this)">
+              <button class="faq-question" class="faq-toggle">
                 <span
                   data-en="What happens if I don't calibrate?"
                   data-fr="Que se passe-t-il si je ne fais pas calibrer?"
@@ -2091,7 +2076,7 @@
             <strong>2 hours</strong>.
           </p>
           <div class="form-grid reveal-on-scroll" data-delay="300">
-            <form class="booking-form" onsubmit="handleBooking(event)">
+            <form class="booking-form" id="booking-form">
               <div class="form-row">
                 <div class="form-group">
                   <label for="name" data-en="Full Name" data-fr="Nom complet"
@@ -2357,10 +2342,10 @@
                   >
                   <div
                     class="value"
-                    data-en="Mon-Sun: 8am - 6pm"
-                    data-fr="Lun-Dim : 8h - 18h"
+                    data-en="Mon-Sat: 8am - 6pm"
+                    data-fr="Lun-Sam : 8h - 18h"
                   >
-                    Mon-Sun: 8am - 6pm
+                    Mon-Sat: 8am - 6pm
                   </div>
                 </div>
               </div>
@@ -2391,11 +2376,7 @@
             <div class="cta-button-wrapper">
               <button
                 class="cta-button"
-                onclick="
-                  document
-                    .getElementById('contact')
-                    .scrollIntoView({ behavior: 'smooth' })
-                "
+                data-book-now
                 data-en="Book Online Now"
                 data-fr="Réserver en ligne"
               >
@@ -2519,11 +2500,7 @@
         >
         <button
           class="btn-primary"
-          onclick="
-            document
-              .getElementById('contact')
-              .scrollIntoView({ behavior: 'smooth' })
-          "
+          data-book-now
           style="flex: 1; justify-content: center; padding: 12px 16px"
           data-en="Book Now"
           data-fr="Réserver"
@@ -2533,6 +2510,6 @@
       </div>
     </div>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js" defer></script>
   </body>
 </html>
