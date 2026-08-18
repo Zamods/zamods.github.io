@@ -143,19 +143,57 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Form Submit
-  function handleBooking(event) {
-    event.preventDefault();
-    const btn = event.target.querySelector('button[type="submit"]');
-    if (!btn) return;
-    const originalText = btn.textContent;
-    btn.textContent = currentLang === "fr" ? "Demande envoyée !" : "Request Sent!";
-    btn.style.background = "#10B981";
+async function handleBooking(event) {
+  event.preventDefault();
+  const form = event.target;
+  const btn = form.querySelector('button[type="submit"]');
+  if (!btn) return;
+  
+  const originalText = btn.textContent;
+  
+  // Change button to loading state
+  btn.disabled = true;
+  btn.textContent = currentLang === "fr" ? "Envoi en cours..." : "Sending...";
+
+  try {
+    // Create a FormData object from the form
+    const formData = new FormData(form);
+    
+    // Send data to Web3Forms
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      // Success!
+      btn.textContent = currentLang === "fr" ? "Demande envoyée !" : "Request Sent!";
+      btn.style.background = "#10B981";
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = "";
+        btn.disabled = false;
+        form.reset();
+      }, 3000);
+    } else {
+      // Web3Forms returned an error
+      throw new Error(result.message || "Submission failed");
+    }
+  } catch (error) {
+    console.error("Booking submission failed:", error);
+    btn.textContent = currentLang === "fr" ? "Erreur, réessayez" : "Error, try again";
+    btn.style.background = "#EF4444";
+    
     setTimeout(() => {
       btn.textContent = originalText;
       btn.style.background = "";
-      event.target.reset();
+      btn.disabled = false;
     }, 3000);
   }
+}
 
   const bookingForm = document.getElementById("booking-form");
   if (bookingForm) {

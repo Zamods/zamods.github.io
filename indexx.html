@@ -2077,12 +2077,13 @@
           </p>
           <div class="form-grid reveal-on-scroll" data-delay="300">
             <form class="booking-form" id="booking-form">
+              <input type="hidden" name="access_key" value="e33e7de6-24e4-4756-9337-53f880b671e9" />
               <div class="form-row">
                 <div class="form-group">
                   <label for="name" data-en="Full Name" data-fr="Nom complet"
                     >Full Name</label
                   >
-                  <input type="text" id="name" required />
+                  <input type="text" id="name" name="name" required />
                 </div>
                 <div class="form-group">
                   <label
@@ -2091,7 +2092,7 @@
                     data-fr="Adresse e-mail"
                     >Email Address</label
                   >
-                  <input type="email" id="email" required />
+                  <input type="email" id="email" name="email" required />
                 </div>
               </div>
               <div class="form-row">
@@ -2102,7 +2103,7 @@
                     data-fr="Numéro de téléphone"
                     >Phone Number</label
                   >
-                  <input type="tel" id="phone" required />
+                  <input type="tel" id="phone" name="phone" required />
                 </div>
                 <div class="form-group">
                   <label
@@ -2114,6 +2115,7 @@
                   <input
                     type="number"
                     id="year"
+                    name="year"
                     min="1990"
                     max="2025"
                     required
@@ -2128,7 +2130,7 @@
                     data-fr="Marque du véhicule"
                     >Vehicle Make</label
                   >
-                  <input type="text" id="make" required />
+                  <input type="text" id="make" name="make" required />
                 </div>
                 <div class="form-group">
                   <label
@@ -2137,7 +2139,7 @@
                     data-fr="Modèle du véhicule"
                     >Vehicle Model</label
                   >
-                  <input type="text" id="model" required />
+                  <input type="text" id="model" name="model" required />
                 </div>
               </div>
               <div class="form-row">
@@ -2148,7 +2150,7 @@
                     data-fr="Type de réservation"
                     >Booking As</label
                   >
-                  <select id="booking-type">
+                  <select id="booking-type" name="booking_type">
                     <option data-en="Individual" data-fr="Individuel">
                       Individual
                     </option>
@@ -2171,7 +2173,7 @@
                     data-fr="Raison de la calibration"
                     >Reason for Calibration</label
                   >
-                  <select id="reason">
+                  <select id="reason" name="reason">
                     <option
                       data-en="Windshield Replacement"
                       data-fr="Remplacement de pare-brise"
@@ -2214,7 +2216,7 @@
                     data-fr="Date préférée"
                     >Preferred Date</label
                   >
-                  <input type="date" id="date" required />
+                  <input type="date" id="date" name="date" required />
                 </div>
                 <div class="form-group">
                   <label
@@ -2223,7 +2225,7 @@
                     data-fr="Heure préférée"
                     >Preferred Time</label
                   >
-                  <select id="time">
+                  <select id="time" name="time">
                     <option data-en="Morning" data-fr="Matin">Morning</option>
                     <option data-en="Afternoon" data-fr="Après-midi">
                       Afternoon
@@ -2239,7 +2241,7 @@
                   data-fr="Lieu de service"
                   >Service Location</label
                 >
-                <input type="text" id="location" required />
+                <input type="text" id="location" name="location" required />
               </div>
               <div class="form-group">
                 <label
@@ -2248,7 +2250,7 @@
                   data-fr="Notes supplémentaires"
                   >Additional Notes</label
                 >
-                <textarea id="notes"></textarea>
+                <textarea id="notes" name="notes"></textarea>
               </div>
               <button
                 type="submit"
